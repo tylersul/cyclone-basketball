@@ -33,8 +33,6 @@ let commentRoutes  = require("./routes/comments"), // These  three lines import 
 //ongoose.connect("mongodb://localhost/DBNAME", {useNewUrlParser: true, useUnifiedTopology: true});
 
 // MongoDB Atlas Connection for Cloud-based app
-//mongoose.connect("mongodb+srv://<user>:<password>MDA@cluster0-0ren4.mongodb.net/test?retryWrites=true&w=majority");
-
 // MongoDB Atlas Connection instead with Environment Variables for added security
 // Env Variable set within Atlas, but can be set for local connection as well
 mongoose.connect(process.env.DATABASEURL);

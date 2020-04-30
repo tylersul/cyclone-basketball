@@ -128,7 +128,7 @@ router.post("/passwordreset", function(req, res, next){
             });
             var mailOptions = {
                 to: user.email,
-                from: "Cyclone Analytics,
+                from: "Cyclone Analytics",
                 subject: "Cyclone Analytics Password Reset",
                 text: "You are receiving this message because you (or someone else) request a password reset for youir account\n" +
                 "Please click the link below, or paste it into your browser, to reset your password:\n" +
