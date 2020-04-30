@@ -1,0 +1,28 @@
+<% include ../partials/header %>
+<div class="row justify-content-center">
+    <div class="col-md-12 text-center">
+        <h1 style="text-align: center">Edit <%= player.name%> </h1>
+    </div>
+    <div style="width: 30%; margin: 25px auto;">
+        <form action="/players/<%= player._id %>?_method=PUT" method="POST">
+            <div class="form-group">
+                <input class="form-control" type="text" name="player[name]" value="<%= player.name %>">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="player[image]" value="<%= player.image %>">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="player[position]" value="<%= player.position %>">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="player[description]" value="<%= player.description %>">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-lg btn-primary btn-block">Submit!</button>
+            </div>
+        </form>
+        <a href="/players">Go Back</a>
+    </div>
+    </div>
+</div>
+<% include ../partials/footer %>
