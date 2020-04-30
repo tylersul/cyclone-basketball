@@ -9,6 +9,7 @@ var async      = require("async");
 var nodemailer = require("nodemailer");
 var crypto     = require("crypto");
 var https      = require("https");
+let middleware = require("../middleware");
 var User       = require("../models/user");
 var Player     = require("../models/player");
 
@@ -220,6 +221,16 @@ router.get("/users/:id", function(req, res){
 });
 
 
+// DELETE ROUTE 
+router.delete("/users/:id", middleware.checkUserOwnership, function(req, res){
+    User.findByIdAndRemove(req.params.id, function(err){
+        if(err){
+            res.redirect("back");
+        } else {
+            res.redirect("/home");
+        }
+    });
+});
 
 
 // ================================================================== //

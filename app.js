@@ -18,24 +18,25 @@ let express        = require("express"),           // ExpressJS module 'Express'
     User           = require("./models/user"),     // Import custom 'user' model for use in Mongoose
     seedDB         = require("./seeds")            // Import seeDB custom function to fill empty MongoDB with test data
 
-const port         = process.env.PORT;                         // Set Port exposed constant to 3000 for localhost 
+                         
 
 let commentRoutes  = require("./routes/comments"), // These  three lines import routes from the 
     playerRoutes   = require("./routes/players"),  //   separate directory to make the code more 
     indexRoutes    = require("./routes/index"),    //   modular and scale easier as more are added
     footerRoutes   = require("./routes/footer"),
     adminRoutes    = require("./routes/admin");
-
+    
+require('dotenv').config();
+const port         = process.env.PORT; // Set Port exposed constant to 3000 for localhost 
 // ================================================================== //
 // ====================== Backend Connection ======================== //
 // ================================================================== //
-// Local Mongo Instance Connection
-//ongoose.connect("mongodb://localhost/DBNAME", {useNewUrlParser: true, useUnifiedTopology: true});
+// Local Mongo Instance Connection - configued in env file
 
 // MongoDB Atlas Connection for Cloud-based app
 // MongoDB Atlas Connection instead with Environment Variables for added security
 // Env Variable set within Atlas, but can be set for local connection as well
-mongoose.connect(process.env.DATABASEURL);
+mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true, useUnifiedTopology: true});
 
 
 // ================================================================== //

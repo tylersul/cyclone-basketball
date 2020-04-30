@@ -1,6 +1,15 @@
 <% include ../partials/header %>
 
+<nav class="nav nav-pills flex-column flex-sm-row mb-2">
+        <a class="flex-sm-fill text-sm-center nav-link active" href="#">Account</a>
+        <a class="flex-sm-fill text-sm-center nav-link" href="/admin/users">Users</a>
+        <a class="flex-sm-fill text-sm-center nav-link" href="/admin/players">Players</a>
+        <a class="flex-sm-fill text-sm-center nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Permissions</a>
+      </nav>
+
 <h1> Admin Page </h1>
 <h2> Number of users: <%= count %></h2>
+
+
 
 <% include ../partials/footer %>

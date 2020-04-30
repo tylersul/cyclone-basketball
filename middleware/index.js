@@ -46,6 +46,28 @@ middlewareObject.checkCommentOwnership = function(req, res, next){
     }
 }
 
+middlewareObject.checkUserOwnership = function(req, res, next){
+    if(req.isAuthenticated()){
+        User.findById(req.params.id, function(err, foundUser){
+            if(err || !foundUser){
+                req.flash("error", "That user does not exist.");
+                res.redirect("back");
+            } else {
+                if(foundUser._id.equals(req.user._id) || req.user.isAdmin){
+                    next();
+                } else {
+                    req.flash("error", "Permission denied.");
+                    res.redirect("back");
+                }
+            }
+        });
+    } else {
+        req.flash("error", "You need to be logged in to do that.");
+        res.redirect("back");
+    }
+}
+
+
 middlewareObject.isLoggedIn = function(req, res, next){
     if(req.isAuthenticated()){
         return next();

@@ -1,0 +1,36 @@
+<% include ../partials/header %>
+    <nav class="nav nav-pills flex-column flex-sm-row mb-2">
+        <a class="flex-sm-fill text-sm-center nav-link" href="/admin">Account</a>
+        <a class="flex-sm-fill text-sm-center nav-link" href="/admin/users">Users</a>
+        <a class="flex-sm-fill text-sm-center nav-link active" href="#">Players</a>
+        <a class="flex-sm-fill text-sm-center nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Permissions</a>
+    </nav>
+    <h2> Number of players: <%= players.length %></h2> 
+    <table class="table mb-4">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Position</th>
+                <th scope="col">Dashboard</th>
+                <th scope="col">Comments</th>
+                <th scope="col">Player Management</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% players.forEach(function(player){ %>
+            <tr>
+                <td><%= player.name %></td>
+                <td><%= player.position %></td>
+                <td><a href="/players/<%= player._id %>">Player Page</a></td>
+                <td><%= player.comments.length %></td>
+                <td>
+                    <a class="btn btn-xs btn-warning" href="/players/<%=player._id%>/edit">Edit</a>
+                    <form id="delete-comment" action="/players/<%= player._id%>?_method=DELETE" method="POST">
+                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                    </form>
+                </td>
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+<% include ../partials/footer %>
