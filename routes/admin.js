@@ -44,6 +44,7 @@ router.get("/admin/players", middleware.isLoggedIn, function(req, res){
             console.log(err);
         } else {
             res.render("admin/players", {players:allPlayers});
+            console.log(allPlayers);
         }
     });
 });

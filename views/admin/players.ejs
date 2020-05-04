@@ -64,13 +64,13 @@
                 </div>
             </div>
         </div>
-        <!-- Pending Requests Card Example -->
+        <!-- Number of Comments Card -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-warning shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
+                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Number of Comments:</div>
                     <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
                 </div>
                 <div class="col-auto">
@@ -81,59 +81,58 @@
             </div>
         </div>
     </div>
-    <div class="col-xl-12 col-lg-7">
-        <div class="card shadow mb-4">
-            <!-- Card Header - Dropdown -->
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                <div class="dropdown no-arrow">
-                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                <div class="dropdown-header">Dropdown Header:</div>
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-                </div>
+    <div class="row">
+        <div class="col-xl-12 col-lg-7">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Players Overview</h6>
+                    <div class="dropdown no-arrow">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                            <div class="dropdown-header">Dropdown Header:</div>
+                            <a class="dropdown-item" data-toggle="collapse" href="#collapseBody" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </div>
                 </div>
                 <!-- Card Body -->
-                <div class="card-body">
-                <div class="chart-area">
-                <table class="table mb-4">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Position</th>
-                        <th scope="col">Dashboard</th>
-                        <th scope="col">Comments</th>
-                        <th scope="col">Creation Date</th>
-                        <th scope="col">Player Management</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% players.forEach(function(player){ %>
-                    <tr>
-                        <td><%= player.name %></td>
-                        <td><%= player.position %></td>
-                        <td><a href="/players/<%= player._id %>">Player Page</a></td>
-                        <td><%= player.comments.length %></td>
-                        <td><%= player._id.getTimestamp() %></td>
-                        <td>
-                            <a class="btn btn-xs btn-warning" href="/players/<%=player._id%>/edit">Edit</a>
-                            <form id="delete-comment" action="/players/<%= player._id%>?_method=DELETE" method="POST">
-                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
-                            </form>
-                        </td>
-                    </tr>
-                    <% }); %>
-                </tbody>
-                </table>
-                <canvas id="myAreaChart">
-
-                </canvas>
+                <div class="card-body collapse show" id="collapseBody">
+                    <div class="chart-area">
+                        <table class="table mb-4">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Position</th>
+                                    <th scope="col">Dashboard</th>
+                                    <th scope="col">Comments</th>
+                                    <th scope="col">Creation Date</th>
+                                    <th scope="col">Player Management</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% players.forEach(function(player){ %>
+                                <tr>
+                                    <td><%= player.name %></td>
+                                    <td><%= player.position %></td>
+                                    <td><a href="/players/<%= player._id %>">Player Page</a></td>
+                                    <td><%= player.comments.length %></td>
+                                    <td><%= player._id.getTimestamp() %></td>
+                                    <td>
+                                        <a class="btn btn-xs btn-warning" href="/players/<%=player._id%>/edit">Edit</a>
+                                        <form id="delete-comment" action="/players/<%= player._id%>?_method=DELETE" method="POST">
+                                            <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                        </form>
+                                    </td>
+                                </tr>
+                                <% }); %>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
