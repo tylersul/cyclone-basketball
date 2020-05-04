@@ -18,6 +18,23 @@ var playerSchema = new mongoose.Schema({
       },
       username: String
    },
+   season: [
+      {
+         year: String,
+         grade: String,
+         gp: Number,
+         gs: Number,
+         mpg: Number,
+         fg: Number,
+         tp: Number,
+         ft: Number,
+         rpg: Number,
+         apg: Number,
+         spg: Number,
+         bpg: Number,
+         ppg: Number
+      }
+   ],
    comments: [
       {
          // An array of comment IDs

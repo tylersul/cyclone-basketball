@@ -40,7 +40,7 @@
                             </div>
                         </div>
                         <!-- Card Body -->
-                        <div class="card-body collapse show" id="collapseBody"">
+                        <div class="card-body collapse show" id="collapseBody">
                             <div class="chart-area">
                                 <table class="table">
                                     <thead class="thead-light">
@@ -58,6 +58,71 @@
                                             <td><%= player.dob %></td>
                                             <td><%= player.hometown %>, <%= player.country %></td>
                                         </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-7">
+                    <div class="card shadow mb-4">
+                        <!-- Card Header - Dropdown -->
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">Statistics</h6>
+                            <div class="dropdown no-arrow">
+                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                    <div class="dropdown-header">Dropdown Header:</div>
+                                    <a class="dropdown-item" data-toggle="collapse" href="#collapseBody" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card Body -->
+                        <div class="card-body collapse show" id="collapseBody">
+                            <div class="chart-area">
+                                <table class="table">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">Year</th>
+                                            <th scope="col">Season</th>
+                                            <th scope="col">Games Played</th>
+                                            <th scope="col">Games Started</th>
+                                            <th scope="col">MPG</th>
+                                            <th scope="col">FG %</th>
+                                            <th scope="col">3P %</th>
+                                            <th scope="col">FT %</th>
+                                            <th scope="col">RPG</th>
+                                            <th scope="col">APG</th>
+                                            <th scope="col">SPG</th>
+                                            <th scope="col">BPG</th>
+                                            <th scope="col">PPG</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% player.season.forEach(function(season){ %>
+                                        <tr>
+                                            <td><%= season.year %></td>
+                                            <td><%= season.grade %></td>
+                                            <td><%= season.gp %></td>
+                                            <td><%= season.gs %></td>
+                                            <td><%= season.mpg %></td>
+                                            <td><%= season.fg %></td>
+                                            <td><%= season.tp %></td>
+                                            <td><%= season.ft %></td>
+                                            <td><%= season.rpg %></td>
+                                            <td><%= season.apg %></td>
+                                            <td><%= season.spg %></td>
+                                            <td><%= season.bpg %></td>
+                                            <td><%= season.ppg %></td>
+                                        </tr>
+                                        <% }); %>
                                     </tbody>
                                 </table>
                             </div>
