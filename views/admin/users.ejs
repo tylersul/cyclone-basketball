@@ -110,6 +110,7 @@
                             <th scope="col">Last Name</th>
                             <th scope="col">Creation Date</th>
                             <th scope="col">Profile Page</th>
+                            <th scope="col">Admin</th>
                             <th scope="col">User Management</th>
                             </tr>
                         </thead>
@@ -122,6 +123,7 @@
                             <td><%= user.lastName %></td>
                             <td><%= user._id.getTimestamp() %></td>
                             <td><a href="/users/<%= user._id %>">Profile</a></td>
+                            <td><%= user.isAdmin %></td>
                             <td>
                                 <form id="delete-user" action="/users/<%= user._id%>?_method=DELETE" method="POST">
                                     <input type="submit" class="btn btn-xs btn-danger" value="Delete">

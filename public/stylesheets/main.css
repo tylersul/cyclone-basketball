@@ -73,6 +73,13 @@ body {
   transition: ease-in-out color .15s;
 }
 
+/**** Page Specific ****/
+/* Home Page */
+#homeJumbotron {
+  background: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url("../images/hilton_magic.png");
+  background-size: cover;
+}
+
 /* Sign In Page */
 .form-signin {
     width: 100%;
@@ -105,15 +112,10 @@ body {
   }
 
   /* PLAYER - Show All */
-/* #playerCardImage {
-    width: 100%;
-    height: 15vh;
-    object-fit: cover;
-  } */
-.card-img-top {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
+#playerCardImage {
+  width: 100%;        /* Fix image width to entirety of card */
+  height: 300px;      /* Consistent card image height in desktop and mobile */
+  object-fit: cover;  /* Cover card */
 }
   /**** General ****/
 /* icons */

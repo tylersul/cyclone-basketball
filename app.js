@@ -26,8 +26,9 @@ let commentRoutes  = require("./routes/comments"), // These  three lines import 
     footerRoutes   = require("./routes/footer"),
     adminRoutes    = require("./routes/admin");
     
-require('dotenv').config();
-const port         = process.env.PORT; // Set Port exposed constant to 3000 for localhost 
+require('dotenv').config();                        // Environment variables
+const port         = process.env.PORT;             // Set Port exposed constant to 3000 for localhost 
+
 // ================================================================== //
 // ====================== Backend Connection ======================== //
 // ================================================================== //
