@@ -1,3 +1,10 @@
+        <% if (currentUser && currentUser.isAdmin) { %>
+        <div class="container mb-2">
+            <div class="alert alert-danger">
+                Admin View
+            </div>
+        </div>
+        <% } %>
         <footer class="container-fluid text-center py-5 mt-auto footer" id="footer">
                 <div class="row mx-auto footer-row">
                     <div class="col-md-12"></div>

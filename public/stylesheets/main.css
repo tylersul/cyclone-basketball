@@ -107,7 +107,7 @@ body {
   /* PLAYER - Show All */
 #playerCardImage {
     width: 100%;
-    height: 15vw;
+    height: 15vh;
     object-fit: cover;
   }
 
