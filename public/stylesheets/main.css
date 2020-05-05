@@ -105,12 +105,16 @@ body {
   }
 
   /* PLAYER - Show All */
-#playerCardImage {
+/* #playerCardImage {
     width: 100%;
     height: 15vh;
     object-fit: cover;
-  }
-
+  } */
+.card-img-top {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
   /**** General ****/
 /* icons */
 .black-dna {
