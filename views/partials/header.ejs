@@ -25,6 +25,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/players">Players</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/seasons">Seasons</a>
+                </li>
             </ul>
             <ul class="navbar-nav">
                 <% if(!currentUser){ %>
@@ -38,14 +41,18 @@
                 <li class="nav-item">
                     <i class="far fa-id-badge nav-link id"></i>
                 </li>
-                <li class="nav-item">
-                    <a href="/users/<%=currentUser._id%>" class="nav-link"><%= currentUser.username %></a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%= currentUser.username %></a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/users/<%=currentUser._id%>">Profile</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/logout">Log Out</a>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="/admin" class="nav-link">Admin Tools</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/logout" class="nav-link">Logout</a>
                 </li>
                 <% } %>
             </ul>

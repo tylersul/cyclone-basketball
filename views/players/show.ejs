@@ -113,9 +113,9 @@
                                             <td><%= season.gp %></td>
                                             <td><%= season.gs %></td>
                                             <td><%= season.mpg %></td>
-                                            <td><%= season.fg %></td>
-                                            <td><%= season.tp %></td>
-                                            <td><%= season.ft %></td>
+                                            <td><%= season.fg * 100 %></td>
+                                            <td><%= (season.tp * 100).toFixed(1) %></td>
+                                            <td><%= season.ft * 100 %></td>
                                             <td><%= season.rpg %></td>
                                             <td><%= season.apg %></td>
                                             <td><%= season.spg %></td>
@@ -123,6 +123,9 @@
                                             <td><%= season.ppg %></td>
                                         </tr>
                                         <% }); %>
+                                        <tr>
+                                            <td>Career</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -157,7 +160,7 @@
                         <div class="col-md-12 mb-2">
                             <div class="card mb-4">
                                 <div class="card-body">
-                                    <p class="float-right">10 Days Ago</p>
+                                    <p class="float-right"><%= moment(comment.createdAt).fromNow() %></p>
                                     <a class="card-title" href="/users/<%= player.author.id %>"><%= comment.author.username %></a>
                                     <p class="card-text"><%= comment.text %></p>
                                     <% if(currentUser && player.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
