@@ -55,7 +55,7 @@
                                         <tr>
                                             <td><%= player.height_feet %>'<%= player.height_inches %>"</td>
                                             <td><%= player.weight %></td>
-                                            <td><%= player.dob %></td>
+                                            <td><%= ((Date.now() - player.dob) / (31557600000)).toFixed(1) %></td>
                                             <td><%= player.hometown %>, <%= player.country %></td>
                                         </tr>
                                     </tbody>

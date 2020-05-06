@@ -11,8 +11,7 @@
         <link rel="stylesheet" href="/stylesheets/main.css">
         <script src="https://kit.fontawesome.com/175e0bfa97.js" crossorigin="anonymous"></script>
     </head>
-    <body>
-    <nav class="navbar navbar-expand-md navbar-dark shadow mb-3">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top shadow mb-3">
         <a class="navbar-brand" href="/"><i class="fas fa-dna"></i> cyclone <strong>analytics</strong></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -58,6 +57,7 @@
             </ul>
         </div>
     </nav>
+    <body style="padding-top: 110px;">
     <div class="container mb-2">
         <%# can be empty so must ensure it's > 0 %>
         <% if(error && error.length > 0){ %>
