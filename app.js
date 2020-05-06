@@ -11,6 +11,7 @@ let express        = require("express"),           // ExpressJS module 'Express'
     flash          = require("connect-flash"),     // Middleware for storing messages displayed to user, done in combo w/ redirects
     session        = require("express-session"),   // Allows each user of site to be assigned a unique session to store user state
     passport       = require("passport"),          // Authentication middleware for Node with various login types, we're using Local
+    moment         = require("moment"),            // Dynamic times in Javascript
     LocalStrategy  = require("passport-local"),    // Passport strategy for authenticating w/ username and password
     methodOverride = require("method-override"),   // Middleware for requests from clients that only support simple HTTP verbs like GET & POST
     Player         = require("./models/player"),   // Import custom 'player' model for use in Mongoose
@@ -24,6 +25,7 @@ let commentRoutes  = require("./routes/comments"), // These  three lines import 
     playerRoutes   = require("./routes/players"),  //   separate directory to make the code more 
     indexRoutes    = require("./routes/index"),    //   modular and scale easier as more are added
     footerRoutes   = require("./routes/footer"),
+    seasonRoutes   = require("./routes/seasons"),
     adminRoutes    = require("./routes/admin");
     
 require('dotenv').config();                        // Environment variables
@@ -73,6 +75,9 @@ app.use(flash());
 // Seed the test MongoDB with example data by calling seeDB function imported from file
 //seedDB();
 
+// Add MomentJS for time-based content
+app.locals.moment = require("moment");
+
 // ~~~ Express Session Config ~~~ //
 // Requiring express-session module here rather than in the instantiation up top, will change later
 // By default, Express requests are sequential and no request can be linked to each other
@@ -108,9 +113,11 @@ app.use(function(req, res, next){
 // ~~~ Route Files ~~~ ///
 app.use(indexRoutes);
 app.use("/players", playerRoutes);  // appends /players in front of all player routes to DRY code
+app.use(seasonRoutes);
 app.use(commentRoutes);
 app.use(footerRoutes);
 app.use(adminRoutes);
+
 
 
 // 404 Redirects - this is in progress
