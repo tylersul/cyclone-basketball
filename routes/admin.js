@@ -15,7 +15,7 @@ let express    = require("express"),              // ExpressJS module 'Express' 
 // ====================== Routes ==================================== //
 // ================================================================== //
 // Need to implement access control
-router.get("/admin", middleware.isLoggedIn, function(req, res){
+router.get("/admin", middleware.isAdmin, function(req, res){
     User.count(function(err, userCount) {
         if (err) {
             console.log(err)
@@ -27,7 +27,7 @@ router.get("/admin", middleware.isLoggedIn, function(req, res){
 });
 
 
-router.get("/admin/users", middleware.isLoggedIn, function(req, res){
+router.get("/admin/users", middleware.isAdmin, function(req, res){
     User.find({}, function(err, allUsers){
         if(err){
             console.log(err);
@@ -38,7 +38,7 @@ router.get("/admin/users", middleware.isLoggedIn, function(req, res){
 });
 
 
-router.get("/admin/players", middleware.isLoggedIn, function(req, res){
+router.get("/admin/players", middleware.isAdmin, function(req, res){
     Player.find({}, function(err, allPlayers){
         if(err){
             console.log(err);

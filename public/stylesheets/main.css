@@ -27,6 +27,13 @@ body {
   padding-right: 0.25em;
 }
 
+@media only screen and (max-width: 700px) {
+  .navbar-brand {
+    font-size: 1.5rem;
+  } 
+}
+
+/* Footer */ 
 .footer-dna {
   color: #FFF;
 }
@@ -117,6 +124,16 @@ body {
   height: 300px;      /* Consistent card image height in desktop and mobile */
   object-fit: cover;  /* Cover card */
 }
+
+/* Admin */
+.nav-link .active {
+  background-color: #951010;
+}
+
+/* th:first-child, td:first-child {
+  position: sticky;
+  left: 0px;
+} */
   /**** General ****/
 /* icons */
 .black-dna {

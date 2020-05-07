@@ -76,6 +76,18 @@ middlewareObject.isLoggedIn = function(req, res, next){
     res.redirect("/login");
 }
 
+middlewareObject.isAdmin = function(req, res, next){
+    console.log(req);
+    if(req.isAuthenticated() && req.user.isAdmin){
+        return next();
+    } else if (req.isAuthenticated() && !(req.user.isAdmin)) {
+        res.redirect("/home");
+    } else {
+        req.flash("error", "Please login as admin.");
+        res.redirect("/login");
+    }
+}
+
 
 // Export middlewareObject with the three available functions from above
 // Can also export each one individually as module.exports.checkPlayeronwership = checkPlayerOwnership
