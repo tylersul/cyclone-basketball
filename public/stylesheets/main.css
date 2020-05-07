@@ -27,6 +27,10 @@ body {
   padding-right: 0.25em;
 }
 
+.cardinal-icon {
+  color: #951010;
+}
+
 @media only screen and (max-width: 700px) {
   .navbar-brand {
     font-size: 1.5rem;
@@ -125,15 +129,26 @@ body {
   object-fit: cover;  /* Cover card */
 }
 
+.btn-cyclone {
+  background-color: #951010;
+  color: #FFF;
+}
+
+.btn-cyclone:hover {
+  color: #fDC82F;
+}
+
 /* Admin */
 .nav-link .active {
   background-color: #951010;
 }
 
+/* Future Implementation - fix first column on charts */
 /* th:first-child, td:first-child {
   position: sticky;
   left: 0px;
 } */
+
   /**** General ****/
 /* icons */
 .black-dna {
