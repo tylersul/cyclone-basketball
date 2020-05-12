@@ -77,7 +77,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                                     <div class="dropdown-header">Dropdown Header:</div>
-                                    <a class="dropdown-item" data-toggle="collapse" href="#collapseBody" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
+                                    <a class="dropdown-item" data-toggle="collapse" href="#collapseStats" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
                                     <a class="dropdown-item" href="#">Another action</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#">Something else here</a>
@@ -85,7 +85,7 @@
                             </div>
                         </div>
                         <!-- Card Body -->
-                        <div class="card-body collapse show" id="collapseBody">
+                        <div class="card-body collapse show" id="collapseStats">
                             <div class="chart-area">
                                 <table class="table table-responsive-xl table-hover">
                                     <thead class="thead-light">
@@ -113,9 +113,9 @@
                                             <td><%= season.gp %></td>
                                             <td><%= season.gs %></td>
                                             <td><%= season.mpg %></td>
-                                            <td><%= season.fg * 100 %></td>
+                                            <td><%= (season.fg * 100).toFixed(1) %></td>
                                             <td><%= (season.tp * 100).toFixed(1) %></td>
-                                            <td><%= season.ft * 100 %></td>
+                                            <td><%= (season.ft * 100).toFixed(1) %></td>
                                             <td><%= season.rpg %></td>
                                             <td><%= season.apg %></td>
                                             <td><%= season.spg %></td>
@@ -136,7 +136,7 @@
             <div class="card shadow mb-3">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Comments</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Comments: <%= player.comments.length %></h6>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>

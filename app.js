@@ -17,8 +17,8 @@ let express        = require("express"),           // ExpressJS module 'Express'
     Player         = require("./models/player"),   // Import custom 'player' model for use in Mongoose
     Comment        = require("./models/comment"),  // Import custom 'comment' model for use in Mongoose
     User           = require("./models/user"),     // Import custom 'user' model for use in Mongoose
-    seedDB         = require("./seeds")            // Import seeDB custom function to fill empty MongoDB with test data
-
+    seedDB         = require("./seeds");           // Import seeDB custom function to fill empty MongoDB with test data
+    port           = process.env.PORT;             // Set Port exposed constant to 3000 for localhost 
                          
 
 let commentRoutes  = require("./routes/comments"), // These  three lines import routes from the 
@@ -28,8 +28,7 @@ let commentRoutes  = require("./routes/comments"), // These  three lines import 
     seasonRoutes   = require("./routes/seasons"),
     adminRoutes    = require("./routes/admin");
     
-require('dotenv').config();                        // Environment variables
-const port         = process.env.PORT;             // Set Port exposed constant to 3000 for localhost 
+                     require('dotenv').config();   // Environment variables
 
 // ================================================================== //
 // ====================== Backend Connection ======================== //
