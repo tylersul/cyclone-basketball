@@ -1,63 +1,22 @@
-#YelpCamp
+# Cyclone Basketball Analytics
 
-##Initial Setup
-* Add Landing Page
-* Add Campgrounds Page that lists all campgrounds
+Full stack NodeJS web application with a growing database of Iowa State Men's basketball players and an ever-evolving set of advanced analytics tools.
 
-Each Campground has:
-   * Name
-   * Image
+## Tech Stack
+### Front End
+- HTML5 
+- CSS
+- Bootstrap
+- Javascript
 
-#Layout and Basic Styling
-* Create our header and footer partials
-* Add in Bootstrap
-
-#Creating New Campgrounds
-* Setup new campground POST route
-* Add in body-parser
-* Setup route to show form
-* Add basic unstyled form
-
-#Style the campgrounds page
-* Add a better header/title
-* Make campgrounds display in a grid
-
-#Style the Navbar and Form
-* Add a navbar to all templates
-* Style the new campground form
-
-#Add Mongoose
-* Install and configure Mongoose
-* Setup campground model
-* Use campground model inside of our routes
-
-#Show Page
-* Review the RESTful routes we've seen so far
-* Add description to our campground model
-* Show db.collection.drop()
-* Add a show route/template
-
-#Refactor Mongoose Code
-* Create a models directory
-* Use module.exports
-* Require everything correctly!
-
-#Add Seeds File
-* Add a seeds.js file
-* Run the seeds file every time the server starts
-
-#Add the Comment model!
-* Make our errors go away!
-* Display comments on campground show page
+### Back End
+- NodeJS
+- MongoDB
 
 
+## Related projects
 
+Here's a list of other related projects that I created or utilized throughout the development of this full stack application:
 
-RESTFUL ROUTES
+- [CBB Reference Scraping for Player Stats](https://github.com/tylersul/js-cbb-web-scraper)
 
-name      url      verb    desc.
-===============================================
-INDEX   /dogs      GET   Display a list of all dog
-NEW     /dogs/new  GET   Displays form to make a new dog
-CREATE  /dogs      POST  Add new dog to DB
-SHOW    /dogs/:id  GET   Shows info about one dog
