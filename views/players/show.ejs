@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card shadow mb-3">
-                <img class="card-img-top" src="<%= player.image %>" alt="<%= player.name %>">
+                <img class="card-img-top" id="playerShowImage" src="<%= player.image %>" alt="<%= player.name %>">
                 <div class="card-body">
                     <p class="float-right">Rank: Statistic In Development</p>
                     <h1 class="card-title"><a><%=player.name%></a></h1>
@@ -25,7 +25,7 @@
                     <div class="card shadow mb-4">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Measureables</h6>
+                            <h6 class="m-0 font-weight-bold cyclone-text">Measureables</h6>
                             <div class="dropdown no-arrow">
                                 <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -70,7 +70,7 @@
                     <div class="card shadow mb-4">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Statistics</h6>
+                            <h6 class="m-0 font-weight-bold cyclone-text">Per Game Averages</h6>
                             <div class="dropdown no-arrow">
                                 <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -133,10 +133,92 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-7">
+                    <div class="card shadow mb-4">
+                        <!-- Card Header - Dropdown -->
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold cyclone-text">Yearly Totals</h6>
+                            <div class="dropdown no-arrow">
+                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                    <div class="dropdown-header">Dropdown Header:</div>
+                                    <a class="dropdown-item" data-toggle="collapse" href="#collapseYearly" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card Body -->
+                        <div class="card-body collapse show" id="collapseYearly">
+                            <div class="chart-area">
+                                <table class="table table-responsive-xl table-hover">
+                                    <thead class="thead-light" >
+                                        <tr>
+                                            <th scope="col">Year</th>
+                                            <th scope="col">GP</th>
+                                            <th scope="col">GS</th>
+                                            <th scope="col">MP</th>
+                                            <th scope="col">FG</th>
+                                            <th scope="col">FGA</th>
+                                            <th scope="col">2P</th>
+                                            <th scope="col">2PA</th>
+                                            <th scope="col">3P</th>
+                                            <th scope="col">3PA</th>
+                                            <th scope="col">FT</th>
+                                            <th scope="col">FTA</th>
+                                            <th scope="col">ORB</th>
+                                            <th scope="col">DRB</th>
+                                            <th scope="col">TRB</th>
+                                            <th scope="col">AST</th>
+                                            <th scope="col">STL</th>
+                                            <th scope="col">BLK</th>
+                                            <th scope="col">PF</th>
+                                            <th scope="col">PTS</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% player.yearlyTotals.forEach(function(year){ %>
+                                        <tr>
+                                            <td><%= year.year %></td>
+                                            <td><%= year.gp %></td>
+                                            <td><%= year.gs %></td>
+                                            <td><%= year.mp %></td>
+                                            <td><%= year.fga %></td>
+                                            <td><%= year.fgm %></td>
+                                            <td><%= year.twopa %></td>
+                                            <td><%= year.twopm %></td>
+                                            <td><%= year.tpa %></td>
+                                            <td><%= year.tpm %></td>
+                                            <td><%= year.fta %></td>
+                                            <td><%= year.ftm %></td>
+                                            <td><%= year.orb %></td>
+                                            <td><%= year.drb %></td>
+                                            <td><%= year.ast %></td>
+                                            <td><%= year.stl %></td>
+                                            <td><%= year.blk %></td>
+                                            <td><%= year.pf %></td>
+                                            <td><%= year.to %></td>
+                                            <td><%= year.points %></td>
+                                        </tr>
+                                        <% }); %>
+                                        <tr>
+                                            <td>Career</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="card shadow mb-3">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Comments: <%= player.comments.length %></h6>
+                    <h6 class="m-0 font-weight-bold cyclone-text">Comments: <%= player.comments.length %></h6>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>

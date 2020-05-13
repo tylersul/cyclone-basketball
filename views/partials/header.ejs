@@ -72,16 +72,18 @@
         </div>
     </nav>
     <body style="padding-top: 100px;">
+    <%# can be empty so must ensure it's > 0 %>
+    <% if(error && error.length > 0){ %>
     <div class="container mb-2">
-        <%# can be empty so must ensure it's > 0 %>
-        <% if(error && error.length > 0){ %>
         <div class="alert alert-danger" role="alert">
             <%= error %>
         </div>
-        <% } %>
-        <% if(success && success.length > 0){ %>
+    </div>
+    <% } %>
+    <% if(success && success.length > 0){ %>
+    <div class="container mb-2">
         <div class="alert alert-success" role="alert">
             <%= success %>
         </div>
-        <% } %>
     </div>
+    <% } %>

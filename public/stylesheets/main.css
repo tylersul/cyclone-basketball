@@ -150,6 +150,15 @@ body {
   color: #fDC82F;
 }
 
+/* PLAYER - Show One */
+.cyclone-text {
+  color: #951010;
+}
+
+#yearlyTable th {
+  padding: .25rem;
+  font-size: 90%;
+}
 /* Admin */
 .nav-link .active {
   background-color: #951010;

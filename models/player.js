@@ -35,6 +35,30 @@ var playerSchema = new mongoose.Schema({
          ppg: Number
       }
    ],
+   yearlyTotals: [
+      {
+         year: String,
+         gp: Number,
+         gs: Number,
+         mp: Number,
+         fga: Number,
+         fgm: Number,
+         twopa: Number,
+         twopm: Number,
+         tpa: Number,
+         tpm: Number,
+         fta: Number,
+         ftm: Number,
+         orb: Number,
+         drb: Number,
+         ast: Number,
+         stl: Number,
+         blk: Number,
+         pf: Number,
+         to: Number,
+         points: Number,
+      }
+   ],
    comments: [
       {
          // An array of comment IDs
