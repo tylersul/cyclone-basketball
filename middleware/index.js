@@ -25,6 +25,27 @@ middlewareObject.checkPlayerOwnership = function(req, res, next){
     }
 }
 
+middlewareObject.checkSeasonOwnership = function(req, res, next){
+    if(req.isAuthenticated()){
+        Season.findById(req.params.id, function(err, foundSeason){
+            if(err || !foundSeason){
+                req.flash("error", "Could not find requested season.");
+                res.redirect("back");
+            } else {
+                if(foundSeason.author.id.equals(req.user._id) || req.user.isAdmin){
+                    next();
+                } else {
+                    req.flash("error", "Permission denied.");
+                    res.redirect("back");
+                }
+            }
+        });
+    } else {
+        req.flash("error", "Please login.");
+        res.redirect("back");
+    }
+}
+
 middlewareObject.checkCommentOwnership = function(req, res, next){
     if(req.isAuthenticated()){
         Comment.findById(req.params.comment_id, function(err, foundComment){

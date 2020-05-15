@@ -6,7 +6,7 @@
              <h1>Cyclones.  By The Numbers.</h1>
              <p>View our growing player database:</p>
              <p>
-                <a class="btn btn-large btn-cyclone" href="/players/new">Add New Player</a>
+                <a class="btn btn-large btn-cyclone" href="/seasons/new">Add New Season</a>
              </p>
              <p>
                  <form action="/seasons" method="GET" class="form-inline">
@@ -19,14 +19,13 @@
          </div>
      </header>
     <div class="row text-center">
-        <% players.forEach(function(player){ %>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <% seasons.forEach(function(season){ %>
+            <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
                 <div class="card shadow">
-                    <img src="<%= player.image %>" id="playerCardImage" class="card-img-top" alt="<%= player.name %>">
+                    <img src="<%= season.image %>" id="playerCardImage" class="card-img-top" alt="<%= season.year %>">
                     <div class="card-body">
-                        <h5 class="card-title"><%= player.name %></h5>
-                        <h5 class="card-title"><%= player.position %></h5>
-                        <a href="/players/<%= player._id %>" class="btn btn-cyclone">More Info</a>
+                        <h5 class="card-title"><%= season.year %></h5>
+                        <a href="/seasons/<%= season._id %>" class="btn btn-cyclone">More Info</a>
                     </div>
                 </div>  
             </div>

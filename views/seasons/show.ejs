@@ -1,0 +1,26 @@
+<% include ../partials/header %>
+
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow mb-3">
+                <img class="card-img-top" id="teamShowImage" src="<%= season.image %>" alt="<%= season.year %>">
+                <div class="card-body">
+                    <p class="float-right">Rank: Statistic In Development</p>
+                    <h1 class="card-title"><a><%= season.year %></a></h1>
+                    <hr>
+                    <p class="card-text"><%= season.description %></p>
+
+                    <% if(currentUser && season.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
+                    <a class= "btn btn-warning" href="/seasons/<%= season._id %>/edit">Edit Season</a>
+                    <form id="delete-form" action="/seasons/<%= season._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

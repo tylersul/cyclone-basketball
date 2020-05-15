@@ -38,13 +38,9 @@ var playerSchema = new mongoose.Schema({
    yearlyTotals: [
       {
          year: String,
-         gp: Number,
-         gs: Number,
-         mp: Number,
+         min: Number,
          fga: Number,
          fgm: Number,
-         twopa: Number,
-         twopm: Number,
          tpa: Number,
          tpm: Number,
          fta: Number,
@@ -56,7 +52,7 @@ var playerSchema = new mongoose.Schema({
          blk: Number,
          pf: Number,
          to: Number,
-         points: Number,
+         pts: Number,
       }
    ],
    comments: [
