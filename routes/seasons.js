@@ -41,13 +41,20 @@ router.post("/seasons", middleware.isLoggedIn, function(req, res){
     // get data from form and add to campgrounds array
     let year          = req.body.year,
         image         = req.body.image,
+        head          = req.body.headCoach,
+        wins          = req.body.wins,
+        losses        = req.body.losses,
+        confWins      = req.body.confWins,
+        confLosses    = req.body.confLosses,
+        rank          = req.body.confRank,
         desc          = req.body.description,
         author        = {
         id: req.user._id,
         username: req.user.username
     };
 
-    let newSeason = {year: year, image: image, description: desc, author: author};
+    let newSeason = {year: year, image: image, headCoach: head, wins: wins, losses: losses, confWins: confWins, 
+                        confLosses: confLosses, confRank: rank,  description: desc, author: author};
 
     // Create a new team and save to Mongo
     Season.create(newSeason, function(err, newlyCreated){
@@ -89,7 +96,7 @@ router.get("/seasons/:id/edit", middleware.checkSeasonOwnership, function(req, r
     });
 });
 
-// UPDATE Player
+// UPDATE Season
 router.put("/seasons/:id", middleware.checkSeasonOwnership, function(req, res){
     console.log(req.body);
     Season.findByIdAndUpdate(req.params.id, req.body.season, function(err, updatedSeason){
@@ -101,18 +108,8 @@ router.put("/seasons/:id", middleware.checkSeasonOwnership, function(req, res){
     });
 });
 
-// UPDATE Player
-// router.put("/:id", middleware.checkPlayerOwnership, function(req, res){
-//     Player.findByIdAndUpdate(req.params.id, req.body.player, function(err, updatedPlayer){
-//         if(err){
-//             res.redirect("/players");
-//         } else {
-//             res.redirect("/players/" + req.params.id);
-//         }
-//     });
-// });
 
-// DESTROY player
+// DESTROY Season
 router.delete("/seasons/:id", middleware.checkSeasonOwnership, function(req, res){
     Season.findByIdAndRemove(req.params.id, function(err){
         if(err){
