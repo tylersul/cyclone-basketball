@@ -75,9 +75,10 @@ router.get("/:id", function(req, res){
         if(err){
             console.log(err);
         } else {
-            console.log(foundPlayer)
+            let pointAvg = foundPlayer.season.map(({
+                ppg}) => ppg);
             //render show template with that campground
-            res.render("players/show", {player: foundPlayer});
+            res.render("players/show", {player: foundPlayer, pointAvgs: pointAvg});
         }
     });
 });

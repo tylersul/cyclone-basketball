@@ -288,15 +288,21 @@
     </div>
 </div>
 
+
 <script>
     let myChart = document.getElementById('myChart').getContext('2d');
+    let pointAvg = [1, 2, 3, 4];
+    let ppg = [<%= pointAvgs %>];
+
+    console.log(ppg)
+
     let playerStatChart = new Chart(myChart, {
         type: 'bar',
         data: {
             labels: ['Freshman', 'Sophomore', 'Junior', 'Senior'],
             datasets: [{
                 label: 'Points',
-                data: [5.5, 9.8, 13, 16.4],
+                data: ppg,
                 backgroundColor: 'rgb(149,16,16, 0.4)',
                 borderWidth: 1,
                 borderColor: '#000',
