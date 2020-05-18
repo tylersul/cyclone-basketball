@@ -35,22 +35,24 @@ router.get("/", function(req, res){
 //CREATE PLAYER 
 router.post("/", middleware.isLoggedIn, function(req, res){
     // get data from form and add to campgrounds array
-    var name          = req.body.name;
-    var image         = req.body.image;
-    var position      = req.body.position;
-    var desc          = req.body.description;
-    var dob           = req.body.dob;
-    var hometown      = req.body.hometown;
-    var country       = req.body.country;
-    var height_feet   = req.body.height_feet;
-    var height_inches = req.body.height_inches;
-    var weight        = req.body.weight;
-    var author        = {
+    let name          = req.body.name,
+        image         = req.body.image,
+        position      = req.body.position,
+        desc          = req.body.description,
+        dob           = req.body.dob,
+        hometown      = req.body.hometown,
+        country       = req.body.country,
+        height_feet   = req.body.height_feet,
+        height_inches = req.body.height_inches,
+        weight        = req.body.weight,
+        author        = {
         id: req.user._id,
         username: req.user.username
-    };
+        };
+
     var newPlayer = {name: name, image: image, position: position, description: desc, author: author, dob: dob, hometown: hometown,
                         country: country, height_feet: height_feet, height_inches: height_inches, weight: weight};
+
     // Create a new campground and save to DB
     Player.create(newPlayer, function(err, newlyCreated){
         if(err){
@@ -77,8 +79,17 @@ router.get("/:id", function(req, res){
         } else {
             let pointAvg = foundPlayer.season.map(({
                 ppg}) => ppg);
+
+            let pointTotal = foundPlayer.yearlyTotals.map(({
+                pts}) => pts);
+
+            let years = foundPlayer.season.map(({
+                grade}) => grade);
+                console.log("Years: " + years)
+            //let yearTotal = [...years.values()];
+
             //render show template with that campground
-            res.render("players/show", {player: foundPlayer, pointAvgs: pointAvg});
+            res.render("players/show", {player: foundPlayer, pointAvgs: pointAvg, pointTotals: pointTotal, yearTotals: years });
         }
     });
 });
