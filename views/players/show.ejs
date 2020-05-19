@@ -321,12 +321,13 @@
     let myChart = document.getElementById('myChart').getContext('2d');
     let pointAvg = [1, 2, 3, 4];
     let ppg = [<%= pointAvgs %>];
+    let apg = [<%= astAvgs %>];
     let pointTotal = [<%= pointTotals %>];
     let xAxis = <%- JSON.stringify(yearTotals) %>;
 
     console.log(xAxis);
 
-    console.log(ppg)
+    console.log(apg)
 
     let playerStatChart = new Chart(myChart, {
         type: 'bar',
@@ -370,6 +371,16 @@
                 borderColor: 'rgb(149,16,16)',
                 hoverBorderWidth: 8,
                 hoverBorderColor: 'rgb(149,16,16)',
+                fill: false
+            },
+            {
+                label: 'Assists',
+                data: apg,
+                backgroundColor: 'rgb(149,16,16, 0.4)',
+                borderWidth: 4,
+                borderColor: '#000',
+                hoverBorderWidth: 8,
+                hoverBorderColor: '#000',
                 fill: false
             }]
         },

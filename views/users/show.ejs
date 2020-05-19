@@ -1,16 +1,22 @@
 <% include ../partials/header %>
-
-<div class="row">
-    <div class="col-md-4">
-        <div class="thumbnail">
-            <img src="<%= user.avatar %>" alt="user profile image">
-            <div class="caption">
-                <h1><%= user.username %></h1>
-            </div>
-            <div class="caption">
-                <a href="mailto:<%=user.email %>"><%= user.email %></a>
-            </div>
-        </div>   
-    </div>
-</div>    
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <img src="<%= user.avatar %>" alt="user profile image">
+                <div class="caption">
+                    <h1><%= user.username %></h1>
+                    <h2>Member since: <%= user._id.getTimestamp().toString().substring(4, 15) %></h2>
+                </div>
+                <div class="caption">
+                    <a href="mailto:<%=user.email %>"><%= user.email %></a>
+                </div>
+            </div>   
+        </div>
+        <div class="col-md-9">
+            <h1>Profile Deets</h1>
+        </div>
+    </div> 
+</div>
+   
 <% include ../partials/footer %>

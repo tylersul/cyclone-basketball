@@ -79,6 +79,9 @@ router.get("/:id", function(req, res){
         } else {
             let pointAvg = foundPlayer.season.map(({
                 ppg}) => ppg);
+            
+            let astAvg = foundPlayer.season.map(({
+                apg}) => apg);
 
             let pointTotal = foundPlayer.yearlyTotals.map(({
                 pts}) => pts);
@@ -89,7 +92,8 @@ router.get("/:id", function(req, res){
             //let yearTotal = [...years.values()];
 
             //render show template with that campground
-            res.render("players/show", {player: foundPlayer, pointAvgs: pointAvg, pointTotals: pointTotal, yearTotals: years });
+            res.render("players/show", {player: foundPlayer, pointAvgs: pointAvg, astAvgs: astAvg, pointTotals: pointTotal, 
+                                        yearTotals: years });
         }
     });
 });
