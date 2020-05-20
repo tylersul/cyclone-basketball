@@ -1,22 +1,44 @@
 <% include ../partials/header %>
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
-            <div class="thumbnail">
-                <img src="<%= user.avatar %>" alt="user profile image">
-                <div class="caption">
-                    <h1><%= user.username %></h1>
-                    <h2>Member since: <%= user._id.getTimestamp().toString().substring(4, 15) %></h2>
+        <div class="col-md-4">
+            <div class="mb-lg-0 mb-4">
+            <!--Card-->
+                <div class="card testimonial-card mb-2">
+                    <!--Background color-->
+                    <div class="card-up info-color"></div>
+                    <!--Avatar-->
+                    <div class="avatar m-2 white">
+                        <img src="<%= user.avatar %>" alt="user profile image" class="rounded-circle img-fluid">
+                    </div>
+                    <div class="card-body">
+                        <!--Name-->
+                        <h4 class="font-weight-bold mb-4"><%= user.username %></h4>
+                        <a href="mailto:<%=user.email %>"><%= user.email %></a>
+                        <hr>
+                        <!--Quotation-->
+                        <p class="dark-grey-text mt-4"><i class="fa fa-quote-left pr-2"></i>
+                            Member since: <%= user._id.getTimestamp().toString().substring(4, 15) %></p>
+                    </div>
                 </div>
-                <div class="caption">
-                    <a href="mailto:<%=user.email %>"><%= user.email %></a>
-                </div>
-            </div>   
+            </div>  
         </div>
-        <div class="col-md-9">
-            <h1>Profile Deets</h1>
+        <div class="col-md-8">
+            <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Overview</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Comments</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </li>
+            </ul>
         </div>
     </div> 
 </div>
-   
 <% include ../partials/footer %>

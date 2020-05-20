@@ -220,8 +220,29 @@ router.get("/users/:id", function(req, res){
     });
 });
 
+// EDIT Profile
+router.get("/users/:id/edit", function(req, res){
+    User.findById(req.params.id, function(err, foundUser){
+        if(err){
+            req.flash("error", "The user does not exist.");
+            return res.redirect("/players");
+        } 
+        res.render("users/edit", {user: foundUser});
+    });
+});
 
-// DELETE ROUTE 
+// UPDATE Player
+router.put("/users/:id", function(req, res){
+    User.findByIdAndUpdate(req.params.id, req.body.user, function(err, updatedUser){
+        if(err){
+            res.redirect("/home");
+        } else {
+            res.redirect("/users/" + req.params.id);
+        }
+    });
+});
+
+// DELETE Profile
 router.delete("/users/:id", middleware.checkUserOwnership, function(req, res){
     User.findByIdAndRemove(req.params.id, function(err){
         if(err){
