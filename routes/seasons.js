@@ -44,6 +44,7 @@ router.post("/seasons", middleware.isLoggedIn, function(req, res){
         head          = req.body.headCoach,
         wins          = req.body.wins,
         losses        = req.body.losses,
+        conf          = req.body.conf,
         confWins      = req.body.confWins,
         confLosses    = req.body.confLosses,
         rank          = req.body.confRank,

@@ -159,6 +159,10 @@ body {
   padding: .25rem;
   font-size: 90%;
 }
+
+.card-up {
+  background-color: aqua;
+}
 /* Admin */
 .nav-link .active {
   background-color: #951010;
