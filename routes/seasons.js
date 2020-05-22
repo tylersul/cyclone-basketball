@@ -20,7 +20,7 @@ router.get("/seasons", function(req, res){
                 console.log(err);
             } else {
                 if(allSeasons.length < 1) {
-                    return res.render("seasons/index", {players: allPlayers, "error": "No match! Please try again!"});
+                    return res.render("seasons/index", {seasons: allSeasons, "error": "No match! Please try again!"});
                 }
                 res.render("seasons/index",{seasons: allSeasons, currentUser: req.user});
             }
@@ -54,7 +54,7 @@ router.post("/seasons", middleware.isLoggedIn, function(req, res){
         username: req.user.username
     };
 
-    let newSeason = {year: year, image: image, headCoach: head, wins: wins, losses: losses, confWins: confWins, 
+    let newSeason = {year: year, image: image, headCoach: head, wins: wins, losses: losses, conf: conf, confWins: confWins, 
                         confLosses: confLosses, confRank: rank,  description: desc, author: author};
 
     // Create a new team and save to Mongo

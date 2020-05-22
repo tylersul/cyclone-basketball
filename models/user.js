@@ -25,6 +25,10 @@ userSchema = new mongoose.Schema({
     avatar: String,
     firstName: String,
     lastName: String,
+    lastLogin: {
+        type: Date,
+        default: Date.now
+    },
     resetPasswordToken: String,
     resetPasswordExpires: Date,
     isAdmin: {
@@ -42,7 +46,13 @@ userSchema = new mongoose.Schema({
 //   store the username, hashed pwd, and salt value
 userSchema.plugin(passportLocalMongoose);
 
-
+// ================================================================== //
+// ====================== Plugins =================================== //
+// ================================================================== //
+userSchema.statics.login = function login(id, callback) {
+    return this.findByIdAndUpdate(id,{'$set' : { 'lastLogin' : Date.now()} }, { new : true }, callback);
+ };
+ 
 // ================================================================== //
 // ====================== Exports =================================== //
 // ================================================================== //
