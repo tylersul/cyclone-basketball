@@ -109,6 +109,7 @@
                             <th scope="col">First Name</th>
                             <th scope="col">Last Name</th>
                             <th scope="col">Creation Date</th>
+                            <th scope="col">Last Login</th>
                             <th scope="col">Profile Page</th>
                             <th scope="col">Admin</th>
                             <th scope="col">User Management</th>
@@ -122,6 +123,7 @@
                             <td><%= user.firstName %></td>
                             <td><%= user.lastName %></td>
                             <td><%= user._id.getTimestamp() %></td>
+                            <td><%= user.lastLogin %></td>
                             <td><a href="/users/<%= user._id %>">Profile</a></td>
                             <td><%= user.isAdmin %></td>
                             <td>

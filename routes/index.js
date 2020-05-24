@@ -77,13 +77,16 @@ router.get("/login", function(req, res){
     res.render("index/login");
 });
 
-// app.post, middleware, callback
-// middleware calls auth method from above "User.auth"
 router.post("/login", passport.authenticate("local", 
     {
-        successRedirect: "/players",
         failureRedirect: "/login"
-    }), function(req, res){
+    }), function(req, res) {
+            User.findOneAndUpdate({username: req.user.username}, {lastLogin: Date.now()}, (err, data) => {
+                if(err) console.log(err);
+                else console.log("Successfully updated the lastLogin", data);
+
+                res.redirect("/players");
+  });
 });
 
 router.get("/logout", function(req, res){

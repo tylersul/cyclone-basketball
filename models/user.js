@@ -49,10 +49,10 @@ userSchema.plugin(passportLocalMongoose);
 // ================================================================== //
 // ====================== Plugins =================================== //
 // ================================================================== //
-userSchema.statics.login = function login(id, callback) {
+userSchema.statics.newLogin = function login(username, callback) {
     return this.findByIdAndUpdate(id,{'$set' : { 'lastLogin' : Date.now()} }, { new : true }, callback);
  };
- 
+
 // ================================================================== //
 // ====================== Exports =================================== //
 // ================================================================== //
