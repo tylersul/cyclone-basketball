@@ -8,6 +8,7 @@
                 <div class="card-body">
                     <p class="float-right">Rank: Statistic In Development</p>
                     <h1 class="card-title"><a><%=player.name%></a></h1>
+
                     <h2 class="card-text"><%= player.position %></h2>
                     <hr>
                     <p class="card-text"><%= player.description %></p>
@@ -18,7 +19,8 @@
                         <button class="btn btn-danger">Delete</button>
                     </form>
                     <% } %>
-                </div>
+                    <a class="btn btn-secondary float-right" href="/players/<%= player._id %>/analytics">Dashboard</a>
+                </div> 
             </div>
             <div class="row">
                 <div class="col-xl-12 col-lg-7">

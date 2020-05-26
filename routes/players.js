@@ -130,6 +130,36 @@ router.delete("/:id", middleware.checkPlayerOwnership, function(req, res){
     });
 });
 
+// Player Analytics
+router.get("/:id/analytics", function(req, res){
+    Player.findById(req.params.id, function(err, foundPlayer) { 
+        if(err){
+            console.log(err);
+        } else {
+            let pointAvg = foundPlayer.season.map(({
+                ppg}) => ppg);
+            
+            let astAvg = foundPlayer.season.map(({
+                apg}) => apg);
+    
+            let rebAvg = foundPlayer.season.map(({
+                rpg}) => rpg);
+    
+            let pointTotal = foundPlayer.yearlyTotals.map(({
+                pts}) => pts);
+    
+            let years = foundPlayer.season.map(({
+                grade}) => grade);
+                console.log("Years: " + years)
+            //let yearTotal = [...years.values()];
+    
+            //render show template with that campground
+            res.render("players/analytics", {player: foundPlayer, pointAvgs: pointAvg, astAvgs: astAvg, rebAvgs: rebAvg, 
+                                            pointTotals: pointTotal, yearTotals: years });
+            }
+    });
+});
+
 function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 };
