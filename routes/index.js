@@ -223,6 +223,20 @@ router.get("/users/:id", function(req, res){
     });
 });
 
+// User Comments
+// In Development
+// router.get("/users/:id/comments", function(req, res){
+//     User.findById(req.params.id).populate("comments").exec(function(err, foundUser){
+//         if(err){
+//             req.flash("error", "The user does not exist.");
+//             return res.redirect("/players");
+//         } else {
+//             res.render("users/comments", {user: foundUser});
+//         }
+//     });
+// });
+
+
 // EDIT Profile
 router.get("/users/:id/edit", function(req, res){
     User.findById(req.params.id, function(err, foundUser){
