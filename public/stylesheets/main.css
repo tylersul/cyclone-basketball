@@ -168,6 +168,13 @@ body {
   border-top-right-radius: 0;
 }
 
+/* USER - Profile */
+.avatar-circle {
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+} 
+
   /* PLAYER - Show All */
 #playerCardImage {
   width: 100%;        /* Fix image width to entirety of card */
@@ -198,7 +205,16 @@ body {
   background-color: aqua;
 }
 
+.like-btn {
+  font-size: 1.5rem;
+}
 
+/* PLAYER - Analytics */
+.player-circle {
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+} 
 /* Admin */
 .nav-link .active {
   background-color: #951010;

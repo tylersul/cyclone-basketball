@@ -8,11 +8,11 @@
                     <!--Background color-->
                     <div class="card-up info-color"></div>
                     <!--Avatar-->
-                    <div class="avatar m-2 white">
+                    <div class="avatar m-2 white text-center">
                         <% if(user.avatar != "") { %>
                             <img src="<%= user.avatar %>" alt="user profile image" class="rounded-circle img-fluid">
                         <% } else { %>
-                            <img src="../images/default.png" alt="..." class="img-thumbnail rounded-circle m-2">
+                            <img src="../images/default.png" alt="..." class="img-thumbnail avatar-circle rounded-circle m-2">
                             <% } %>
                     </div>
                     <div class="card-body">

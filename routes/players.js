@@ -70,7 +70,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
    res.render("players/new"); 
 });
 
-// SHOW - shows more info about one campground
+// PLAYER - SHOW: shows more info about one player
 router.get("/:id", function(req, res){
     //find the campground with provided ID
     Player.findById(req.params.id).populate("comments").exec(function(err, foundPlayer){
@@ -91,8 +91,6 @@ router.get("/:id", function(req, res){
 
             let years = foundPlayer.season.map(({
                 grade}) => grade);
-                console.log("Years: " + years)
-            //let yearTotal = [...years.values()];
 
             //render show template with that campground
             res.render("players/show", {player: foundPlayer, pointAvgs: pointAvg, astAvgs: astAvg, rebAvgs: rebAvg, 
@@ -144,18 +142,19 @@ router.get("/:id/analytics", function(req, res){
     
             let rebAvg = foundPlayer.season.map(({
                 rpg}) => rpg);
+            
+            let stlAvg = foundPlayer.season.map(({
+                spg}) => spg);
     
             let pointTotal = foundPlayer.yearlyTotals.map(({
                 pts}) => pts);
     
             let years = foundPlayer.season.map(({
                 grade}) => grade);
-                console.log("Years: " + years)
-            //let yearTotal = [...years.values()];
     
             //render show template with that campground
             res.render("players/analytics", {player: foundPlayer, pointAvgs: pointAvg, astAvgs: astAvg, rebAvgs: rebAvg, 
-                                            pointTotals: pointTotal, yearTotals: years });
+                                            stlAvgs: stlAvg, pointTotals: pointTotal, yearTotals: years });
             }
     });
 });

@@ -49,6 +49,38 @@ router.post("/players/:id/comments", middleware.isLoggedIn, function(req, res){
     });
 });
 
+// COMMENT - Like Route
+router.post("/players/:id/comments/:comment_id/like", middleware.isLoggedIn, function (req, res) {
+    Comment.findById(req.params.comment_id, function (err, foundComment) {
+        if (err) {
+            console.log(err);
+            return res.redirect("/players");
+        }
+        console.log(foundComment);
+        // check if req.user._id exists in foundComment.likes
+        var foundUserLike = foundComment.likes.some(function (like) {
+            return like.equals(req.user._id);
+        });
+
+        if (foundUserLike) {
+            // user already liked, removing like
+            foundComment.likes.pull(req.user._id);
+        } else {
+            // adding the new user like
+            foundComment.likes.push(req.user);
+        }
+
+        foundComment.save(function (err) {
+            if (err) {
+                console.log(err);
+                return res.redirect("/players");
+            }
+            return res.redirect("/players/" + req.params.id);
+        });
+    });
+});
+
+
 // Edit comments
 router.get("/players/:id/comments/:comment_id/edit", middleware.checkCommentOwnership, function(req, res){
     Comment.findById(req.params.comment_id, function(err, foundComment){

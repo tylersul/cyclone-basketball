@@ -82,10 +82,11 @@ router.post("/login", passport.authenticate("local",
         failureRedirect: "/login"
     }), function(req, res) {
             User.findOneAndUpdate({username: req.user.username}, {lastLogin: Date.now()}, (err, data) => {
-                if(err) console.log(err);
-                else console.log("Successfully updated the lastLogin", data);
-
-                res.redirect("/players");
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.redirect("/players");
+                }
   });
 });
 
