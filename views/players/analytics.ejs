@@ -86,11 +86,11 @@
             </nav>
             <div class= col-md-11>
                 <div class="row">
-                    <div class="col-xl-12 col-lg-7">
+                    <div class="col-xl-6 col-lg-7">
                         <div class="card shadow mb-4">
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold cyclone-text">Analytics</h6>
+                                <h6 class="m-0 font-weight-bold cyclone-text">Season Totals</h6>
                                 <div class="dropdown no-arrow">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -112,13 +112,37 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-xl-3 col-lg-3">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold cyclone-text">Background</h6>
+                                <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                        <div class="dropdown-header">Dropdown Header:</div>
+                                        <a class="dropdown-item" data-toggle="collapse" href="#collapseBody" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body collapse show" id="collapseBody">
+                                <h1>Years as a Cyclone: <%= player.season.length %></h1>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-xl-12 col-lg-7">
                         <div class="card shadow mb-4">
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold cyclone-text">Analytics</h6>
+                                <h6 class="m-0 font-weight-bold cyclone-text">Averages</h6>
                                 <div class="dropdown no-arrow">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -152,6 +176,7 @@
         let rpg = [<%= rebAvgs %>];
         let spg = [<%= stlAvgs %>];
         let pointTotal = [<%= pointTotals %>];
+        let assistTotal = [<%= astTotals %>];
         let xAxis = <%- JSON.stringify(yearTotals) %>;
 
         let playerStatChart = new Chart(myChart, {
@@ -167,6 +192,16 @@
                     hoverBackgroundColor: 'rgb(149,16,16)',
                     hoverBorderWidth: 3,
                     hoverBorderColor: '#000'
+                },
+                {
+                    label: 'Assists',
+                    data: assistTotal,
+                    backgroundColor: 'rgb(149,29,29, 0.4)',
+                    borderWidth: 1,
+                    borderColor: '#000',
+                    hoverBackgroundColor: 'rgb(149,29,29)',
+                    hoverBorderWidth: 3,
+                    hoverBorderColor: '#000'
                 }]
             },
             options: {
@@ -180,6 +215,9 @@
                         ticks: {
                             beginAtZero: true
                         }
+                    }],
+                    xAxes: [{
+                        stacked: true
                     }]
                 }
             }

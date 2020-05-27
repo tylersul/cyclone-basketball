@@ -88,13 +88,16 @@ router.get("/:id", function(req, res){
 
             let pointTotal = foundPlayer.yearlyTotals.map(({
                 pts}) => pts);
+            
+            let astTotal = foundPlayer.yearlyTotals.map(({
+                ast}) => ast);
 
             let years = foundPlayer.season.map(({
                 grade}) => grade);
 
             //render show template with that campground
             res.render("players/show", {player: foundPlayer, pointAvgs: pointAvg, astAvgs: astAvg, rebAvgs: rebAvg, 
-                                            pointTotals: pointTotal, yearTotals: years });
+                                            pointTotals: pointTotal, astTotals: astTotal, yearTotals: years });
         }
     });
 });
@@ -149,12 +152,15 @@ router.get("/:id/analytics", function(req, res){
             let pointTotal = foundPlayer.yearlyTotals.map(({
                 pts}) => pts);
     
+            let astTotal = foundPlayer.yearlyTotals.map(({
+                ast}) => ast);
+
             let years = foundPlayer.season.map(({
                 grade}) => grade);
     
             //render show template with that campground
             res.render("players/analytics", {player: foundPlayer, pointAvgs: pointAvg, astAvgs: astAvg, rebAvgs: rebAvg, 
-                                            stlAvgs: stlAvg, pointTotals: pointTotal, yearTotals: years });
+                                            stlAvgs: stlAvg, pointTotals: pointTotal, astTotals: astTotal, yearTotals: years });
             }
     });
 });

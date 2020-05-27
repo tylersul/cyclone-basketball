@@ -56,7 +56,6 @@ router.post("/players/:id/comments/:comment_id/like", middleware.isLoggedIn, fun
             console.log(err);
             return res.redirect("/players");
         }
-        console.log(foundComment);
         // check if req.user._id exists in foundComment.likes
         var foundUserLike = foundComment.likes.some(function (like) {
             return like.equals(req.user._id);

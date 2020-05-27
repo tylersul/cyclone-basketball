@@ -206,7 +206,8 @@ body {
 }
 
 .like-btn {
-  font-size: 1.5rem;
+  font-size: 1.5rem;      /* Size up the check mark */
+  vertical-align: middle; /* Override FA default to ensure check is in middle of btn */
 }
 
 /* PLAYER - Analytics */
@@ -230,4 +231,18 @@ body {
 /* icons */
 .black-dna {
   color: #000;
+}
+
+.aqua-gradient {
+  height: 300px;
+  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(233, 242, 233, 0.9878326330532213) 0%, rgba(0, 212, 255, 1) 51%, rgba(114, 156, 7, 1) 93%);
+}
+
+.image {
+  margin-top: -150px;
+}
+
+.avatar-container {
+  width: 90%;
+  border: 1px solid #eee;
 }
