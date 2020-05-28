@@ -187,9 +187,16 @@ body {
   color: #FFF;
 }
 
-.btn-cyclone:hover {
-  color: #fDC82F;
+#playerCardBody:hover {
+  background-color: #951010;
+  color: #FFF;
 }
+
+#playerCardBody:hover .btn-cyclone {
+  background-color: #FFF;
+  color: #000;
+}
+
 
 /* PLAYER - Show One */
 .cyclone-text {

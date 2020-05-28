@@ -23,7 +23,7 @@
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                 <div class="card shadow">
                     <img src="<%= player.image %>" id="playerCardImage" class="card-img-top" alt="<%= player.name %>">
-                    <div class="card-body">
+                    <div class="card-body" id="playerCardBody">
                         <h5 class="card-title"><%= player.name %></h5>
                         <h5 class="card-title"><%= player.position %></h5>
                         <a href="/players/<%= player._id %>" class="btn btn-cyclone">More Info</a>

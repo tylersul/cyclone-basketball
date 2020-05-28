@@ -149,6 +149,12 @@ router.get("/:id/analytics", function(req, res){
             let stlAvg = foundPlayer.season.map(({
                 spg}) => spg);
     
+            let fgpct = foundPlayer.season.map(({
+                fg}) => fg);
+
+            let tppct = foundPlayer.season.map(({
+                tp}) => tp)
+
             let pointTotal = foundPlayer.yearlyTotals.map(({
                 pts}) => pts);
     
@@ -160,7 +166,7 @@ router.get("/:id/analytics", function(req, res){
     
             //render show template with that campground
             res.render("players/analytics", {player: foundPlayer, pointAvgs: pointAvg, astAvgs: astAvg, rebAvgs: rebAvg, 
-                                            stlAvgs: stlAvg, pointTotals: pointTotal, astTotals: astTotal, yearTotals: years });
+                                            stlAvgs: stlAvg, fg: fgpct, tp: tppct, pointTotals: pointTotal, astTotals: astTotal, yearTotals: years });
             }
     });
 });
