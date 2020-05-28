@@ -161,12 +161,17 @@ router.get("/:id/analytics", function(req, res){
             let astTotal = foundPlayer.yearlyTotals.map(({
                 ast}) => ast);
 
+            // Needs updating for total rebounds, not just defensive
+            let rebTotal = foundPlayer.yearlyTotals.map(({
+                drb}) => drb)
+
             let years = foundPlayer.season.map(({
                 grade}) => grade);
     
             //render show template with that campground
             res.render("players/analytics", {player: foundPlayer, pointAvgs: pointAvg, astAvgs: astAvg, rebAvgs: rebAvg, 
-                                            stlAvgs: stlAvg, fg: fgpct, tp: tppct, pointTotals: pointTotal, astTotals: astTotal, yearTotals: years });
+                                            stlAvgs: stlAvg, fg: fgpct, tp: tppct, pointTotals: pointTotal, rebTotals: rebTotal,
+                                            astTotals: astTotal, yearTotals: years });
             }
     });
 });
