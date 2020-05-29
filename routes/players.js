@@ -153,7 +153,10 @@ router.get("/:id/analytics", function(req, res){
                 fg}) => fg);
 
             let tppct = foundPlayer.season.map(({
-                tp}) => tp)
+                tp}) => tp);
+
+            let ftpct = foundPlayer.season.map(({
+                ft}) => ft);
 
             let pointTotal = foundPlayer.yearlyTotals.map(({
                 pts}) => pts);
@@ -165,14 +168,50 @@ router.get("/:id/analytics", function(req, res){
             let rebTotal = foundPlayer.yearlyTotals.map(({
                 drb}) => drb)
 
+            let stlTotal = foundPlayer.yearlyTotals.map(({
+                stl}) => stl);
+
             let years = foundPlayer.season.map(({
                 grade}) => grade);
     
             //render show template with that campground
             res.render("players/analytics", {player: foundPlayer, pointAvgs: pointAvg, astAvgs: astAvg, rebAvgs: rebAvg, 
-                                            stlAvgs: stlAvg, fg: fgpct, tp: tppct, pointTotals: pointTotal, rebTotals: rebTotal,
-                                            astTotals: astTotal, yearTotals: years });
+                                            stlAvgs: stlAvg, fg: fgpct, tp: tppct, ft: ftpct, pointTotals: pointTotal, 
+                                            rebTotals: rebTotal, astTotals: astTotal, stlTotals: stlTotal, yearTotals: years });
             }
+    });
+});
+
+// Player Analytics - Advanced
+router.get("/:id/advanced", function(req, res){
+    Player.findById(req.params.id, function(err, foundPlayer) {
+        if (err) {
+            console.log(err)
+        } else {
+            res.render("players/advanced", {player: foundPlayer})
+        }
+    });
+});
+
+// Player Analytics - Offense
+router.get("/:id/offense", function(req, res){
+    Player.findById(req.params.id, function(err, foundPlayer) {
+        if (err) {
+            console.log(err)
+        } else {
+            res.render("players/offense", {player: foundPlayer})
+        }
+    });
+});
+
+// Player Analytics - Defense
+router.get("/:id/defense", function(req, res){
+    Player.findById(req.params.id, function(err, foundPlayer) {
+        if (err) {
+            console.log(err)
+        } else {
+            res.render("players/defense", {player: foundPlayer})
+        }
     });
 });
 
