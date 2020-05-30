@@ -199,7 +199,22 @@ router.get("/:id/offense", function(req, res){
         if (err) {
             console.log(err)
         } else {
-            res.render("players/offense", {player: foundPlayer})
+
+            let astTotal = foundPlayer.yearlyTotals.map(({
+                ast}) => ast);
+
+            let toTotal = foundPlayer.yearlyTotals.map(({
+                to}) => to)
+
+            let ato = astTotal.map(function(n, i) {
+                return n / toTotal[i];
+            });
+
+            let years = foundPlayer.season.map(({
+                grade}) => grade);
+
+            console.log(ato);
+            res.render("players/offense", {player: foundPlayer, atoRatio: ato, yearTotals: years});
         }
     });
 });
