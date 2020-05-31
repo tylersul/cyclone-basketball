@@ -188,7 +188,34 @@ router.get("/:id/advanced", function(req, res){
         if (err) {
             console.log(err)
         } else {
-            res.render("players/advanced", {player: foundPlayer})
+            let fgpct = foundPlayer.season.map(({
+                fg}) => fg);
+
+            let tppct = foundPlayer.season.map(({
+                tp}) => tp);
+
+            let ftpct = foundPlayer.season.map(({
+                ft}) => ft);
+            
+            let comboShooting = fgpct.map(function(n, i) {
+                return n + tppct[i];
+            });
+            
+            let allShooter = ftpct.map(function(n, i) {
+                return n + comboShooting[i]
+            });
+
+            let ts = [];
+        
+            for(var i = 0, length = allShooter.length; i < length; i++){
+                ts[i] = allShooter[i]/3;
+            }
+
+            let years = foundPlayer.season.map(({
+                grade}) => grade);
+            
+                console.log(ts);
+            res.render("players/advanced", {player: foundPlayer, yearTotals: years})
         }
     });
 });
