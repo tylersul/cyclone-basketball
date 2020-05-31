@@ -176,6 +176,18 @@ body {
 } 
 
   /* PLAYER - Show All */
+.player-card:hover {
+  transform: scale(1.1);        /* Card becomes 10% bigger on hover */
+  background-color: #951010;  /* Card background to Cardinal */
+  color: #FFF;                /* Card text to white */
+  transition: transform .2s;    /* Eased transition for smoother look */
+}
+
+.player-card:hover .btn-cyclone {
+  background-color: #FFF;
+  color: #000;
+}
+
 #playerCardImage {
   width: 100%;        /* Fix image width to entirety of card */
   height: 300px;      /* Consistent card image height in desktop and mobile */
@@ -186,17 +198,6 @@ body {
   background-color: #951010;
   color: #FFF;
 }
-
-#playerCardBody:hover {
-  background-color: #951010;
-  color: #FFF;
-}
-
-#playerCardBody:hover .btn-cyclone {
-  background-color: #FFF;
-  color: #000;
-}
-
 
 /* PLAYER - Show One */
 .cyclone-text {

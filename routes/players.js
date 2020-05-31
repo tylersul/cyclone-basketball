@@ -164,10 +164,16 @@ router.get("/:id/analytics", function(req, res){
             let astTotal = foundPlayer.yearlyTotals.map(({
                 ast}) => ast);
 
-            // Needs updating for total rebounds, not just defensive
-            let rebTotal = foundPlayer.yearlyTotals.map(({
-                drb}) => drb)
+            let dRebTotal = foundPlayer.yearlyTotals.map(({
+                drb}) => drb);
 
+            let oRebTotal = foundPlayer.yearlyTotals.map(({
+                orb}) => orb);
+
+            let rebTotal = dRebTotal.map(function(n, i) {
+                return n + oRebTotal[i];
+            });
+            console.log(rebTotal)
             let stlTotal = foundPlayer.yearlyTotals.map(({
                 stl}) => stl);
 
@@ -237,11 +243,25 @@ router.get("/:id/offense", function(req, res){
                 return n / toTotal[i];
             });
 
+            // Rebounding
+            let rebAvg = foundPlayer.season.map(({
+                rpg}) => rpg);
+            
+            let dRebTotal = foundPlayer.yearlyTotals.map(({
+                drb}) => drb);
+
+            let oRebTotal = foundPlayer.yearlyTotals.map(({
+                orb}) => orb);
+
+            let rebTotal = dRebTotal.map(function(n, i) {
+                return n + oRebTotal[i];
+            });
+
+            console.log(rebTotal)
             let years = foundPlayer.season.map(({
                 grade}) => grade);
 
-            console.log(ato);
-            res.render("players/offense", {player: foundPlayer, atoRatio: ato, yearTotals: years});
+            res.render("players/offense", {player: foundPlayer, rebAvgs: rebAvg, rebTotals: rebTotal, atoRatio: ato, yearTotals: years});
         }
     });
 });

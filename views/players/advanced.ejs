@@ -5,7 +5,7 @@
         <nav class="col-md-1 d-none d-md-block bg-light sidebar">
             <div class="sidebar-sticky">
             <div class="sidebar-player text-center m-2">
-                <img src="<%=player.image%>" alt="<%=player.name%>" class="img-fluid rounded-circle player-circle">
+                <img src="../<%=player.image%>" alt="<%=player.name%>" class="img-fluid rounded-circle player-circle">
                 <div class="font-weight-bold"><%= player.name %></div>
                 <small><%= player.position %></small>
             </div>
@@ -173,39 +173,43 @@
                         </div>
                     </div>
                 </div>
-    <script>
-        let xAxis = <%- JSON.stringify(yearTotals) %>;
-        
-        let LineChart = new Chart(atoLineChart, {
-            type: 'line',
-            data: {
-                labels: xAxis,
-                datasets: [{
-                    label: 'Points',
-                    data: ato,
-                    backgroundColor: 'rgb(149,16,16, 0.4)',
-                    borderWidth: 4,
-                    borderColor: 'rgb(149,16,16)',
-                    hoverBorderWidth: 8,
-                    hoverBorderColor: 'rgb(149,16,16)',
-                    fill: false
-                }]
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    let xAxis = <%- JSON.stringify(yearTotals) %>;
+    
+    let LineChart = new Chart(atoLineChart, {
+        type: 'line',
+        data: {
+            labels: xAxis,
+            datasets: [{
+                label: 'Points',
+                data: ato,
+                backgroundColor: 'rgb(149,16,16, 0.4)',
+                borderWidth: 4,
+                borderColor: 'rgb(149,16,16)',
+                hoverBorderWidth: 8,
+                hoverBorderColor: 'rgb(149,16,16)',
+                fill: false
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "Per Game Averages: <%= player.name %>",
+                fontSize: 25
             },
-            options: {
-                title: {
-                    display: true,
-                    text: "Per Game Averages: <%= player.name %>",
-                    fontSize: 25
-                },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
             }
-        });
+        }
+    });
 
-    </script>
+</script>
 <% include ../partials/footer %>
