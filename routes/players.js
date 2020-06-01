@@ -194,6 +194,7 @@ router.get("/:id/advanced", function(req, res){
         if (err) {
             console.log(err)
         } else {
+            // Shooting
             let fgpct = foundPlayer.season.map(({
                 fg}) => fg);
 
@@ -212,26 +213,13 @@ router.get("/:id/advanced", function(req, res){
             });
 
             let ts = [];
-        
+
+            // Need to update TS with two point percentages, not fg
             for(var i = 0, length = allShooter.length; i < length; i++){
                 ts[i] = allShooter[i]/3;
             }
 
-            let years = foundPlayer.season.map(({
-                grade}) => grade);
-            
-                console.log(ts);
-            res.render("players/advanced", {player: foundPlayer, yearTotals: years})
-        }
-    });
-});
-
-// Player Analytics - Offense
-router.get("/:id/offense", function(req, res){
-    Player.findById(req.params.id, function(err, foundPlayer) {
-        if (err) {
-            console.log(err)
-        } else {
+            // Passing
 
             let astTotal = foundPlayer.yearlyTotals.map(({
                 ast}) => ast);
@@ -242,6 +230,23 @@ router.get("/:id/offense", function(req, res){
             let ato = astTotal.map(function(n, i) {
                 return n / toTotal[i];
             });
+
+            // Years at School (e.g. Freshman, Sophomore)
+            let years = foundPlayer.season.map(({
+                grade}) => grade);
+            
+                console.log(ts);
+            res.render("players/advanced", {player: foundPlayer, ts: ts, atoRatio: ato, yearTotals: years})
+        }
+    });
+});
+
+// Player Analytics - Offense
+router.get("/:id/offense", function(req, res){
+    Player.findById(req.params.id, function(err, foundPlayer) {
+        if (err) {
+            console.log(err)
+        } else {
 
             // Rebounding
             let rebAvg = foundPlayer.season.map(({
@@ -261,7 +266,7 @@ router.get("/:id/offense", function(req, res){
             let years = foundPlayer.season.map(({
                 grade}) => grade);
 
-            res.render("players/offense", {player: foundPlayer, rebAvgs: rebAvg, rebTotals: rebTotal, atoRatio: ato, yearTotals: years});
+            res.render("players/offense", {player: foundPlayer, rebAvgs: rebAvg, rebTotals: rebTotal, yearTotals: years});
         }
     });
 });

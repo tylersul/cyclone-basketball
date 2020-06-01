@@ -151,7 +151,35 @@
                     <div class="card shadow mb-4">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold cyclone-text">Averages</h6>
+                            <h6 class="m-0 font-weight-bold cyclone-text">Averages: True Shooting</h6>
+                            <div class="dropdown no-arrow">
+                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                    <div class="dropdown-header">Dropdown Header:</div>
+                                    <a class="dropdown-item" data-toggle="collapse" href="#collapseBody" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card Body -->
+                        <div class="card-body collapse show" id="collapseBody">
+                            <div class="chart-area">
+                                <canvas id="tsLineChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-7">
+                    <div class="card shadow mb-4">
+                        <!-- Card Header - Dropdown -->
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold cyclone-text">Averages: Assist to Turnover</h6>
                             <div class="dropdown no-arrow">
                                 <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -179,7 +207,44 @@
 </div>
 <script>
     let xAxis = <%- JSON.stringify(yearTotals) %>;
+
+    // Shooting
+    let trueShoot = [<%= ts %>]
+
+    // Passing 
+    let ato = [<%= atoRatio %>]
     
+    let shootLineChart = new Chart(tsLineChart, {
+        type: 'line',
+        data: {
+            labels: xAxis,
+            datasets: [{
+                label: 'Points',
+                data: trueShoot,
+                backgroundColor: 'rgb(149,16,16, 0.4)',
+                borderWidth: 4,
+                borderColor: 'rgb(149,16,16)',
+                hoverBorderWidth: 8,
+                hoverBorderColor: 'rgb(149,16,16)',
+                fill: false
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "TS% By Season: <%= player.name %>",
+                fontSize: 25
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
     let LineChart = new Chart(atoLineChart, {
         type: 'line',
         data: {
@@ -198,7 +263,7 @@
         options: {
             title: {
                 display: true,
-                text: "Per Game Averages: <%= player.name %>",
+                text: "Assist/Turnover Ratio by Season: <%= player.name %>",
                 fontSize: 25
             },
             scales: {
