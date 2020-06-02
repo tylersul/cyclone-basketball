@@ -151,34 +151,6 @@
                     <div class="card shadow mb-4">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold cyclone-text">Averages: Assists</h6>
-                            <div class="dropdown no-arrow">
-                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                    <div class="dropdown-header">Dropdown Header:</div>
-                                    <a class="dropdown-item" data-toggle="collapse" href="#collapseBody" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card Body -->
-                        <div class="card-body collapse show" id="collapseBody">
-                            <div class="chart-area">
-                                <canvas id="atoLineChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-6 col-lg-7">
-                    <div class="card shadow mb-4">
-                        <!-- Card Header - Dropdown -->
-                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                             <h6 class="m-0 font-weight-bold cyclone-text">Averages: Rebounds per Game</h6>
                             <div class="dropdown no-arrow">
                                 <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -214,38 +186,7 @@
     let rebTotal = [<%= rebTotals %>];
 
     // Assists
-    let ato = [<%= atoRatio %>];
-    
-    let LineChart = new Chart(atoLineChart, {
-        type: 'line',
-        data: {
-            labels: xAxis,
-            datasets: [{
-                label: 'Points',
-                data: ato,
-                backgroundColor: 'rgb(149,16,16, 0.4)',
-                borderWidth: 4,
-                borderColor: 'rgb(149,16,16)',
-                hoverBorderWidth: 8,
-                hoverBorderColor: 'rgb(149,16,16)',
-                fill: false
-            }]
-        },
-        options: {
-            title: {
-                display: true,
-                text: "Per Game Averages: <%= player.name %>",
-                fontSize: 25
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
+
 
     let RebLineChart = new Chart(totalRebLineChart, {
         type: 'line',
