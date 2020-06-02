@@ -59,7 +59,7 @@
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Dropdown Header:</div>
+                                        <div class="dropdown-header">Card Options:</div>
                                         <a class="dropdown-item" data-toggle="collapse" href="#collapseYears" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
                                         <a class="dropdown-item" href="#">Another action</a>
                                         <div class="dropdown-divider"></div>
@@ -77,13 +77,37 @@
                         <div class="card shadow mb-4">
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold cyclone-text">Career Games Played</h6>
+                                <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                        <div class="dropdown-header">Card Options:</div>
+                                        <a class="dropdown-item" data-toggle="collapse" href="#collapseBody" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body collapse show text-center" id="collapseBody">
+                                <h1><%= totalGP %></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="m-0 font-weight-bold cyclone-text">Background</h6>
                                 <div class="dropdown no-arrow">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Dropdown Header:</div>
+                                        <div class="dropdown-header">Card Options:</div>
                                         <a class="dropdown-item" data-toggle="collapse" href="#collapseBody" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
                                         <a class="dropdown-item" href="#">Another action</a>
                                         <div class="dropdown-divider"></div>
@@ -107,31 +131,7 @@
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Dropdown Header:</div>
-                                        <a class="dropdown-item" data-toggle="collapse" href="#collapseBody" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body collapse show" id="collapseBody">
-                                <h1>Years as a Cyclone: <%= player.season.length %></h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold cyclone-text">Background</h6>
-                                <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Dropdown Header:</div>
+                                        <div class="dropdown-header">Card Options:</div>
                                         <a class="dropdown-item" data-toggle="collapse" href="#collapseBody" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
                                         <a class="dropdown-item" href="#">Another action</a>
                                         <div class="dropdown-divider"></div>
@@ -151,13 +151,67 @@
                         <div class="card shadow mb-4">
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold cyclone-text">Totals: Games</h6>
+                                <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                        <div class="dropdown-header">Card Options:</div>
+                                        <a class="dropdown-item" data-toggle="collapse" href="#collapseBody" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body collapse show" id="collapseBody">
+                                <div class="chart-area">
+                                    <canvas id="gameChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-7">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold cyclone-text">Totals: Minutes</h6>
+                                <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                        <div class="dropdown-header">Card Options:</div>
+                                        <a class="dropdown-item" data-toggle="collapse" href="#collapseBody" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body collapse show" id="collapseBody">
+                                <div class="chart-area">
+                                    <canvas id="minChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6 col-lg-7">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="m-0 font-weight-bold cyclone-text">Averages</h6>
                                 <div class="dropdown no-arrow">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Dropdown Header:</div>
+                                        <div class="dropdown-header">Card Options:</div>
                                         <a class="dropdown-item" data-toggle="collapse" href="#collapseBody" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
                                         <a class="dropdown-item" href="#">Another action</a>
                                         <div class="dropdown-divider"></div>
@@ -183,7 +237,7 @@
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Dropdown Header:</div>
+                                        <div class="dropdown-header">Card Options:</div>
                                         <a class="dropdown-item" data-toggle="collapse" href="#collapseBody" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
                                         <a class="dropdown-item" href="#">Another action</a>
                                         <div class="dropdown-divider"></div>
@@ -211,7 +265,7 @@
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Dropdown Header:</div>
+                                        <div class="dropdown-header">Card Options:</div>
                                         <a class="dropdown-item" data-toggle="collapse" href="#collapseBody" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
                                         <a class="dropdown-item" href="#">Another action</a>
                                         <div class="dropdown-divider"></div>
@@ -237,7 +291,7 @@
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Dropdown Header:</div>
+                                        <div class="dropdown-header">Card Options:</div>
                                         <a class="dropdown-item" data-toggle="collapse" href="#collapseBody" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
                                         <a class="dropdown-item" href="#">Another action</a>
                                         <div class="dropdown-divider"></div>
@@ -260,6 +314,10 @@
     <script>
         let myChart = document.getElementById('myChart').getContext('2d');
 
+        let gs = [<%= gs %>];
+        let gp = [<%= gp %>];
+        let min = [<%= totalMin %>];
+        let mpg = [<%= minAvgs %>];
         let ppg = [<%= pointAvgs %>];
         let apg = [<%= astAvgs %>];
         let rpg = [<%= rebAvgs %>];
@@ -272,6 +330,84 @@
         let reboundTotal = [<%= rebTotals %>];
         let stealTotal = [<%= stlTotals %>];
         let xAxis = <%- JSON.stringify(yearTotals) %>;
+
+        let playerGameChart = new Chart(gameChart, {
+            type: 'bar',
+            data: {
+                labels: xAxis,
+                datasets: [{
+                    label: 'Games Played',
+                    data: gp,
+                    backgroundColor: 'rgb(149,16,16, 0.6)',
+                    borderWidth: 1,
+                    borderColor: '#000',
+                    hoverBackgroundColor: 'rgb(149,16,16)',
+                    hoverBorderWidth: 3,
+                    hoverBorderColor: '#000'
+                },
+                {
+                    label: 'Games Started',
+                    data: gs,
+                    backgroundColor: 'rgb(253, 200, 47, 0.6)',
+                    borderWidth: 1,
+                    borderColor: '#000',
+                    hoverBackgroundColor: 'rgb(253, 200, 47)',
+                    hoverBorderWidth: 3,
+                    hoverBorderColor: '#000'
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Game Action By Season: <%= player.name %>",
+                    fontSize: 25
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }],
+                    xAxes: [{
+                        stacked: false
+                    }]
+                }
+            }
+        });
+
+        var playerMinChart = new Chart(minChart, {
+            type: 'bar',
+            data: {
+                datasets: [{
+                    label: 'Total Minutes',
+                    data: min,
+                    backgroundColor: 'rgb(149,16,16, 0.6)',
+                    borderWidth: 1,
+                    borderColor: '#000',
+                    hoverBackgroundColor: 'rgb(149,16,16)',
+                    hoverBorderWidth: 3,
+                    hoverBorderColor: '#000'
+                }],
+                labels: xAxis
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Game Action By Season: <%= player.name %>",
+                    fontSize: 25
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }],
+                    xAxes: [{
+                        stacked: false
+                    }]
+                }
+            }
+        });
 
         let playerStatChart = new Chart(myChart, {
             type: 'bar',
@@ -342,6 +478,17 @@
             data: {
                 labels: xAxis,
                 datasets: [{
+                    label: 'Minutes',
+                    data: mpg,
+                    backgroundColor: 'rgb(149,16,16, 0.6)',
+                    borderWidth: 4,
+                    borderColor: '#000',
+                    hoverBackgroundColor: 'rgb(149,16,16)',
+                    hoverBorderWidth: 8,
+                    hoverBorderColor: '#000',
+                    fill: false
+                },
+                {
                     label: 'Points',
                     data: ppg,
                     backgroundColor: 'rgb(149,16,16, 0.4)',

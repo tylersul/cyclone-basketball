@@ -137,6 +137,22 @@ router.get("/:id/analytics", function(req, res){
         if(err){
             console.log(err);
         } else {
+            // Games & Miniutes
+            let gp = foundPlayer.season.map(({
+                gp}) => gp);
+
+            let gs = foundPlayer.season.map(({
+                gs}) => gs);
+
+            let totalGP = gp.reduce((a, b) => a + b, 0);
+
+            let totalMin = foundPlayer.yearlyTotals.map(({
+                min}) => min);
+
+            let minAvg = foundPlayer.season.map(({
+                mpg}) => mpg);
+
+            // Averages 
             let pointAvg = foundPlayer.season.map(({
                 ppg}) => ppg);
             
@@ -181,7 +197,8 @@ router.get("/:id/analytics", function(req, res){
                 grade}) => grade);
     
             //render show template with that campground
-            res.render("players/analytics", {player: foundPlayer, pointAvgs: pointAvg, astAvgs: astAvg, rebAvgs: rebAvg, 
+            res.render("players/analytics", {player: foundPlayer, gp: gp, totalGP: totalGP, gs: gs, totalMin: totalMin, minAvgs: minAvg, 
+                                            pointAvgs: pointAvg, astAvgs: astAvg, rebAvgs: rebAvg, 
                                             stlAvgs: stlAvg, fg: fgpct, tp: tppct, ft: ftpct, pointTotals: pointTotal, 
                                             rebTotals: rebTotal, astTotals: astTotal, stlTotals: stlTotal, yearTotals: years });
             }
