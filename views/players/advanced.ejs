@@ -158,6 +158,32 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                                     <div class="dropdown-header">Dropdown Header:</div>
+                                    <a class="dropdown-item" data-toggle="collapse" href="#collapseTS" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card Body -->
+                        <div class="card-body collapse show" id="collapseTS">
+                            <div class="chart-area">
+                                <canvas id="tsLineChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-7">
+                    <div class="card shadow mb-4">
+                        <!-- Card Header - Dropdown -->
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold cyclone-text">Averages: Effective Field Goal</h6>
+                            <div class="dropdown no-arrow">
+                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                    <div class="dropdown-header">Dropdown Header:</div>
                                     <a class="dropdown-item" data-toggle="collapse" href="#collapseBody" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
                                     <a class="dropdown-item" href="#">Another action</a>
                                     <div class="dropdown-divider"></div>
@@ -168,13 +194,39 @@
                         <!-- Card Body -->
                         <div class="card-body collapse show" id="collapseBody">
                             <div class="chart-area">
-                                <canvas id="tsLineChart"></canvas>
+                                <canvas id="efgLineChart"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
+                <div class="col-xl-6 col-lg-7">
+                    <div class="card shadow mb-4">
+                        <!-- Card Header - Dropdown -->
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold cyclone-text">Averages: 3 Point Attempt Rate</h6>
+                            <div class="dropdown no-arrow">
+                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                    <div class="dropdown-header">Dropdown Header:</div>
+                                    <a class="dropdown-item" data-toggle="collapse" href="#collapseBody" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card Body -->
+                        <div class="card-body collapse show" id="collapseBody">
+                            <div class="chart-area">
+                                <canvas id="tparLineChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-xl-6 col-lg-7">
                     <div class="card shadow mb-4">
                         <!-- Card Header - Dropdown -->
@@ -209,7 +261,9 @@
     let xAxis = <%- JSON.stringify(yearTotals) %>;
 
     // Shooting
-    let trueShoot = [<%= ts %>]
+    let trueShoot = [<%= ts %>];
+    let effectiveFG = [<%= efg %>];
+    let threePtAttRate = [<%= tpar %>];
 
     // Passing 
     let ato = [<%= atoRatio %>]
@@ -219,7 +273,7 @@
         data: {
             labels: xAxis,
             datasets: [{
-                label: 'Points',
+                label: 'Percentage',
                 data: trueShoot,
                 backgroundColor: 'rgb(149,16,16, 0.4)',
                 borderWidth: 4,
@@ -233,6 +287,68 @@
             title: {
                 display: true,
                 text: "TS% By Season: <%= player.name %>",
+                fontSize: 25
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    let effectiveLineChart = new Chart(efgLineChart, {
+        type: 'line',
+        data: {
+            labels: xAxis,
+            datasets: [{
+                label: 'Percentage',
+                data: effectiveFG,
+                backgroundColor: 'rgb(149,16,16, 0.4)',
+                borderWidth: 4,
+                borderColor: 'rgb(149,16,16)',
+                hoverBorderWidth: 8,
+                hoverBorderColor: 'rgb(149,16,16)',
+                fill: false
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "eFG% By Season: <%= player.name %>",
+                fontSize: 25
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    let TPARateLineChart = new Chart(tparLineChart, {
+        type: 'line',
+        data: {
+            labels: xAxis,
+            datasets: [{
+                label: 'Percentage',
+                data: threePtAttRate,
+                backgroundColor: 'rgb(149,16,16, 0.4)',
+                borderWidth: 4,
+                borderColor: 'rgb(149,16,16)',
+                hoverBorderWidth: 8,
+                hoverBorderColor: 'rgb(149,16,16)',
+                fill: false
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "3-Point Rate By Season: <%= player.name %>",
                 fontSize: 25
             },
             scales: {

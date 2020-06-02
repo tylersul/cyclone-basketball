@@ -194,16 +194,29 @@ router.get("/:id/advanced", function(req, res){
         if (err) {
             console.log(err)
         } else {
-            // Shooting
+            // SHOOTING
             let fgpct = foundPlayer.season.map(({
                 fg}) => fg);
+
+            let fga = foundPlayer.yearlyTotals.map(({
+                fga}) => fga);
+            
+            let fgm = foundPlayer.yearlyTotals.map(({
+                fgm}) => fgm);
 
             let tppct = foundPlayer.season.map(({
                 tp}) => tp);
 
+            let tpa = foundPlayer.yearlyTotals.map(({
+                tpa}) => tpa);
+        
+            let tpm = foundPlayer.yearlyTotals.map(({
+                tpm}) => tpm);
+
             let ftpct = foundPlayer.season.map(({
                 ft}) => ft);
             
+            // True Shoot %
             let comboShooting = fgpct.map(function(n, i) {
                 return n + tppct[i];
             });
@@ -219,8 +232,27 @@ router.get("/:id/advanced", function(req, res){
                 ts[i] = allShooter[i]/3;
             }
 
-            // Passing
+            // Effective FG%
+            let tpHalf = tpm;
 
+            for (var i=0; i < tpm.length; i++) {
+                tpm[i] = tpm[i]/2;
+              }
+
+            let eFgTemp = tpHalf.map(function(n, i) {
+                return n + fgm[i]
+            });
+
+            let efg = eFgTemp.map(function(n, i) {
+                return n / fga[i];
+            })
+
+            // 3 Point Attempt Rate 
+            let tpAttRate = tpa.map(function(n, i) {
+                return n / fga[i];
+            })
+
+            // Assist to Turnover Ratio
             let astTotal = foundPlayer.yearlyTotals.map(({
                 ast}) => ast);
 
@@ -235,8 +267,8 @@ router.get("/:id/advanced", function(req, res){
             let years = foundPlayer.season.map(({
                 grade}) => grade);
             
-                console.log(ts);
-            res.render("players/advanced", {player: foundPlayer, ts: ts, atoRatio: ato, yearTotals: years})
+
+            res.render("players/advanced", {player: foundPlayer, ts: ts, efg: efg, tpar: tpAttRate, atoRatio: ato, yearTotals: years})
         }
     });
 });
