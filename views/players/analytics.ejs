@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <nav class="col-md-1 d-none d-md-block bg-light sidebar">
+            <nav class="col-md-1 d-none d-md-block bg-light sidebar text-center">
                 <div class="sidebar-sticky">
                 <div class="sidebar-player text-center m-2">
                     <img src="../<%=player.image%>" alt="<%=player.name%>" class="img-fluid rounded-circle player-circle">
@@ -17,12 +17,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/players/<%= player._id %>/advanced"><i class="fas fa-chart-line mr-2"></i><span data-feather="file"></span>Advanced</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/players/<%= player._id %>/offense"><i class="fas fa-basketball-ball mr-2"></i><span data-feather="shopping-cart"></span>Offense</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/players/<%= player._id %>/defense"><i class="fas fa-shield-alt mr-2"></i><span data-feather="users"></span>Defense</a>
                     </li>
                 </ul>
                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -39,7 +33,7 @@
                     </a>
                     </li>
                 </ul>
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-center">
                     <a class="d-flex align-items-center text-muted" href="/players/<%= player._id %>">
                         <i class="fas fa-arrow-left mr-2"></i><span>Player Page</span>
                     </a>
@@ -84,7 +78,7 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                                         <div class="dropdown-header">Card Options:</div>
-                                        <a class="dropdown-item" data-toggle="collapse" href="#collapseBody" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
+                                        <a class="dropdown-item" data-toggle="collapse" href="#collapseGP" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
                                         <a class="dropdown-item" href="#">Another action</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="#">Something else here</a>
@@ -92,7 +86,7 @@
                                 </div>
                             </div>
                             <!-- Card Body -->
-                            <div class="card-body collapse show text-center" id="collapseBody">
+                            <div class="card-body collapse show text-center" id="collapseGP">
                                 <h1><%= totalGP %></h1>
                             </div>
                         </div>
@@ -101,14 +95,14 @@
                         <div class="card shadow mb-4">
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold cyclone-text">Background</h6>
+                                <h6 class="m-0 font-weight-bold cyclone-text">Career Starts</h6>
                                 <div class="dropdown no-arrow">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                                         <div class="dropdown-header">Card Options:</div>
-                                        <a class="dropdown-item" data-toggle="collapse" href="#collapseBody" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
+                                        <a class="dropdown-item" data-toggle="collapse" href="#collapseStarts" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
                                         <a class="dropdown-item" href="#">Another action</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="#">Something else here</a>
@@ -116,8 +110,8 @@
                                 </div>
                             </div>
                             <!-- Card Body -->
-                            <div class="card-body collapse show" id="collapseBody">
-                                <h1>Years as a Cyclone: <%= player.season.length %></h1>
+                            <div class="card-body collapse show text-center" id="collapseBody">
+                                <h1><%= totalGS %></h1>
                             </div>
                         </div>
                     </div>
@@ -125,14 +119,14 @@
                         <div class="card shadow mb-4">
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold cyclone-text">Background</h6>
+                                <h6 class="m-0 font-weight-bold cyclone-text">Career Minutes</h6>
                                 <div class="dropdown no-arrow">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                                         <div class="dropdown-header">Card Options:</div>
-                                        <a class="dropdown-item" data-toggle="collapse" href="#collapseBody" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
+                                        <a class="dropdown-item" data-toggle="collapse" href="#collapseMin" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
                                         <a class="dropdown-item" href="#">Another action</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="#">Something else here</a>
@@ -140,8 +134,8 @@
                                 </div>
                             </div>
                             <!-- Card Body -->
-                            <div class="card-body collapse show" id="collapseBody">
-                                <h1>Years as a Cyclone: <%= player.season.length %></h1>
+                            <div class="card-body collapse show text-center" id="collapseMin">
+                                <h1><%= careerMin %></h1>
                             </div>
                         </div>
                     </div>
@@ -473,128 +467,256 @@
             }
         });
     
-        let playerLineChart = new Chart(myLineChart, {
-            type: 'line',
-            data: {
-                labels: xAxis,
-                datasets: [{
-                    label: 'Minutes',
-                    data: mpg,
-                    backgroundColor: 'rgb(149,16,16, 0.6)',
-                    borderWidth: 4,
-                    borderColor: '#000',
-                    hoverBackgroundColor: 'rgb(149,16,16)',
-                    hoverBorderWidth: 8,
-                    hoverBorderColor: '#000',
-                    fill: false
-                },
-                {
-                    label: 'Points',
-                    data: ppg,
-                    backgroundColor: 'rgb(149,16,16, 0.4)',
-                    borderWidth: 4,
-                    borderColor: 'rgb(149,16,16)',
-                    hoverBorderWidth: 8,
-                    hoverBorderColor: 'rgb(149,16,16)',
-                    fill: false
-                },
-                {
-                    label: 'Assists',
-                    data: apg,
-                    backgroundColor: 'rgb(253, 200, 47, 0.4)',
-                    borderWidth: 4,
-                    borderColor: 'rgb(253, 200, 47)',
-                    hoverBorderWidth: 8,
-                    hoverBorderColor: '#000',
-                    fill: false
-                },
-                {
-                    label: 'Rebounds',
-                    data: rpg,
-                    backgroundColor: 'rgb(149,16,16)',
-                    borderWidth: 4,
-                    borderColor: '#000',
-                    hoverBorderWidth: 8,
-                    hoverBorderColor: '#000',
-                    fill: false
-                },
-                {
-                    label: 'Steals',
-                    data: spg,
-                    backgroundColor: 'rgb(0, 0, 204)',
-                    borderWidth: 4,
-                    borderColor: 'rgb(0, 0, 204)',
-                    hoverBorderWidth: 8,
-                    hoverBorderColor: '#000',
-                    fill: false
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: "Per Game Averages: <%= player.name %>",
-                    fontSize: 25
-                },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
+        if (ppg.length < 2) {
+            let playerLineChart = new Chart(myLineChart, {
+                type: 'bar',
+                data: {
+                    labels: xAxis,
+                    datasets: [{
+                        label: 'Minutes',
+                        data: mpg,
+                        backgroundColor: 'rgb(149,16,16, 0.6)',
+                        borderWidth: 4,
+                        borderColor: '#000',
+                        hoverBackgroundColor: 'rgb(149,16,16)',
+                        hoverBorderWidth: 8,
+                        hoverBorderColor: '#000',
+                        fill: false
+                    },
+                    {
+                        label: 'Points',
+                        data: ppg,
+                        backgroundColor: 'rgb(149,16,16, 0.4)',
+                        borderWidth: 4,
+                        borderColor: 'rgb(149,16,16)',
+                        hoverBorderWidth: 8,
+                        hoverBorderColor: 'rgb(149,16,16)',
+                        fill: false
+                    },
+                    {
+                        label: 'Assists',
+                        data: apg,
+                        backgroundColor: 'rgb(253, 200, 47, 0.4)',
+                        borderWidth: 4,
+                        borderColor: 'rgb(253, 200, 47)',
+                        hoverBorderWidth: 8,
+                        hoverBorderColor: '#000',
+                        fill: false
+                    },
+                    {
+                        label: 'Rebounds',
+                        data: rpg,
+                        backgroundColor: 'rgb(149,16,16)',
+                        borderWidth: 4,
+                        borderColor: '#000',
+                        hoverBorderWidth: 8,
+                        hoverBorderColor: '#000',
+                        fill: false
+                    },
+                    {
+                        label: 'Steals',
+                        data: spg,
+                        backgroundColor: 'rgb(0, 0, 204)',
+                        borderWidth: 4,
+                        borderColor: 'rgb(0, 0, 204)',
+                        hoverBorderWidth: 8,
+                        hoverBorderColor: '#000',
+                        fill: false
                     }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: "Per Game Averages: <%= player.name %>",
+                        fontSize: 25
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            let playerLineChart = new Chart(myLineChart, {
+                type: 'line',
+                data: {
+                    labels: xAxis,
+                    datasets: [{
+                        label: 'Minutes',
+                        data: mpg,
+                        backgroundColor: 'rgb(149,16,16, 0.6)',
+                        borderWidth: 4,
+                        borderColor: '#000',
+                        hoverBackgroundColor: 'rgb(149,16,16)',
+                        hoverBorderWidth: 8,
+                        hoverBorderColor: '#000',
+                        fill: false
+                    },
+                    {
+                        label: 'Points',
+                        data: ppg,
+                        backgroundColor: 'rgb(149,16,16, 0.4)',
+                        borderWidth: 4,
+                        borderColor: 'rgb(149,16,16)',
+                        hoverBorderWidth: 8,
+                        hoverBorderColor: 'rgb(149,16,16)',
+                        fill: false
+                    },
+                    {
+                        label: 'Assists',
+                        data: apg,
+                        backgroundColor: 'rgb(253, 200, 47, 0.4)',
+                        borderWidth: 4,
+                        borderColor: 'rgb(253, 200, 47)',
+                        hoverBorderWidth: 8,
+                        hoverBorderColor: '#000',
+                        fill: false
+                    },
+                    {
+                        label: 'Rebounds',
+                        data: rpg,
+                        backgroundColor: 'rgb(149,16,16)',
+                        borderWidth: 4,
+                        borderColor: '#000',
+                        hoverBorderWidth: 8,
+                        hoverBorderColor: '#000',
+                        fill: false
+                    },
+                    {
+                        label: 'Steals',
+                        data: spg,
+                        backgroundColor: 'rgb(0, 0, 204)',
+                        borderWidth: 4,
+                        borderColor: 'rgb(0, 0, 204)',
+                        hoverBorderWidth: 8,
+                        hoverBorderColor: '#000',
+                        fill: false
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: "Per Game Averages: <%= player.name %>",
+                        fontSize: 25
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
 
-        let playerFGLineChart = new Chart(myFGLineChart, {
-            type: 'line',
-            data: {
-                labels: xAxis,
-                datasets: [{
-                    label: 'FG %',
-                    data: fg,
-                    backgroundColor: 'rgb(149,16,16, 0.4)',
-                    borderWidth: 4,
-                    borderColor: 'rgb(149,16,16)',
-                    hoverBorderWidth: 8,
-                    hoverBorderColor: 'rgb(149,16,16)',
-                    fill: false
-                }, 
-                {
-                    label: '3P %',
-                    data: tp,
-                    backgroundColor: 'rgb(149,16,16, 0.4)',
-                    borderWidth: 4,
-                    borderColor: 'rgb(253, 200, 47)',
-                    hoverBorderWidth: 8,
-                    hoverBorderColor: 'rgb(149,16,16)',
-                    fill: false
-                }, 
-                {
-                    label: 'FT %',
-                    data: ft,
-                    backgroundColor: 'rgb(149,16,16, 0.4)',
-                    borderWidth: 4,
-                    borderColor: 'rgb(253, 200, 47)',
-                    hoverBorderWidth: 8,
-                    hoverBorderColor: 'rgb(149,16,16)',
-                    fill: false
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: "FG Percentages YoY: <%= player.name %>",
-                    fontSize: 25
-                },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
+        if (fg.length < 2) {
+            let playerFGLineChart = new Chart(myFGLineChart, {
+                type: 'bar',
+                data: {
+                    labels: xAxis,
+                    datasets: [{
+                        label: 'FG %',
+                        data: fg,
+                        backgroundColor: 'rgb(149,16,16, 0.4)',
+                        borderWidth: 4,
+                        borderColor: 'rgb(149,16,16)',
+                        hoverBorderWidth: 8,
+                        hoverBorderColor: 'rgb(149,16,16)',
+                        fill: false
+                    }, 
+                    {
+                        label: '3P %',
+                        data: tp,
+                        backgroundColor: 'rgb(149,16,16, 0.4)',
+                        borderWidth: 4,
+                        borderColor: 'rgb(253, 200, 47)',
+                        hoverBorderWidth: 8,
+                        hoverBorderColor: 'rgb(149,16,16)',
+                        fill: false
+                    }, 
+                    {
+                        label: 'FT %',
+                        data: ft,
+                        backgroundColor: 'rgb(149,16,16, 0.4)',
+                        borderWidth: 4,
+                        borderColor: 'rgb(253, 200, 47)',
+                        hoverBorderWidth: 8,
+                        hoverBorderColor: 'rgb(149,16,16)',
+                        fill: false
                     }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: "FG Percentages YoY: <%= player.name %>",
+                        fontSize: 25
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            let playerFGLineChart = new Chart(myFGLineChart, {
+                type: 'line',
+                data: {
+                    labels: xAxis,
+                    datasets: [{
+                        label: 'FG %',
+                        data: fg,
+                        backgroundColor: 'rgb(149,16,16, 0.4)',
+                        borderWidth: 4,
+                        borderColor: 'rgb(149,16,16)',
+                        hoverBorderWidth: 8,
+                        hoverBorderColor: 'rgb(149,16,16)',
+                        fill: false
+                    }, 
+                    {
+                        label: '3P %',
+                        data: tp,
+                        backgroundColor: 'rgb(149,16,16, 0.4)',
+                        borderWidth: 4,
+                        borderColor: 'rgb(253, 200, 47)',
+                        hoverBorderWidth: 8,
+                        hoverBorderColor: 'rgb(149,16,16)',
+                        fill: false
+                    }, 
+                    {
+                        label: 'FT %',
+                        data: ft,
+                        backgroundColor: 'rgb(149,16,16, 0.4)',
+                        borderWidth: 4,
+                        borderColor: 'rgb(253, 200, 47)',
+                        hoverBorderWidth: 8,
+                        hoverBorderColor: 'rgb(149,16,16)',
+                        fill: false
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: "FG Percentages YoY: <%= player.name %>",
+                        fontSize: 25
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+
 
         let myDoughnutChart = new Chart(myPointsPieChart, {
             type: 'doughnut',

@@ -146,8 +146,12 @@ router.get("/:id/analytics", function(req, res){
 
             let totalGP = gp.reduce((a, b) => a + b, 0);
 
+            let totalGS = gs.reduce((a, b) => a + b, 0);
+
             let totalMin = foundPlayer.yearlyTotals.map(({
                 min}) => min);
+
+            let careerMin = totalMin.reduce((a, b) => a + b, 0);
 
             let minAvg = foundPlayer.season.map(({
                 mpg}) => mpg);
@@ -197,8 +201,8 @@ router.get("/:id/analytics", function(req, res){
                 grade}) => grade);
     
             //render show template with that campground
-            res.render("players/analytics", {player: foundPlayer, gp: gp, totalGP: totalGP, gs: gs, totalMin: totalMin, minAvgs: minAvg, 
-                                            pointAvgs: pointAvg, astAvgs: astAvg, rebAvgs: rebAvg, 
+            res.render("players/analytics", {player: foundPlayer, gp: gp, totalGP: totalGP, gs: gs, totalGS: totalGS, totalMin: totalMin, 
+                                            careerMin: careerMin, minAvgs: minAvg, pointAvgs: pointAvg, astAvgs: astAvg, rebAvgs: rebAvg, 
                                             stlAvgs: stlAvg, fg: fgpct, tp: tppct, ft: ftpct, pointTotals: pointTotal, 
                                             rebTotals: rebTotal, astTotals: astTotal, stlTotals: stlTotal, yearTotals: years });
             }
@@ -290,46 +294,6 @@ router.get("/:id/advanced", function(req, res){
     });
 });
 
-// Player Analytics - Offense
-router.get("/:id/offense", function(req, res){
-    Player.findById(req.params.id, function(err, foundPlayer) {
-        if (err) {
-            console.log(err)
-        } else {
-
-            // Rebounding
-            let rebAvg = foundPlayer.season.map(({
-                rpg}) => rpg);
-            
-            let dRebTotal = foundPlayer.yearlyTotals.map(({
-                drb}) => drb);
-
-            let oRebTotal = foundPlayer.yearlyTotals.map(({
-                orb}) => orb);
-
-            let rebTotal = dRebTotal.map(function(n, i) {
-                return n + oRebTotal[i];
-            });
-
-            console.log(rebTotal)
-            let years = foundPlayer.season.map(({
-                grade}) => grade);
-
-            res.render("players/offense", {player: foundPlayer, rebAvgs: rebAvg, rebTotals: rebTotal, yearTotals: years});
-        }
-    });
-});
-
-// Player Analytics - Defense
-router.get("/:id/defense", function(req, res){
-    Player.findById(req.params.id, function(err, foundPlayer) {
-        if (err) {
-            console.log(err)
-        } else {
-            res.render("players/defense", {player: foundPlayer})
-        }
-    });
-});
 
 function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
