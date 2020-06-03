@@ -1,0 +1,147 @@
+html {
+    min-height: 100%;
+  }
+  /* Body */
+  body {
+    background: linear-gradient(99deg, #f5f5f5 85%, #951010 15%)
+  }
+  
+  @media only screen and (max-width: 700px) {
+    body {
+        background: #f5f5f5;;
+    } 
+}
+  a {
+    color: #000;
+  }
+  
+  /* Navbar */
+  .navbar {
+      background-color: #951010;
+      padding-top: 1em;
+      padding-bottom: 1em;
+  }
+  
+  .navbar-brand {
+      color: #FFF;
+      font-size: 2em;
+  }
+  
+@media only screen and (max-width: 700px) {
+    .navbar-brand {
+        font-size: 1.5rem;
+    } 
+}
+  
+  .navbar-default .navbar-nav>li>a {
+      color: #FFF;
+  }
+  
+  .dna {
+    color: #FFF;
+    padding-right: 0.25em;
+  }
+  
+  .cardinal-icon {
+    color: #951010;
+  }
+  
+  
+  /* Footer */ 
+  .footer-dna {
+    color: #FFF;
+  }
+  
+  .footer-icon {
+    font-size: 1.5em;
+  }
+  
+  .id {
+    font-size: 2em;
+  }
+  
+  .thumbnail img {
+      width: 100%;
+  }
+  
+  .thumbnail {
+      padding: 0;
+  }
+  
+  .thumbnail .caption-full {
+      padding: 9px;
+  }
+  
+  #delete-form {
+      display: inline /* Forms are on their own line by default */
+  }
+  
+  #delete-comment {
+      display: inline; /* same as above */
+  }
+  
+  /* Footer */
+  #footer {
+    background-color: #951010;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: #FFF;
+  }
+  
+  #footer .row {
+    max-width: 960px;
+  }
+  
+  #footer a {
+    color: rgba(255,255,255,.5);
+    transition: ease-in-out color .15s;
+  }
+
+  
+  /**** Page Specific ****/
+  /* Home Page */
+  #homeJumbotron {
+    background: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url("../images/hilton_magic.png");
+    background-size: cover;
+  }
+  
+  .jumbotron-title {
+    color: black;
+    -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+  }
+  
+  .cyclone-container {
+    background-color: #951010;
+  }
+  #analyticsImg {
+    max-width: 450px;
+  }
+
+  .btn-cyclone {
+    background-color: #951010;
+    color: #FFF;
+  }
+  
+
+  
+  .fade-in {
+      animation: fadeInAnimation ease 2s;
+      animation-iteration-count: 1; 
+      animation-fill-mode: forwards; 
+  } 
+    
+  @keyframes fadeInAnimation { 
+      0% { 
+          opacity: 0; 
+      } 
+      100% { 
+          opacity: 1; 
+       } 
+  } 
+  
+.cyclone-text {
+    color: #951010;
+}

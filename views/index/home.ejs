@@ -1,42 +1,61 @@
-<% include ../partials/header %> 
-  <div class="jumbotron position-relative p-3 p-md-5 m-md-3 text-center shadow mb-2" id="homeJumbotron">
-    <div class="col-md-5 p-lg-5 mx-auto my-5">
-      <h1 class="display-3 font-weight-bold jumbotron-title">Analytics Dashboards... Inbound</h1>
-      <p class="lead font-weight-normal">We're teaming with the Iowa State Men's Basketball program to take their team to the next level.</p>
-      <a class="btn btn-outline-secondary" href="#">Coming soon</a>
-    </div>  
-  </div>
-  <div class="container marketing mt-5">
+<% include ../partials/homeHeader %> 
+<div class="container">
+    <div class="row align-items-center fade-in mt-2">
+        <div class="col-12 col-lg-7 order-lg-1">
+            <h1>Welcome to <span class="cyclone-text">Cyclone Analytics.</span></h1>
+            <p class="lead text-muted">Analyze anything.</p>
+            <a href="/players" class="btn-lg btn-cyclone">View All Players<i class="fas fa-arrow-right ml-2"></i></a>
+        </div>
+        <div class="col-12 col-lg-5 order-lg-2">
+            <img src="../images/analytics.png" id="analyticsImg">
+        </div>
+    </div>
+    <div class="row align-items-center mt-5">
+        <div class="col-12 col-lg-4">
+            <i class="fas fa-basketball-ball fa-3x mb-2 cardinal-icon"></i>
+            <h3>Built for basketball</h3>
+        </div>
+        <div class="col-12 col-lg-4 order-lg-1">
+            <i class="fas fa-chart-area fa-3x mb-2 cardinal-icon"></i>
+            <h3>Visualizations for everything</h3>
+        </div>
+        <div class="col-12 col-lg-4 order-lg-1">
+            <i class="fas fa-code fa-3x mb-2 cardinal-icon"></i>
+            <h3>Designed to be modern</h3>
+        </div>
+    </div>
+</div>
+<div class="container marketing mt-5">
     <hr class="featurette-divider">
     <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">Detailed Analysis. <span class="text-muted">Every Player.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-      </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><image href="../images/team.png" x="0" y="0" height="500px" width="500px"/></svg>
-      </div>
+        <div class="col-md-7">
+            <h2 class="featurette-heading">Detailed Analysis. <span class="text-muted">Every Player.</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-5">
+            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><image class="home-image" href="../images/team.png" x="0" y="0" height="500px" width="500px"/></svg>
+        </div>
     </div>
     <hr class="featurette-divider">
     <div class="row featurette">
-      <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-      </div>
-      <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><image href="../images/hali1.png" x="0" y="0" height="100%" width="100%"/></svg>
-      </div>
+        <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-5 order-md-1">
+            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><image href="../images/hali1.png" x="0" y="0" height="100%" width="100%"/></svg>
+        </div>
     </div>
     <hr class="featurette-divider">
     <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-      </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><image href="../images/ball.png" x="0" y="0" height="100%" width="100%"/></svg>
-      </div>
+        <div class="col-md-7">
+            <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-5">
+            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><image href="../images/ball.png" x="0" y="0" height="100%" width="100%"/></svg>
+        </div>
     </div>
     <hr class="featurette-divider">
-  </div>
+</div>
 <% include ../partials/footer %>

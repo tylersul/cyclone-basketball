@@ -1,6 +1,12 @@
 <% include ../partials/header %>
-
- <div class="container">
+<div class="jumbotron position-relative p-md-5 mx-3 text-center shadow" id="homeJumbotron">
+    <div class="col-md-5 p-lg-5 mx-auto my-4">
+        <h1 class="display-3 font-weight-bold jumbotron-title">Analytics Dashboards... Inbound</h1>
+        <p class="lead font-weight-normal">We're teaming with the Iowa State Men's Basketball program to take their team to the next level.</p>
+        <a class="btn btn-outline-secondary" href="#">Coming soon</a>
+    </div>  
+</div>
+ <div class="container mt-3">
      <header class="jumbotron shadow">
          <div class="container">
              <h1>Cyclones.  By The Numbers.</h1>
@@ -21,7 +27,7 @@
     <div class="row text-center">
         <% players.forEach(function(player){ %>
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                <div class="card shadow player-card">
+                <div class="card shadow player-card fade-in">
                     <img src="<%= player.image %>" id="playerCardImage" class="card-img-top" alt="<%= player.name %>">
                     <div class="card-body" id="playerCardBody">
                         <h5 class="card-title"><%= player.name %></h5>
