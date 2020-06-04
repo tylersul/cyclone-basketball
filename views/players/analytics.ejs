@@ -5,7 +5,7 @@
             <nav class="col-md-1 d-none d-md-block bg-light sidebar">
                 <div class="sidebar-sticky">
                     <div class="sidebar-player text-center m-2">
-                        <img src="../<%=player.image%>" alt="<%=player.name%>" class="img-fluid rounded-circle player-circle">
+                        <img src="../<%=player.image%>" alt="<%=player.name%>" class="img-fluid rounded-circle img-thumbnail shadow-sm player-circle">
                         <div class="font-weight-bold"><%= player.name %></div>
                         <small><%= player.position %></small>
                     </div>
@@ -225,7 +225,7 @@
                         <div class="card shadow mb-4">
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold cyclone-text">Season Totals</h6>
+                                <h6 class="m-0 font-weight-bold cyclone-text">Averages: Field Goal %</h6>
                                 <div class="dropdown no-arrow">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -242,7 +242,7 @@
                             <!-- Card Body -->
                             <div class="card-body collapse show" id="collapseBody">
                                 <div class="chart-area">
-                                    <canvas id="myChart"></canvas>
+                                    <canvas id="myFGLineChart"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -270,7 +270,7 @@
                             <!-- Card Body -->
                             <div class="card-body collapse show" id="collapseBody">
                                 <div class="chart-area">
-                                    <canvas id="myFGLineChart"></canvas>
+                                    <canvas id="myChart"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -279,7 +279,7 @@
                         <div class="card shadow mb-4">
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold cyclone-text">Percentages</h6>
+                                <h6 class="m-0 font-weight-bold cyclone-text">Totals: Points Scored by Season</h6>
                                 <div class="dropdown no-arrow">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -475,51 +475,55 @@
                     datasets: [{
                         label: 'Minutes',
                         data: mpg,
-                        backgroundColor: 'rgb(149,16,16, 0.6)',
-                        borderWidth: 4,
+                        backgroundColor: 'rgb(0,0,0, 0.6)',
+                        borderWidth: 1,
                         borderColor: '#000',
-                        hoverBackgroundColor: 'rgb(149,16,16)',
-                        hoverBorderWidth: 8,
+                        hoverBackgroundColor: 'rgb(0,0,0)',
+                        hoverBorderWidth: 3,
                         hoverBorderColor: '#000',
                         fill: false
                     },
                     {
                         label: 'Points',
                         data: ppg,
-                        backgroundColor: 'rgb(149,16,16, 0.4)',
-                        borderWidth: 4,
+                        backgroundColor: 'rgb(149,16,16, 0.6)',
+                        borderWidth: 1,
                         borderColor: 'rgb(149,16,16)',
-                        hoverBorderWidth: 8,
-                        hoverBorderColor: 'rgb(149,16,16)',
+                        hoverBackgroundColor: 'rgb(149,16,16)',
+                        hoverBorderWidth: 3,
+                        hoverBorderColor: '#000',
                         fill: false
                     },
                     {
                         label: 'Assists',
                         data: apg,
-                        backgroundColor: 'rgb(253, 200, 47, 0.4)',
-                        borderWidth: 4,
+                        backgroundColor: 'rgb(253, 200, 47, 0.6)',
+                        borderWidth: 1,
                         borderColor: 'rgb(253, 200, 47)',
-                        hoverBorderWidth: 8,
+                        hoverBackgroundColor: 'rgb(253, 200, 47)',
+                        hoverBorderWidth: 3,
                         hoverBorderColor: '#000',
                         fill: false
                     },
                     {
                         label: 'Rebounds',
                         data: rpg,
-                        backgroundColor: 'rgb(149,16,16)',
-                        borderWidth: 4,
+                        backgroundColor: 'rgb(149,16,16, 0.6)',
+                        borderWidth: 1,
                         borderColor: '#000',
-                        hoverBorderWidth: 8,
+                        hoverBackgroundColor: 'rgb(149,16,16)',
+                        hoverBorderWidth: 3,
                         hoverBorderColor: '#000',
                         fill: false
                     },
                     {
                         label: 'Steals',
                         data: spg,
-                        backgroundColor: 'rgb(0, 0, 204)',
-                        borderWidth: 4,
+                        backgroundColor: 'rgb(0, 0, 204, 0.6)',
+                        borderWidth: 1,
                         borderColor: 'rgb(0, 0, 204)',
-                        hoverBorderWidth: 8,
+                        hoverBackgroundColor: 'rgb(0, 0, 2-4)',
+                        hoverBorderWidth: 3,
                         hoverBorderColor: '#000',
                         fill: false
                     }]
@@ -621,31 +625,34 @@
                     datasets: [{
                         label: 'FG %',
                         data: fg,
-                        backgroundColor: 'rgb(149,16,16, 0.4)',
-                        borderWidth: 4,
-                        borderColor: 'rgb(149,16,16)',
-                        hoverBorderWidth: 8,
-                        hoverBorderColor: 'rgb(149,16,16)',
+                        backgroundColor: 'rgb(149,16,16, 0.6)',
+                        borderWidth: 1,
+                        borderColor: 'rgb(0, 0, 0)',
+                        hoverBackgroundColor: 'rgb(149, 16, 16)',
+                        hoverBorderWidth: 3,
+                        hoverBorderColor: 'rgb(0, 0, 0)',
                         fill: false
                     }, 
                     {
                         label: '3P %',
                         data: tp,
-                        backgroundColor: 'rgb(149,16,16, 0.4)',
-                        borderWidth: 4,
-                        borderColor: 'rgb(253, 200, 47)',
-                        hoverBorderWidth: 8,
-                        hoverBorderColor: 'rgb(149,16,16)',
+                        backgroundColor: 'rgb(253, 200, 47, 0.6)',
+                        borderWidth: 1,
+                        borderColor: 'rgb(0, 0, 0)',
+                        hoverBackgroundColor: 'rgb(253, 200, 47)',
+                        hoverBorderWidth: 3,
+                        hoverBorderColor: 'rgb(0, 0, 0)',
                         fill: false
                     }, 
                     {
                         label: 'FT %',
                         data: ft,
-                        backgroundColor: 'rgb(149,16,16, 0.4)',
-                        borderWidth: 4,
-                        borderColor: 'rgb(253, 200, 47)',
-                        hoverBorderWidth: 8,
-                        hoverBorderColor: 'rgb(149,16,16)',
+                        backgroundColor: 'rgb(0, 0, 204, 0.4)',
+                        borderWidth: 1,
+                        borderColor: 'rgb(0, 0, 0)',
+                        hoverBackgroundColor: 'rgb(0, 0, 204)',
+                        hoverBorderWidth: 3,
+                        hoverBorderColor: 'rgb(0, 0, 0)',
                         fill: false
                     }]
                 },
