@@ -3,14 +3,14 @@
     <div class="row align-items-center fade-in mt-2">
         <div class="col-12 col-lg-7 order-lg-1">
             <h1>Welcome to <span class="cyclone-text">Cyclone Analytics.</span></h1>
-            <p class="lead text-muted">Analyze anything.</p>
-            <a href="/players" class="btn-lg btn-cyclone">View All Players<i class="fas fa-arrow-right ml-2"></i></a>
+            <p class="lead text-muted">Analyze <span class="typing"></span></p>
+            <a href="/players" class="btn-lg btn-cyclone shadow-sm grow">View All Players<i class="fas fa-arrow-right ml-2"></i></a>
         </div>
         <div class="col-12 col-lg-5 order-lg-2">
             <img src="../images/analytics.png" id="analyticsImg">
         </div>
     </div>
-    <div class="row align-items-center mt-5">
+    <div class="row align-items-center mt-5 animate__animated animate__slideInRight">
         <div class="col-12 col-lg-4">
             <i class="fas fa-basketball-ball fa-3x mb-2 cardinal-icon"></i>
             <h3>Built for basketball</h3>
@@ -58,4 +58,17 @@
     </div>
     <hr class="featurette-divider">
 </div>
+
 <% include ../partials/footer %>
+<script>
+    var typed = new Typed('.typing', {
+        strings: ['Georges Niang', 'Fred Hoiberg', 'the entire 2016 squad', 'anything'],
+        smartBackspace: true, // Default value
+        typeSpeed: 70,
+        backSpeed: 70,
+        startDelay: 100,
+        backDelay: 500,
+        loop: false,
+        onComplete: function(self) { self.cursor.remove() }
+    });
+</script>

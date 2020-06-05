@@ -83,3 +83,8 @@ body {
 .no-cssanimations .slideshow li {
     opacity: 1;
 }
+
+.grow:hover {
+    transform: scale(1.1);        /* Card becomes 10% bigger on hover */
+    transition: transform .2s;    /* Eased transition for smoother look */
+  }

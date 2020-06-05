@@ -127,21 +127,26 @@ html {
   
 
   
-  .fade-in {
-      animation: fadeInAnimation ease 2s;
-      animation-iteration-count: 1; 
-      animation-fill-mode: forwards; 
-  } 
-    
-  @keyframes fadeInAnimation { 
-      0% { 
-          opacity: 0; 
-      } 
-      100% { 
-          opacity: 1; 
-       } 
-  } 
+.fade-in {
+    animation: fadeInAnimation ease 2s;
+    animation-iteration-count: 1; 
+    animation-fill-mode: forwards; 
+} 
+
+@keyframes fadeInAnimation { 
+    0% { 
+        opacity: 0; 
+    } 
+    100% { 
+        opacity: 1; 
+    } 
+} 
   
 .cyclone-text {
     color: #951010;
 }
+
+.grow:hover {
+    transform: scale(1.1);        /* Card becomes 10% bigger on hover */
+    transition: transform .2s;    /* Eased transition for smoother look */
+  }
