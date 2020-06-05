@@ -15,7 +15,6 @@
     "body-parser": "^1.19.0",
     "chart.js": "^2.9.3",
     "connect-flash": "^0.1.1",
-    "countup.js": "^2.0.5",
     "dotenv": "^8.2.0",
     "ejs": "^2.7.4",
     "express": "^4.17.1",
