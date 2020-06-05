@@ -22,7 +22,7 @@ router.get("/", function(req, res){
         });
     } else {
         // Get all players from DB
-        Player.find({}, function(err, allPlayers){
+        Player.find({}).sort('name').exec(function(err, allPlayers){
             if(err){
                 console.log(err);
             } else {

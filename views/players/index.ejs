@@ -1,7 +1,7 @@
 <% include ../partials/header %>
 <div class="jumbotron position-relative p-md-5 mx-3 text-center shadow animate__animated animate__backInDown" id="homeJumbotron">
-    <div class="col-md-5 p-lg-5 mx-auto my-4">
-        <h1 class="display-3 font-weight-bold jumbotron-title">Analytics Dashboards... Inbound</h1>
+    <div class="col-md-5 col-sm-12 p-lg-5 mx-auto my-4">
+        <h1 class="display-3 font-weight-bold jumbotron-title text-responsive" id="playerJumbotron">Analytics Dashboards... Inbound</h1>
         <p class="lead font-weight-normal">We're teaming with the Iowa State Men's Basketball program to take their team to the next level.</p>
         <a class="btn btn-outline-secondary" href="#">Coming soon</a>
     </div>  
@@ -12,15 +12,15 @@
              <h1>Cyclones.  By The Numbers.</h1>
              <p>View our growing player database:</p>
              <p>
-                <a class="btn btn-cyclone btn-large grow" href="/players/new">Add New Player</a>
-             </p>
-             <p>
                  <form action="/players" method="GET" class="form-inline">
                      <div class="form-group">
                          <input type="text" name="search" placeholder="Player Search..." class="form-control">
-                         <input type="submit" value="Search" class="btn btn-default">
+                         <input type="submit" value="Search" class="btn btn-outline-secondary ml-2">
                      </div>
                  </form>
+             </p>
+             <p>
+                <a class="btn btn-cyclone btn-large grow" href="/players/new">Add New Player</a>
              </p>
          </div>
      </header>

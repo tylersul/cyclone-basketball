@@ -3,14 +3,10 @@ html {
   }
   /* Body */
   body {
-    background: linear-gradient(99deg, #f5f5f5 85%, #951010 15%)
+    /* background: linear-gradient(99deg, #f5f5f5 85%, #951010 15%) */
   }
   
-  @media only screen and (max-width: 700px) {
-    body {
-        background: #f5f5f5;;
-    } 
-}
+
   a {
     color: #000;
   }
@@ -120,12 +116,22 @@ html {
     max-width: 450px;
   }
 
-  .btn-cyclone {
+.btn-cyclone {
     background-color: #951010;
     color: #FFF;
-  }
-  
+}
 
+.btn-cyclone:hover {
+    color: white;
+}
+.btn-cyclone-outline {
+    color: #951010;
+    border-color: #951010;
+}
+
+.btn-cyclone-outline:hover {
+    color: #951010;
+}
   
 .fade-in {
     animation: fadeInAnimation ease 2s;
@@ -146,7 +152,24 @@ html {
     color: #951010;
 }
 
+/* Utility Classes */
 .grow:hover {
     transform: scale(1.1);        /* Card becomes 10% bigger on hover */
     transition: transform .2s;    /* Eased transition for smoother look */
-  }
+}
+
+
+/* Media Queries */
+@media only screen and (max-width: 700px) {
+    body {
+        background: #f5f5f5;;
+    } 
+}
+
+@media only screen and (max-width: 700px) {
+    #analyticsImg {
+        max-width: 80%;
+        text-align: center;
+    } 
+}
+
