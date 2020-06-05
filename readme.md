@@ -9,6 +9,10 @@ Full stack NodeJS web application with a growing database of Iowa State Men's ba
 - Bootstrap
 - Javascript
 
+### Front End Libraries
+- Animate.css
+- Typed.js
+
 ### Back End
 - NodeJS
 - MongoDB
@@ -19,4 +23,4 @@ Full stack NodeJS web application with a growing database of Iowa State Men's ba
 Here's a list of other related projects that I created or utilized throughout the development of this full stack application:
 
 - [CBB Reference Scraping for Player Stats](https://github.com/tylersul/js-cbb-web-scraper)
-
+- [ESPN College Basketball Web Scraper for Teams](https://github.com/tylersul/js-espn-cbb-scraper)

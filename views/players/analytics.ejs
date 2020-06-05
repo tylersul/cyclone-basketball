@@ -63,7 +63,7 @@
                             </div>
                             <!-- Card Body -->
                             <div class="card-body collapse show text-center" id="collapseBody">
-                                <h1><%= player.season.length %></h1>
+                                <h1 id="yearCounter"></h1>
                             </div>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                             </div>
                             <!-- Card Body -->
                             <div class="card-body collapse show text-center" id="collapseGP">
-                                <h1><%= totalGP %></h1>
+                                <h1 id="gamesCounter"></h1>
                             </div>
                         </div>
                     </div>
@@ -111,7 +111,7 @@
                             </div>
                             <!-- Card Body -->
                             <div class="card-body collapse show text-center" id="collapseBody">
-                                <h1><%= totalGS %></h1>
+                                <h1 id="startsCounter"></h1>
                             </div>
                         </div>
                     </div>
@@ -135,7 +135,7 @@
                             </div>
                             <!-- Card Body -->
                             <div class="card-body collapse show text-center" id="collapseMin">
-                                <h1><%= careerMin %></h1>
+                                <h1 id="minCounter"></h1>
                             </div>
                         </div>
                     </div>
@@ -305,9 +305,16 @@
             </div>
         </div>
     </div>
+<% include ../partials/footer %>
     <script>
         let myChart = document.getElementById('myChart').getContext('2d');
-
+        // CountUp
+        let years        = <%= player.season.length %>;
+        let careerGames  = <%= totalGP %>
+        let careerStarts = <%= totalGS %>
+        let careerMin    = <%= careerMin %>;
+        
+        // ChartJS
         let gs = [<%= gs %>];
         let gp = [<%= gp %>];
         let min = [<%= totalMin %>];
@@ -737,5 +744,36 @@
                 labels: xAxis
             }
         });
+
+        // CountUp JS
+        let yearsCount = new CountUp('yearCounter', 0, years, 0, 2.5);
+        if (!yearsCount.error) {
+            yearsCount.start();
+        } else {
+            console.error(yearsCount.error);
+        }
+
+        let gamesCount = new CountUp('gamesCounter', 0, careerGames, 0, 2.5);
+        if (!gamesCount.error) {
+            gamesCount.start();
+        } else {
+            console.error(gamesCount.error);
+        }
+
+
+        let startsCount = new CountUp('startsCounter', 0, careerStarts, 0, 2.5);
+        if (!startsCount.error) {
+            startsCount.start();
+        } else {
+            console.error(startsCount.error);
+        }
+
+
+        let minCount = new CountUp('minCounter', 0, careerMin, 0, 2.5);
+        if (!minCount.error) {
+            minCount.start();
+        } else {
+            console.error(minCount.error);
+        }
 </script>
-<% include ../partials/footer %>
+
