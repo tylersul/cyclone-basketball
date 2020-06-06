@@ -1,18 +1,20 @@
 <% include ../partials/header %>
 <div class="row justify-content-center">
-    <div class="col-md-12 text-center">
-        <h1 style="text-align: center">Add New Comment to <%= player.name %></h1>
+    <div class="col-md-12 text-center mb-3">
+        <i class="fas fa-dna fa-4x black-dna my-3"></i>
+        <h1 style="text-align: center">Add New Comment to:</h1>
+        <h1><strong><%= player.name %></strong></h1>
     </div>
-    <div class="col-xs-12 col-md-6 col-lg-3">
+    <div class="col-xs-12 col-md-6 col-lg-3 mb-2">
         <form action="/players/<%= player._id %>/comments" method="POST">
-            <div class="form-group">
-                <input class="form-control" type="text" name="comment[text]" placeholder="text">
+            <div class="form-group mb-2">
+                <input class="form-control" type="text" name="comment[text]" placeholder="Your comment here.">
             </div>
             <div class="form-group">
                 <button class="btn btn-lg btn-primary btn-block">Submit!</button>
             </div>
         </form>
-        <a href="/players">Go Back</a>
+        <a href="/players/<%= player._id %>" class="btn btn-secondary"><i class="fas fa-arrow-left mr-2"></i> Go Back</a>
     </div>
 </div>
 <% include ../partials/footer %>

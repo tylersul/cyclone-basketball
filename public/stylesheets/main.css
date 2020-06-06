@@ -190,14 +190,14 @@ a {
 } 
 
   /* PLAYER - Show All */
-.player-card:hover {
+.cyclone-card:hover {
   transform: scale(1.1);        /* Card becomes 10% bigger on hover */
   background-color: #951010;  /* Card background to Cardinal */
   color: #FFF;                /* Card text to white */
   transition: transform .2s;    /* Eased transition for smoother look */
 }
 
-.player-card:hover .btn-cyclone {
+.cyclone-card:hover .btn-cyclone {
   background-color: #FFF;
   color: #000;
 }
@@ -212,7 +212,9 @@ a {
   background-color: #951010;
   color: #FFF;
 }
-
+.btn-cyclone:hover {
+  color: white;
+}
 /* PLAYER - Show One */
 .cyclone-text {
   color: #951010;
