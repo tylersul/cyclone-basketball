@@ -153,6 +153,9 @@ html {
 }
 
 /* Utility Classes */
+.bg-gray {
+    background-color: #f1f4f8;
+}
 .grow:hover {
     transform: scale(1.1);        /* Card becomes 10% bigger on hover */
     transition: transform .2s;    /* Eased transition for smoother look */
