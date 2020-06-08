@@ -3,7 +3,7 @@ html {
   }
   /* Body */
   body {
-    /* background: linear-gradient(99deg, #f5f5f5 85%, #951010 15%) */
+    background: white;
   }
   
 
@@ -176,4 +176,3 @@ html {
         text-align: center;
     } 
 }
-
