@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card shadow mb-3">
-                <img class="card-img-top" id="playerShowImage" src="<%= player.image %>" alt="<%= player.name %>">
+                <img class="card-img-top" src="<%= player.image %>" alt="<%= player.name %>">
                 <div class="card-body">
                     <p class="float-right">Rank: Statistic In Development</p>
                     <h1 class="card-title animate__animated animate__lightSpeedInRight"><a><strong><%=player.name%></strong></a></h1>
@@ -13,7 +13,7 @@
                     <hr>
                     <p class="card-text"><%= player.description %></p>
                     <p><em>Submitted by:</em> <%= player.author.username %></p>
-                    <% if(currentUser && player.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
+                    <% if(currentUser && currentUser.isAdmin){ %>
                     <a class= "btn btn-warning" href="/players/<%= player._id %>/edit">Edit Player</a>
                     <form id="delete-form" action="/players/<%= player._id %>?_method=DELETE" method="POST">
                         <button class="btn btn-danger">Delete</button>

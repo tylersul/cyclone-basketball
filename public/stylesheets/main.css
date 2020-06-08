@@ -191,7 +191,7 @@ a {
 
   /* PLAYER - Show All */
 .cyclone-card:hover {
-  transform: scale(1.1);        /* Card becomes 10% bigger on hover */
+  transform: scale(1.5);        /* Card becomes 10% bigger on hover */
   background-color: #951010;  /* Card background to Cardinal */
   color: #FFF;                /* Card text to white */
   transition: transform .2s;    /* Eased transition for smoother look */
@@ -287,7 +287,11 @@ a {
     animation-iteration-count: 1; 
     animation-fill-mode: forwards; 
 } 
-  
+
+.bg-gray {
+  background-color: #f1f4f8;
+}
+
 @keyframes fadeInAnimation { 
     0% { 
         opacity: 0; 
