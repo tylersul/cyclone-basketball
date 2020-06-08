@@ -69,7 +69,7 @@
             </div>
             <div class="row">
                 <div class="col-xl-12 col-lg-7">
-                    <div class="card shadow mb-4">
+                    <div class="card shadow mb-4" data-aos="fade-up">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                             <h6 class="m-0 font-weight-bold cyclone-text">Per Game Averages</h6>
@@ -137,7 +137,7 @@
             </div>
             <div class="row">
                 <div class="col-xl-12 col-lg-7">
-                    <div class="card shadow mb-4">
+                    <div class="card shadow mb-4" data-aos="fade-up">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                             <h6 class="m-0 font-weight-bold cyclone-text">Yearly Totals</h6>
@@ -213,7 +213,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card shadow mb-3">
+            <div class="card shadow mb-3" data-aos="fade-up">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold cyclone-text">Comments: <%= player.comments.length %></h6>
@@ -279,3 +279,6 @@
     </div>
 </div>
 <% include ../partials/footer %>
+<script>
+    AOS.init();
+</script>
