@@ -2,17 +2,19 @@
 <div class="bg-white">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-12 text-center">
-                <h1>Our Newsroom</h1>
+            <div class="col-12 col-md-12 text-center py-5">
+                <h1 class="display-3">Our Newsroom</h1>
                 <p>Keep up to date with what we're working on.  Cyclone Analytics is evolving daily.</p>
-                <form action="/players" method="GET" class="form-inline justify-content-center">
+                <form action="/players" method="GET" class="form-inline justify-content-center mb-3">
                     <div class="form-group mb-2">
                         <input type="text" name="search" placeholder="Search our blog..." class="form-control">
                         <input type="submit" value="Search" class="btn btn-outline-secondary ml-2">
                     </div>
                 </form>
+            </div>
+        </div>
                 <% if (currentUser && currentUser.isAdmin) { %>
-                    <a href="/blog/new" class="btn btn-primary">New Blog</a>
+                    <a href="/blog/new" class="btn btn-primary mb-3">New Blog</a>
                 <% } %>
             </div>
         </div>
@@ -20,20 +22,36 @@
 </div>
 <div class="bg-gray">
     <div class="container">
-        <div class="row">
+        <div class="row mb-3 pt-5">
             <div class="col-12 col-md">
                 <h3>Latest Stories</h3>
                 <p class="text-muted">Here's what we've been up to recently:</p>
             </div>
-            <div class="col-12 col-md-auto">
-                <a href="#" class="btn btn-outline-primary">View All</a>
+            <div class="col-12 col-md-auto pt-3">
+                <a href="#" class="btn btn-outline-primary btn-lg">View All</a>
             </div>
         </div>
         <% blogs.forEach(function(blog){ %>
-        <div class="row">
+        <div class="row mb-4 animate__animated animate__fadeInUp">
             <div class="col-12 col-md-12">
-                <div class="card">
-                    <h1><%= blog.title %></h1>
+                <div class="card card-shadow-sm lift" data-aos="fade-up">
+                    <a href="/blog/<%= blog._id %>" class="stretched-link"></a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h1 class="display-4"><%= blog.title %></h1>
+                                <p class="text-muted"> <%- blog.content.substring(0, 125) %>...</p>
+                                <hr class="mx-2">
+                                <div class="row">
+                                    <h6 class="text-uppercase text-muted pl-3"><%= blog.author.username %></h6>
+                                    <p class="h6 mb-2 text-muted ml-auto"><%= blog.createdAt.toString().substring(4, 15) %></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <img src="<%= blog.headerImage %>" alt="Blog Image" class="img-fluid card-img-right horizontal-image-size-md">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -41,3 +59,6 @@
     </div>
 </div>
 <% include ../partials/footer %> 
+<script>
+    AOS.init();
+</script>

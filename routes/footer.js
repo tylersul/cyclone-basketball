@@ -82,7 +82,7 @@ router.get("/blog", function(req, res){
         });
     } else {
         // Get all players from DB
-        Blog.find({}, function(err, allBlogs){
+        Blog.find({}).sort('-createdAt').exec(function(err, allBlogs){
             if(err){
                 console.log(err);
             } else {
@@ -92,8 +92,17 @@ router.get("/blog", function(req, res){
     }
 });
 
+// Blog - Create New
 router.post("/blog", function(req, res) {
-    let newBlog = req.body;
+    let title       = req.body.title,
+        headerImage = req.body.headerImage,
+        content     = req.body.content,
+        author      = {
+        id: req.user._id,
+        username: req.user.username
+        };
+
+    let newBlog = {title: title, headerImage: headerImage, content: content, author: author};
 
     Blog.create(newBlog, function(err, createdBlog) {
         if (err) {
@@ -106,9 +115,20 @@ router.post("/blog", function(req, res) {
 });
 
 
-// Create - Blog
+// Blog - View Create New Blog Form
 router.get("/blog/new", function(req, res){
     res.render("footer/newBlog");
+})
+
+router.get("/blog/:id", function(req, res) {
+    Blog.findById(req.params.id).populate("comments").exec(function(err, foundBlog){
+        if(err){
+            console.log(err);
+        } else {
+            // Render show template with requested blog
+            res.render("footer/show", {blog: foundBlog});
+        }
+    });
 })
 // ================================================================== //
 // ====================== Exports =================================== //

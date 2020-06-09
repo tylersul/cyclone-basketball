@@ -255,6 +255,13 @@ a {
 #aboutContainer {
   background-color: #951010;
 }
+
+/* Blog */
+.horizontal-image-size-md {
+  width: 100%;        /* Fix image width to entirety of card */
+  height: 300px;      /* Consistent card image height in desktop and mobile */
+  object-fit: cover;  /* Cover card */
+}
   /**** General ****/
 /* icons */
 .black-dna {
@@ -276,10 +283,19 @@ a {
 }
 
 /* Utility Classes */
+.card-img-right {
+  border-radius: 0 .375rem .375rem 0;   /* Round the corners of an image on horizontal card */
+}
 
 .grow:hover {
   transform: scale(1.1);        /* Card becomes 10% bigger on hover */
   transition: transform .2s;    /* Eased transition for smoother look */
+}
+
+.lift:hover {
+  box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;  /* Shadow on hover */
+  transform: translate3d(0px, -5px, 0px) !important;           /* Move card up 5px */
+  transition: transform .3s ease-in-out;            /* Ensure transform is eased over .3s */
 }
 
 .fade-in {
