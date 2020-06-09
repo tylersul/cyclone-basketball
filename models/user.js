@@ -57,7 +57,7 @@ userSchema.statics.newLogin = function login(username, callback) {
 // ====================== Exports =================================== //
 // ================================================================== //
 // Models are constructors compiled from Schema definitions (above)
-// Can have multiple modles with the same schema 
+// Can have multiple models with the same schema 
 //  To create or get documents from DB, need to use model
 
 // Export model for use in other files within app

@@ -4,7 +4,8 @@
 
 let express    = require("express"),              // ExpressJS module 'Express' for Node web framework
     router     = express.Router(),
-    passport   = require("passport");
+    passport   = require("passport"),
+    Blog       = require("../models/blog");
 
 
 
@@ -64,7 +65,51 @@ router.get("/about", function(req, res){
     res.render("footer/about");
 });
 
+/* ~~~~~~~~~~ Blog ~~~~~~~~~~ */
+router.get("/blog", function(req, res){
+    if(req.query.search){
+        escapeRegex(req.query.search);
+        const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        Blog.find({name: regex}, function(err, allBlogs){
+            if(err){
+                console.log(err);
+            } else {
+                if(allBlogs.length < 1) {
+                    return res.render("footer/blog", {blogs: allBlogs, "error": "No match! Please try again!"});
+                }
+                res.render("footer/blog",{blogs: allBlogs, currentUser: req.user});
+            }
+        });
+    } else {
+        // Get all players from DB
+        Blog.find({}, function(err, allBlogs){
+            if(err){
+                console.log(err);
+            } else {
+                res.render("footer/blog",{blogs: allBlogs, currentUser: req.user});
+            }
+        });
+    }
+});
 
+router.post("/blog", function(req, res) {
+    let newBlog = req.body;
+
+    Blog.create(newBlog, function(err, createdBlog) {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(createdBlog);
+            res.redirect("/blog");
+        }
+    });
+});
+
+
+// Create - Blog
+router.get("/blog/new", function(req, res){
+    res.render("footer/newBlog");
+})
 // ================================================================== //
 // ====================== Exports =================================== //
 // ================================================================== //
