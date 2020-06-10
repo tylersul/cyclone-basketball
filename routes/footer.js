@@ -120,13 +120,21 @@ router.get("/blog/new", function(req, res){
     res.render("footer/newBlog");
 })
 
+// Blog - Show requested blog
 router.get("/blog/:id", function(req, res) {
+    recentBlogs = Blog.find({}).sort('-createdAt').limit(3);
     Blog.findById(req.params.id).populate("comments").exec(function(err, foundBlog){
         if(err){
             console.log(err);
         } else {
-            // Render show template with requested blog
-            res.render("footer/show", {blog: foundBlog});
+            Blog.find({}).sort('-createdAt').limit(3).exec(function(err, recentBlog) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    // Render show template with requested blog
+                    res.render("footer/show", {blog: foundBlog, recent: recentBlog});
+                }
+            })
         }
     });
 })
