@@ -15,6 +15,7 @@ let blogSchema = new mongoose.Schema({
         username: String
     }, 
     title: String,
+    subheader: String,
     headerImage: String,
     content: String,
     comments: [

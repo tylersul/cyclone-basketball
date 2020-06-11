@@ -95,6 +95,7 @@ router.get("/blog", function(req, res){
 // Blog - Create New
 router.post("/blog", function(req, res) {
     let title       = req.body.title,
+        subheader   = req.body.subheader,
         headerImage = req.body.headerImage,
         content     = req.body.content,
         author      = {
@@ -102,7 +103,7 @@ router.post("/blog", function(req, res) {
         username: req.user.username
         };
 
-    let newBlog = {title: title, headerImage: headerImage, content: content, author: author};
+    let newBlog = {title: title, subheader, subheader, headerImage: headerImage, content: content, author: author};
 
     Blog.create(newBlog, function(err, createdBlog) {
         if (err) {
@@ -132,11 +133,43 @@ router.get("/blog/:id", function(req, res) {
                     console.log(err);
                 } else {
                     // Render show template with requested blog
-                    res.render("footer/show", {blog: foundBlog, recent: recentBlog});
+                    res.render("footer/show", {blog: foundBlog, recent: recentBlog, currentUser: req.user});
                 }
-            })
+            });
         }
     });
+});
+
+// Blog - Edit requested blog
+router.get("/blog/:id/edit", function(req, res){
+    Blog.findById(req.params.id, function(err, foundBlog){
+        res.render("footer/edit", {blog: foundBlog});
+    });
+});
+
+
+// Blog - Update requested blog
+router.put("/blog/:id", function(req, res) {
+    Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog) {
+        if (err) {
+            console.log(err);
+            res.redirect("/blog");
+        } else {
+            res.redirect("/blog/" + req.params.id);
+        }
+    });
+});
+
+// Blog - Delete requested Blog
+router.delete("/blog/:id", function(req, res) {
+    Blog.findByIdAndRemove(req.params.id, function(err) {
+        if (err) {
+            console.log(err);
+            res.redirect("/blog");
+        } else {
+            res.redirect("/blog");
+        }
+    })
 })
 // ================================================================== //
 // ====================== Exports =================================== //

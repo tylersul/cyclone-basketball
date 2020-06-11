@@ -10,6 +10,9 @@ a {
   color: #000;
 }
 
+textarea {
+  height: 100%;   /* Ensure textarea boxes show all rows for increased height */
+}
 /* Navbar */
 .navbar {
     background-color: #951010;
