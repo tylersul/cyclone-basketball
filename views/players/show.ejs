@@ -44,7 +44,7 @@
                         <div class="card-body collapse show" id="collapseBody">
                             <div class="chart-area">
                                 <table class="table table-responsive-xl">
-                                    <thead class="thead-light">
+                                    <thead class="thead-dark">
                                         <tr>
                                             <th scope="col">Height</th>
                                             <th scope="col">Weight</th>
@@ -89,7 +89,7 @@
                         <div class="card-body collapse show" id="collapseStats">
                             <div class="chart-area">
                                 <table class="table table-responsive-xl table-hover">
-                                    <thead class="thead-light">
+                                    <thead class="thead-dark">
                                         <tr>
                                             <th scope="col">Year</th>
                                             <th scope="col">Season</th>
@@ -126,6 +126,9 @@
                                         <% }); %>
                                         <tr>
                                             <td>Career</td>
+                                            <td>Placeholder</td>
+                                            <td><%= gp %> </td>
+                                            <td><%= gs %></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -157,7 +160,7 @@
                         <div class="card-body collapse show" id="collapseYearly">
                             <div class="chart-area">
                                 <table class="table table-responsive-xl table-hover">
-                                    <thead class="thead-light" >
+                                    <thead class="thead-dark" >
                                         <tr>
                                             <th scope="col">Year</th>
                                             <th scope="col">MP</th>
@@ -202,9 +205,28 @@
                                             <td><%= year.pts %></td>
                                         </tr>
                                         <% }); %>
-                                        <tr>
-                                            <td>Career</td>
-                                        </tr>
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>Career</th>
+                                                <th><%= mp %></th>
+                                                <th><%= fgm %></th>
+                                                <th><%= fga %></th>
+                                                <th><%= fgm - tpm %></th>
+                                                <th><%= fga - tpa %></th>
+                                                <th><%= tpm %></th>
+                                                <th><%= tpa %></th>
+                                                <th><%= ftm %></th>
+                                                <th><%= fta %></th>
+                                                <th><%= orb %></th>
+                                                <th><%= drb %></th>
+                                                <th><%= orb + drb %></th>
+                                                <th><%= ast %></th>
+                                                <th><%= stl %></th>
+                                                <th><%= blk %></th>
+                                                <th><%= pf %></th>
+                                                <th><%= pts %></th>
+                                            </tr>
+                                        </thead>
                                     </tbody>
                                 </table>
                             </div>

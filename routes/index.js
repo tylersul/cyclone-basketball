@@ -85,7 +85,7 @@ router.post("/login", passport.authenticate("local",
                 if (err) {
                     console.log(err);
                 } else {
-                    res.redirect("/players");
+                    res.redirect("/home");
                 }
   });
 });

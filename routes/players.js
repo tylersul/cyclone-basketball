@@ -94,10 +94,93 @@ router.get("/:id", function(req, res){
 
             let years = foundPlayer.season.map(({
                 grade}) => grade);
+            
+            let gp = foundPlayer.season.map(({
+                gp}) => gp);
+
+            let gs = foundPlayer.season.map(({
+                gs}) => gs);
+
+            let totalGP = gp.reduce((a, b) => a + b, 0);
+
+            let totalGS = gs.reduce((a, b) => a + b, 0);
+
+            let minutes = foundPlayer.yearlyTotals.map(({
+                min}) => min);
+            
+            let totalMP = minutes.reduce((a, b) => a + b, 0);
+
+            let fgMade = foundPlayer.yearlyTotals.map(({
+                fgm}) => fgm);
+
+            let totalFGM = fgMade.reduce((a, b) => a + b, 0);
+
+            let fgAtt = foundPlayer.yearlyTotals.map(({
+                fga}) => fga);
+
+            let totalFGA = fgAtt.reduce((a, b) => a + b, 0)
+
+            let tpAtt = foundPlayer.yearlyTotals.map(({
+                tpa}) => tpa);
+
+            let totalTPA = tpAtt.reduce((a, b) => a + b, 0)
+
+            let tpMade = foundPlayer.yearlyTotals.map(({
+                tpm}) => tpm);
+
+            let totalTPM = tpMade.reduce((a, b) => a + b, 0)
+
+            let ftAtt = foundPlayer.yearlyTotals.map(({
+                fta}) => fta);
+
+            let totalFTA = ftAtt.reduce((a, b) => a + b, 0)
+
+            let ftMade = foundPlayer.yearlyTotals.map(({
+                ftm}) => ftm);
+
+            let totalFTM = ftMade.reduce((a, b) => a + b, 0)
+
+            let orb = foundPlayer.yearlyTotals.map(({
+                orb}) => orb);
+
+            let totalORB = orb.reduce((a, b) => a + b, 0)
+
+            let drb = foundPlayer.yearlyTotals.map(({
+                drb}) => drb);
+
+            let totalDRB = drb.reduce((a, b) => a + b, 0)
+
+            let ast = foundPlayer.yearlyTotals.map(({
+                ast}) => ast);
+
+            let totalAST = ast.reduce((a, b) => a + b, 0)
+
+            let stl = foundPlayer.yearlyTotals.map(({
+                stl}) => stl);
+
+            let totalSTL = stl.reduce((a, b) => a + b, 0)
+
+            let blk = foundPlayer.yearlyTotals.map(({
+                blk}) => blk);
+
+            let totalBLK = blk.reduce((a, b) => a + b, 0)
+
+            let pf = foundPlayer.yearlyTotals.map(({
+                pf}) => pf);
+                console.log(pf)
+            let totalPF = pf.reduce((a, b) => a + b, 0)
+                console.log(totalPF)
+            let pts = foundPlayer.yearlyTotals.map(({
+                pts}) => pts);
+
+            let totalPTS = pts.reduce((a, b) => a + b, 0)
 
             //render show template with that campground
             res.render("players/show", {player: foundPlayer, pointAvgs: pointAvg, astAvgs: astAvg, rebAvgs: rebAvg, 
-                                            pointTotals: pointTotal, astTotals: astTotal, yearTotals: years });
+                                            pointTotals: pointTotal, astTotals: astTotal, yearTotals: years, gp: totalGP, gs: totalGS, 
+                                            mp: totalMP, fgm: totalFGM, fga: totalFGA, tpa: totalTPA, tpm: totalTPM, fta: totalFTA,
+                                            ftm: totalFTM, orb: totalORB, drb: totalDRB, ast: totalAST, stl: totalSTL, blk: totalBLK,
+                                            pf: totalPF, pts: totalPTS});
         }
     });
 });

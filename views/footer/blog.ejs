@@ -40,7 +40,11 @@
                         <div class="col-md-6">
                             <div class="card-body">
                                 <h1 class="display-4"><%= blog.title %></h1>
-                                <p class="text-muted"> <%= blog.subheader %>...</p>
+                                <% if (blog.subheader.length > 150) { %>
+                                    <p class="text-muted"> <%= blog.subheader.toString().substring(0, 150) %>...</p>
+                                <% } else { %>
+                                    <p class="text-muted"> <%= blog.subheader%></p>
+                                <% } %>
                                 <hr class="mx-2">
                                 <div class="row">
                                     <h6 class="text-uppercase text-muted pl-3"><%= blog.author.username %></h6>
