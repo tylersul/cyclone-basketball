@@ -276,7 +276,7 @@ router.get("/:id/analytics", function(req, res){
             let rebTotal = dRebTotal.map(function(n, i) {
                 return n + oRebTotal[i];
             });
-            console.log(rebTotal)
+
             let stlTotal = foundPlayer.yearlyTotals.map(({
                 stl}) => stl);
 

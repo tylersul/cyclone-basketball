@@ -45,97 +45,65 @@
                 <div class="row">
                     <div class="col-xl-3 col-lg-3">
                         <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold cyclone-text">Years On Campus</h6>
-                                <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Card Options:</div>
-                                        <a class="dropdown-item" data-toggle="collapse" href="#collapseYears" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Something else here</a>
+                            <!-- Card Body -->
+                            <div class="card-body collapse show text-center">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="text-uppercase mb-2 cyclone-text">Years On Campus</h6>
+                                        <span class="h2 mb-0" id="yearCounter"></span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="far fa-lg fa-building"></i>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body collapse show text-center" id="collapseBody">
-                                <h1 id="yearCounter"></h1>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3">
                         <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold cyclone-text">Career Games Played</h6>
-                                <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Card Options:</div>
-                                        <a class="dropdown-item" data-toggle="collapse" href="#collapseGP" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Something else here</a>
+                            <!-- Card Body -->
+                            <div class="card-body collapse show text-center">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="text-uppercase mb-2 cyclone-text">Career Games Played</h6>
+                                        <span class="h2 mb-0" id="gamesCounter"></span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-lg fa-align-right"></i>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body collapse show text-center" id="collapseGP">
-                                <h1 id="gamesCounter"></h1>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3">
                         <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold cyclone-text">Career Starts</h6>
-                                <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Card Options:</div>
-                                        <a class="dropdown-item" data-toggle="collapse" href="#collapseStarts" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Something else here</a>
+                            <!-- Card Body -->
+                            <div class="card-body collapse show text-center">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="text-uppercase mb-2 cyclone-text">Career Starts</h6>
+                                        <span class="h2 mb-0" id="startsCounter"></span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="far fa-lg fa-play-circle"></i>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body collapse show text-center" id="collapseBody">
-                                <h1 id="startsCounter"></h1>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3">
                         <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold cyclone-text">Career Minutes</h6>
-                                <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Card Options:</div>
-                                        <a class="dropdown-item" data-toggle="collapse" href="#collapseMin" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Something else here</a>
+                            <!-- Card Body -->
+                            <div class="card-body collapse show text-center">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="text-uppercase mb-2 cyclone-text">Career Minutes</h6>
+                                        <span class="h2 mb-0" id="minCounter"></span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="far fa-lg fa-clock"></i>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body collapse show text-center" id="collapseMin">
-                                <h1 id="minCounter"></h1>
                             </div>
                         </div>
                     </div>
