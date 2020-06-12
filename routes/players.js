@@ -110,6 +110,7 @@ router.get("/:id", function(req, res){
             
             let totalMP = minutes.reduce((a, b) => a + b, 0);
 
+
             let fgMade = foundPlayer.yearlyTotals.map(({
                 fgm}) => fgm);
 
@@ -167,17 +168,30 @@ router.get("/:id", function(req, res){
 
             let pf = foundPlayer.yearlyTotals.map(({
                 pf}) => pf);
-                console.log(pf)
+
             let totalPF = pf.reduce((a, b) => a + b, 0)
-                console.log(totalPF)
+
             let pts = foundPlayer.yearlyTotals.map(({
                 pts}) => pts);
 
             let totalPTS = pts.reduce((a, b) => a + b, 0)
 
+            let mpgAvg = foundPlayer.season.map(({
+                mpg}) => mpg);
+            
+            let avgMPG = [];
+
+            for (var i = 0; i < mpgAvg.length; i++) {
+                avgMPG[i] = mpgAvg[i] * gp[i]
+            }
+
+            let careerMPGTemp = avgMPG.reduce((a, b) => (a + b), 0)
+
+            let careerMPG = careerMPGTemp / totalGP;
+
             //render show template with that campground
             res.render("players/show", {player: foundPlayer, pointAvgs: pointAvg, astAvgs: astAvg, rebAvgs: rebAvg, 
-                                            pointTotals: pointTotal, astTotals: astTotal, yearTotals: years, gp: totalGP, gs: totalGS, 
+                                            pointTotals: pointTotal, astTotals: astTotal, yearTotals: years, mpg: careerMPG, gp: totalGP, gs: totalGS, 
                                             mp: totalMP, fgm: totalFGM, fga: totalFGA, tpa: totalTPA, tpm: totalTPM, fta: totalFTA,
                                             ftm: totalFTM, orb: totalORB, drb: totalDRB, ast: totalAST, stl: totalSTL, blk: totalBLK,
                                             pf: totalPF, pts: totalPTS});
