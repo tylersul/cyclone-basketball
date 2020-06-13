@@ -189,12 +189,30 @@ router.get("/:id", function(req, res){
 
             let careerMPG = careerMPGTemp / totalGP;
 
+            let careerFG = totalFGM / totalFGA;
+
+            let careerTP = totalTPM / totalTPA;
+
+            let careerFT = totalFTM / totalFTA;
+
+            let careerRPG = (totalORB + totalDRB) / totalGP;
+
+            let careerAPG = totalAST / totalGP;
+
+            let careerSPG = totalSTL / totalGP;
+
+            let careerBPG = totalBLK / totalGP;
+
+            let careerPPG = totalPTS / totalGP;
+
             //render show template with that campground
             res.render("players/show", {player: foundPlayer, pointAvgs: pointAvg, astAvgs: astAvg, rebAvgs: rebAvg, 
                                             pointTotals: pointTotal, astTotals: astTotal, yearTotals: years, mpg: careerMPG, gp: totalGP, gs: totalGS, 
                                             mp: totalMP, fgm: totalFGM, fga: totalFGA, tpa: totalTPA, tpm: totalTPM, fta: totalFTA,
                                             ftm: totalFTM, orb: totalORB, drb: totalDRB, ast: totalAST, stl: totalSTL, blk: totalBLK,
-                                            pf: totalPF, pts: totalPTS});
+                                            pf: totalPF, pts: totalPTS, careerFG: careerFG, careerTP: careerTP, careerFT: careerFT,
+                                            careerRPG: careerRPG, careerAPG: careerAPG, careerSPG: careerSPG, careerBPG: careerBPG,
+                                            careerPPG: careerPPG});
         }
     });
 });
