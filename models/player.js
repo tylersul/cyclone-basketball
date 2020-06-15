@@ -64,6 +64,7 @@ let playerSchema = new mongoose.Schema({
    gameLog: [
       {
          date: String,
+         season: String,
          location: String,
          opp: String,
          gameType: String,
