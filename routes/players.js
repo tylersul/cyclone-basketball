@@ -410,6 +410,18 @@ router.get("/:id/advanced", function(req, res){
 });
 
 
+// Player Analytics - Game Logs
+router.get("/:id/games", function(req, res) {
+    Player.findById(req.params.id, function(err, foundPlayer) {
+        if (err) {
+            console.log(err);
+            return res.redirect("back");
+        } else {
+            res.render("players/games", {player: foundPlayer});
+        }
+    })
+})
+
 function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 };

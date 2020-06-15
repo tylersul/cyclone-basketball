@@ -61,6 +61,37 @@ let playerSchema = new mongoose.Schema({
          pts: Number,
       }
    ],
+   gameLog: [
+      {
+         date: String,
+         location: String,
+         opp: String,
+         gameType: String,
+         result: String,
+         start: Number,
+         min: Number,
+         fgm: Number,
+         fga: Number,
+         fgp: Number,
+         twoPM: Number,
+         twoPA: Number,
+         twoP: Number,
+         threePM: Number,
+         threePA: Number,
+         threeP: Number,
+         ftm: Number,
+         fta: Number,
+         ftp: Number,
+         orb: Number,
+         drb: Number,
+         ast: Number,
+         stl: Number,
+         blk: Number,
+         to: Number,
+         pf: Number,
+         pts: Number
+      }
+   ],
    comments: [
       {
          // An array of comment IDs
