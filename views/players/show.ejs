@@ -126,7 +126,11 @@
                                         <% }); %>
                                         <tr>
                                             <td>Career</td>
-                                            <td>Placeholder</td>
+                                            <% if (player.season.length > 1) { %>
+                                            <td><%= player.season.length %> Years</td>
+                                            <% } else { %>
+                                            <td><%= player.season.length %> Year</td>
+                                            <% } %>
                                             <td><%= gp %> </td>
                                             <td><%= gs %></td>
                                             <td><%= mpg.toFixed(1) %></td>

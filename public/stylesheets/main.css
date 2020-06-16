@@ -243,6 +243,9 @@ textarea {
   height: 100px;
   width: 100px;
 } 
+
+/* PLAYER - Game Logs */
+
 /* Admin */
 .nav-link .active {
   background-color: #951010;

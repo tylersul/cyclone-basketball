@@ -417,7 +417,29 @@ router.get("/:id/games", function(req, res) {
             console.log(err);
             return res.redirect("back");
         } else {
-            res.render("players/games", {player: foundPlayer});
+            let seasons = [...(new Set(foundPlayer.gameLog.map(({
+                season}) => season)))];
+
+            // Career High: Points
+            let careerPTS = Math.max(...foundPlayer.gameLog.map(({
+                pts}) => pts));
+
+            // Career High: Assists
+            let careerAST = Math.max(...foundPlayer.gameLog.map(({
+                ast}) => ast));
+            
+            // Career High: Rebounds
+            let dRebTotal = foundPlayer.gameLog.map(({
+                drb}) => drb);
+
+            let oRebTotal = foundPlayer.gameLog.map(({
+                orb}) => orb);
+
+            let careerREB = Math.max(...dRebTotal.map(function(n, i) {
+                return n + oRebTotal[i];
+            }));
+
+            res.render("players/games", {player: foundPlayer, careerPTS: careerPTS, careerAST: careerAST, careerREB: careerREB});
         }
     })
 })
