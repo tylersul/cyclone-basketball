@@ -41,7 +41,42 @@
                 </div>
             </nav>
             <!-- End Sidebar -->
+            <!-- Win / Loss Stats Row -->
             <div class="col-md-11">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3">
+                        <div class="card shadow mb-4">
+                            <!-- Card Body -->
+                            <div class="card-body collapse show text-center">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="text-uppercase mb-2 cyclone-text">Overall Record</h6>
+                                        <span class="h2 mb-0" id="winCounter"></span><span class="h2 mb-0">-</span><span class="h2 mb-0" id="lossCounter"></span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="far fa-2x fa-clock"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3">
+                        <div class="card shadow mb-4">
+                            <!-- Card Body -->
+                            <div class="card-body collapse show text-center">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="text-uppercase mb-2 cyclone-text">Record: Neutral Sites</h6>
+                                        <span class="h2 mb-0" id="nWinCounter"></span><span class="h2 mb-0">-</span><span class="h2 mb-0" id="nLossCounter"></span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="far fa-2x fa-clock"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- Top Row Cards -->
                 <div class="row">
                     <div class="col-xl-3 col-lg-3">
@@ -99,7 +134,7 @@
                                 <div class="row align-items-center">
                                     <div class="col">
                                         <h6 class="text-uppercase mb-2 cyclone-text">Career Minutes</h6>
-                                        <span class="h2 mb-0" id="minCounter"></span>
+                                        <span class="h2 mb-0" id="winCounter"></span><span class="h2 mb-0">-</span><span class="h2 mb-0" id="lossCounter"></span>
                                     </div>
                                     <div class="col-auto">
                                         <i class="far fa-2x fa-clock"></i>
@@ -213,11 +248,43 @@
 <% include ../partials/footer %>
 <script>
     // CountUp Variables
-    let points = <%= careerPTS %>;
-    let ast    = <%= careerAST %>;
-    let reb    = <%= careerREB %>;
+    let points      = <%= careerPTS %>;
+    let ast         = <%= careerAST %>;
+    let reb         = <%= careerREB %>;
+    let win         = <%= wins %>;
+    let loss        = <%= losses %>;
+    let neutralWin  = <%= nWins %>;
+    let neutralLoss = <%= nLosses %>;
 
     // CountUp JS
+    let winsCount = new CountUp('winCounter', 0, win, 0, 2.5);
+        if (!winsCount.error) {
+            winsCount.start();
+        } else {
+            console.error(winsCount.error);
+        }
+
+    let lossCount = new CountUp('lossCounter', 0, loss, 0, 2.5);
+        if (!lossCount.error) {
+            lossCount.start();
+        } else {
+            console.error(lossCount.error);
+        }
+
+    let nWinsCount = new CountUp('nWinCounter', 0, neutralWin, 0, 2.5);
+        if (!nWinsCount.error) {
+            nWinsCount.start();
+        } else {
+            console.error(nWinsCount.error);
+        }
+
+    let nLossCount = new CountUp('nLossCounter', 0, neutralLoss, 0, 2.5);
+        if (!nLossCount.error) {
+            nLossCount.start();
+        } else {
+            console.error(nLossCount.error);
+        }
+
     let pointsCount = new CountUp('pointsCounter', 0, points, 0, 2.5);
         if (!pointsCount.error) {
             pointsCount.start();

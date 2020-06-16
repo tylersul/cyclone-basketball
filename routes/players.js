@@ -417,10 +417,42 @@ router.get("/:id/games", function(req, res) {
             console.log(err);
             return res.redirect("back");
         } else {
-            let seasons = [...(new Set(foundPlayer.gameLog.map(({
-                season}) => season)))];
+            // ***** Overall Record ***** //
+            // Get array of total W's & L's
+            let record = foundPlayer.gameLog.map(({
+                result}) => result);
+            
+            // Function to count the occurrences of given value
+            const countOccurrences = (arr, val) => arr.reduce((a, v) => (v === val ? a + 1 : a), 0);
+            
+            // Count total Wins
+            let wins = countOccurrences(record, "W");
+            
+            // Count total losses
+            let losses = countOccurrences(record, "L");
+            
+            // ***** Neutral Record ***** //
+            // Get games played at neutral site
+            let neutral = foundPlayer.gameLog.filter(obj => {
+                return obj.location === "Neutral";
+            });
 
-            // Career High: Points
+            let neutralRecord = neutral.map(({
+                result}) => result);
+
+            let neutralWins = countOccurrences(neutralRecord, "W");
+
+            let neutralLosses = countOccurrences(neutralRecord, "L");
+
+            let home = foundPlayer.gameLog.filter(obj => {
+                return obj.location === "Home";
+            });
+
+            let away = foundPlayer.gameLog.filter(obj => {
+                return obj.location === "Away";
+            });
+
+            // ***** Career High: Points ***** //
             let careerPTS = Math.max(...foundPlayer.gameLog.map(({
                 pts}) => pts));
 
@@ -439,7 +471,8 @@ router.get("/:id/games", function(req, res) {
                 return n + oRebTotal[i];
             }));
 
-            res.render("players/games", {player: foundPlayer, careerPTS: careerPTS, careerAST: careerAST, careerREB: careerREB});
+            res.render("players/games", {player: foundPlayer, wins: wins, losses:losses, nWins: neutralWins, nLosses: neutralLosses,
+                                            careerPTS: careerPTS, careerAST: careerAST, careerREB: careerREB});
         }
     })
 })
