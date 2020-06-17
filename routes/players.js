@@ -431,6 +431,19 @@ router.get("/:id/games", function(req, res) {
             // Count total losses
             let losses = countOccurrences(record, "L");
             
+            // ***** Home Record ***** //
+            // Get games played at home
+            let home = foundPlayer.gameLog.filter(obj => {
+                return obj.location === "Home";
+            });
+
+            let homeRecord = home.map(({
+                result}) => result);
+
+            let homeWins = countOccurrences(homeRecord, "W");
+            
+            let homeLosses = countOccurrences(homeRecord, "L");
+
             // ***** Neutral Record ***** //
             // Get games played at neutral site
             let neutral = foundPlayer.gameLog.filter(obj => {
@@ -444,13 +457,42 @@ router.get("/:id/games", function(req, res) {
 
             let neutralLosses = countOccurrences(neutralRecord, "L");
 
-            let home = foundPlayer.gameLog.filter(obj => {
-                return obj.location === "Home";
-            });
-
+            // ***** Away Record ***** //
             let away = foundPlayer.gameLog.filter(obj => {
                 return obj.location === "Away";
             });
+
+            let awayRecord = away.map(({
+                result}) => result);
+
+            let awayWins = countOccurrences(awayRecord, "W");
+
+            let awayLosses = countOccurrences(awayRecord, "L");
+            
+            // ***** Conference Tourney Record ***** //
+            let tourney = foundPlayer.gameLog.filter(obj => {
+                return obj.gameType === "CTOURN";
+            });
+
+            let tourneyRecord = tourney.map(({
+                result}) => result);
+
+            let tourneyWins = countOccurrences(tourneyRecord, "W");
+
+            let tourneyLosses = countOccurrences(tourneyRecord, "L");
+            console.log(tourney)
+            
+            // ***** NCAA Tourney Record ***** //
+            let ncaa = foundPlayer.gameLog.filter(obj => {
+                return obj.gameType === "NCAA";
+            });
+
+            let ncaaTourn = ncaa.map(({
+                result}) => result);
+
+            let ncaaWins = countOccurrences(ncaaTourn, "W");
+
+            let ncaaLosses = countOccurrences(ncaaTourn, "L");
 
             // ***** Career High: Points ***** //
             let careerPTS = Math.max(...foundPlayer.gameLog.map(({
@@ -471,8 +513,9 @@ router.get("/:id/games", function(req, res) {
                 return n + oRebTotal[i];
             }));
 
-            res.render("players/games", {player: foundPlayer, wins: wins, losses:losses, nWins: neutralWins, nLosses: neutralLosses,
-                                            careerPTS: careerPTS, careerAST: careerAST, careerREB: careerREB});
+            res.render("players/games", {player: foundPlayer, wins: wins, losses:losses, hWins: homeWins, hLosses: homeLosses, aWins: awayWins,
+                                            aLosses: awayLosses, nWins: neutralWins, nLosses: neutralLosses, tWins: tourneyWins, tLosses: tourneyLosses,
+                                            ncaaWins: ncaaWins, ncaaLosses: ncaaLosses, careerPTS: careerPTS, careerAST: careerAST, careerREB: careerREB});
         }
     })
 })

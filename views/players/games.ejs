@@ -66,8 +66,106 @@
                             <div class="card-body collapse show text-center">
                                 <div class="row align-items-center">
                                     <div class="col">
+                                        <h6 class="text-uppercase mb-2 cyclone-text">Record: Home Games</h6>
+                                        <span class="h2 mb-0" id="hWinCounter"></span><span class="h2 mb-0">-</span><span class="h2 mb-0" id="hLossCounter"></span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="far fa-2x fa-clock"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3">
+                        <div class="card shadow mb-4">
+                            <!-- Card Body -->
+                            <div class="card-body collapse show text-center">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="text-uppercase mb-2 cyclone-text">Record: Away Games</h6>
+                                        <span class="h2 mb-0" id="aWinCounter"></span><span class="h2 mb-0">-</span><span class="h2 mb-0" id="aLossCounter"></span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="far fa-2x fa-clock"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3">
+                        <div class="card shadow mb-4">
+                            <!-- Card Body -->
+                            <div class="card-body collapse show text-center">
+                                <div class="row align-items-center">
+                                    <div class="col">
                                         <h6 class="text-uppercase mb-2 cyclone-text">Record: Neutral Sites</h6>
                                         <span class="h2 mb-0" id="nWinCounter"></span><span class="h2 mb-0">-</span><span class="h2 mb-0" id="nLossCounter"></span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="far fa-2x fa-clock"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3">
+                        <div class="card shadow mb-4">
+                            <!-- Card Body -->
+                            <div class="card-body collapse show text-center">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="text-uppercase mb-2 cyclone-text">Conference Record</h6>
+                                        <span class="h2 mb-0" id="winCounter"></span><span class="h2 mb-0">-</span><span class="h2 mb-0" id="lossCounter"></span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="far fa-2x fa-clock"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3">
+                        <div class="card shadow mb-4">
+                            <!-- Card Body -->
+                            <div class="card-body collapse show text-center">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="text-uppercase mb-2 cyclone-text">Conference: Home Games</h6>
+                                        <span class="h2 mb-0" id="hWinCounter"></span><span class="h2 mb-0">-</span><span class="h2 mb-0" id="hLossCounter"></span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="far fa-2x fa-clock"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3">
+                        <div class="card shadow mb-4">
+                            <!-- Card Body -->
+                            <div class="card-body collapse show text-center">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="text-uppercase mb-2 cyclone-text">NCAA Tourney Record</h6>
+                                        <span class="h2 mb-0" id="ncaaWinCounter"></span><span class="h2 mb-0">-</span><span class="h2 mb-0" id="ncaaLossCounter"></span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="far fa-2x fa-clock"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3">
+                        <div class="card shadow mb-4">
+                            <!-- Card Body -->
+                            <div class="card-body collapse show text-center">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="text-uppercase mb-2 cyclone-text">Big 12 Tourney Record</h6>
+                                        <span class="h2 mb-0" id="tWinCounter"></span><span class="h2 mb-0">-</span><span class="h2 mb-0" id="tLossCounter"></span>
                                     </div>
                                     <div class="col-auto">
                                         <i class="far fa-2x fa-clock"></i>
@@ -255,6 +353,14 @@
     let loss        = <%= losses %>;
     let neutralWin  = <%= nWins %>;
     let neutralLoss = <%= nLosses %>;
+    let homeWin     = <%= hWins %>;
+    let homeLoss    = <%= hLosses %>;
+    let awayWin     = <%= aWins %>;
+    let awayLoss    = <%= aLosses %>;
+    let tourneyWin  = <%= tWins %>;
+    let tourneyLoss = <%= tLosses %>;
+    let ncaaWin     = <%= ncaaWins %>;
+    let ncaaLoss    = <%= ncaaLosses %>;
 
     // CountUp JS
     let winsCount = new CountUp('winCounter', 0, win, 0, 2.5);
@@ -271,6 +377,34 @@
             console.error(lossCount.error);
         }
 
+    let hWinsCount = new CountUp('hWinCounter', 0, homeWin, 0, 2.5);
+        if (!hWinsCount.error) {
+            hWinsCount.start();
+        } else {
+            console.error(hWinsCount.error);
+        }
+
+    let hLossCount = new CountUp('hLossCounter', 0, homeLoss, 0, 2.5);
+        if (!hLossCount.error) {
+            hLossCount.start();
+        } else {
+            console.error(hLossCount.error);
+        }
+
+    let aWinsCount = new CountUp('aWinCounter', 0, awayWin, 0, 2.5);
+        if (!aWinsCount.error) {
+            aWinsCount.start();
+        } else {
+            console.error(aWinsCount.error);
+        }
+
+    let aLossCount = new CountUp('aLossCounter', 0, awayLoss, 0, 2.5);
+        if (!aLossCount.error) {
+            aLossCount.start();
+        } else {
+            console.error(aLossCount.error);
+        }
+
     let nWinsCount = new CountUp('nWinCounter', 0, neutralWin, 0, 2.5);
         if (!nWinsCount.error) {
             nWinsCount.start();
@@ -283,6 +417,34 @@
             nLossCount.start();
         } else {
             console.error(nLossCount.error);
+        }
+
+    let tWinsCount = new CountUp('tWinCounter', 0, tourneyWin, 0, 2.5);
+        if (!tWinsCount.error) {
+            tWinsCount.start();
+        } else {
+            console.error(tWinsCount.error);
+        }
+
+    let tLossCount = new CountUp('tLossCounter', 0, tourneyLoss, 0, 2.5);
+        if (!tLossCount.error) {
+            tLossCount.start();
+        } else {
+            console.error(tLossCount.error);
+        }
+    
+    let ncaaWinsCount = new CountUp('ncaaWinCounter', 0, ncaaWin, 0, 2.5);
+        if (!ncaaWinsCount.error) {
+            ncaaWinsCount.start();
+        } else {
+            console.error(ncaaWinsCount.error);
+        }
+
+    let ncaaLossCount = new CountUp('ncaaLossCounter', 0, ncaaLoss, 0, 2.5);
+        if (!ncaaLossCount.error) {
+            ncaaLossCount.start();
+        } else {
+            console.error(ncaaLossCount.error);
         }
 
     let pointsCount = new CountUp('pointsCounter', 0, points, 0, 2.5);
