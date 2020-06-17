@@ -417,13 +417,13 @@ router.get("/:id/games", function(req, res) {
             console.log(err);
             return res.redirect("back");
         } else {
+            // Function to count the occurrences of given value
+            const countOccurrences = (arr, val) => arr.reduce((a, v) => (v === val ? a + 1 : a), 0);
+
             // ***** Overall Record ***** //
             // Get array of total W's & L's
             let record = foundPlayer.gameLog.map(({
                 result}) => result);
-            
-            // Function to count the occurrences of given value
-            const countOccurrences = (arr, val) => arr.reduce((a, v) => (v === val ? a + 1 : a), 0);
             
             // Count total Wins
             let wins = countOccurrences(record, "W");
@@ -516,6 +516,46 @@ router.get("/:id/games", function(req, res) {
             res.render("players/games", {player: foundPlayer, wins: wins, losses:losses, hWins: homeWins, hLosses: homeLosses, aWins: awayWins,
                                             aLosses: awayLosses, nWins: neutralWins, nLosses: neutralLosses, tWins: tourneyWins, tLosses: tourneyLosses,
                                             ncaaWins: ncaaWins, ncaaLosses: ncaaLosses, careerPTS: careerPTS, careerAST: careerAST, careerREB: careerREB});
+        }
+    });
+});
+
+// Player Analytics - Conference Play  
+router.get("/:id/games/conference", function(req, res) {
+    Player.findById(req.params.id, function(err, foundPlayer) {
+        if (err) {
+            console.log(err);
+            return res.redirect("back");
+        } else {
+            // Function to count the occurrences of given value
+            const countOccurrences = (arr, val) => arr.reduce((a, v) => (v === val ? a + 1 : a), 0);
+
+            // ***** Conference Record *****//
+            let conf = foundPlayer.gameLog.filter(obj => {
+                return obj.gameType === "REG - CONF"
+            });
+
+            let confRecord = conf.map(({
+                result}) => result);
+
+            let confWins = countOccurrences(confRecord, "W");
+
+            let confLosses = countOccurrences(confRecord, "L");
+            
+            // ***** Conference Record: Home ***** //
+            let confHome = conf.filter(obj => {
+                return obj.location === "Home"
+            });
+
+            let confHomeRecord = confHome.map(({
+                result}) => result);
+
+            let confHomeWins = countOccurrences(confHomeRecord, "W");
+
+            let confHomeLosses = countOccurrences(confHomeRecord, "L");
+
+            res.render("players/conference", {player: foundPlayer, cWins: confWins, cLosses: confLosses, cHomeWins: confHomeWins,
+                                                cHomeLosses: confHomeLosses});
         }
     })
 })
