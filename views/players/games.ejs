@@ -365,8 +365,6 @@
     let homeLoss     = <%= hLosses %>;
     let awayWin      = <%= aWins %>;
     let awayLoss     = <%= aLosses %>;
-    let tourneyWin   = <%= tWins %>;
-    let tourneyLoss  = <%= tLosses %>;
     let ncaaWin      = <%= ncaaWins %>;
     let ncaaLoss     = <%= ncaaLosses %>;
 
@@ -425,20 +423,6 @@
             nLossCount.start();
         } else {
             console.error(nLossCount.error);
-        }
-
-    let tWinsCount = new CountUp('tWinCounter', 0, tourneyWin, 0, 2.5);
-        if (!tWinsCount.error) {
-            tWinsCount.start();
-        } else {
-            console.error(tWinsCount.error);
-        }
-
-    let tLossCount = new CountUp('tLossCounter', 0, tourneyLoss, 0, 2.5);
-        if (!tLossCount.error) {
-            tLossCount.start();
-        } else {
-            console.error(tLossCount.error);
         }
     
     let ncaaWinsCount = new CountUp('ncaaWinCounter', 0, ncaaWin, 0, 2.5);

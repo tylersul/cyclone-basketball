@@ -33,8 +33,6 @@
                             Games
                         </a>
                         </li>
-                    </ul>
-                    <ul class="nav flex-column mb-2">
                         <li class="nav-item">
                         <a class="nav-link" href="/players/<%= player._id %>/games/conference">
                             <span data-feather="file-text"></span>
@@ -91,8 +89,8 @@
                             <div class="card-body collapse show text-center">
                                 <div class="row align-items-center">
                                     <div class="col">
-                                        <h6 class="text-uppercase mb-2 cyclone-text">NCAA Tourney Record</h6>
-                                        <span class="h2 mb-0" id="ncaaWinCounter"></span><span class="h2 mb-0">-</span><span class="h2 mb-0" id="ncaaLossCounter"></span>
+                                        <h6 class="text-uppercase mb-2 cyclone-text">Conference: Away Games</h6>
+                                        <span class="h2 mb-0" id="cAwayWinCounter"></span><span class="h2 mb-0">-</span><span class="h2 mb-0" id="cAwayLossCounter"></span>
                                     </div>
                                     <div class="col-auto">
                                         <i class="far fa-2x fa-clock"></i>
@@ -118,6 +116,104 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold cyclone-text">Box Scores: <%= player.name %></h6>
+                                <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                        <div class="dropdown-header">Dropdown Header:</div>
+                                        <a class="dropdown-item" data-toggle="collapse" href="#collapseStats" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body collapse show" id="collapseStats">
+                                <div class="chart-area">
+                                    <table class="table table-responsive-xl table-hover">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">Season</th>
+                                                <th scope="col">Date</th>
+                                                <th scope="col">Opponent</th>
+                                                <th scope="col">Location</th>
+                                                <th scope="col">Game Type</th>
+                                                <th scope="col">Result</th>
+                                                <th scope="col">Start</th>
+                                                <th scope="col">FG</th>
+                                                <th scope="col">FGA</th>
+                                                <th scope="col">FG%</th>
+                                                <th scope="col">2P</th>
+                                                <th scope="col">2PA</th>
+                                                <th scope="col">2P%</th>
+                                                <th scope="col">3P</th>
+                                                <th scope="col">3PA</th>
+                                                <th scope="col">3P%</th>
+                                                <th scope="col">FT</th>
+                                                <th scope="col">FTM</th>
+                                                <th scope="col">FT%</th>
+                                                <th scope="col">ORB</th>
+                                                <th scope="col">DRB</th>
+                                                <th scope="col">TRB</th>
+                                                <th scope="col">AST</th>
+                                                <th scope="col">STL</th>
+                                                <th scope="col">BLK</th>
+                                                <th scope="col">TO</th>
+                                                <th scope="col">PF</th>
+                                                <th scope="col">PTS</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% conf.forEach(function(game){ %>
+                                            <tr>
+                                                <td><%= game.season %></td>
+                                                <td><%= game.date %></td>
+                                                <td><%= game.opp %></td>
+                                                <td><%= game.location %></td>
+                                                <td><%= game.gameType %></td>
+                                                <td><%= game.result %></td>
+                                                <td><%= game.start %></td>
+                                                <td><%= game.fgm %></td>
+                                                <td><%= game.fga %></td>
+                                                <td><%= (game.fgp * 100).toFixed(1) %></td>
+                                                <td><%= game.twoPM %></td>
+                                                <td><%= game.twoPA %></td>
+                                                <td><%= (game.twoP * 100).toFixed(1) %></td>
+                                                <td><%= game.threePM %></td>
+                                                <td><%= game.threePA %></td>
+                                                <td><%= (game.threeP * 100).toFixed(1) %></td>
+                                                <td><%= game.ftm %></td>
+                                                <td><%= game.fta %></td>
+                                                <td><%= (game.ftp * 100).toFixed(1) %></td>
+                                                <td><%= game.orb %></td>
+                                                <td><%= game.drb %></td>
+                                                <td><%= game.orb + game.drb %></td>
+                                                <td><%= game.ast %></td>
+                                                <td><%= game.stl %></td>
+                                                <td><%= game.blk %></td>
+                                                <td><%= game.to %></td>
+                                                <td><%= game.pf %></td>
+                                                <td><%= game.pts %></td>
+                                            </tr>
+                                            <% }); %>
+                                            <tr>
+                                                <td>Career</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -128,6 +224,10 @@
     let confLoss     = <%= cLosses %>;
     let confHomeWin  = <%= cHomeWins %>;
     let confHomeLoss = <%= cHomeLosses %>;
+    let confAwayWin  = <%= cAwayWins %>;
+    let confAwayLoss = <%= cAwayLosses %>;
+    let tourneyWin   = <%= tWins %>;
+    let tourneyLoss  = <%= tLosses %>;
 
     // CountUp JS
     let cWinsCount = new CountUp('cWinCounter', 0, confWin, 0, 2.5);
@@ -157,4 +257,32 @@
         } else {
             console.error(cHomeLossCount.error);
         }  
+
+    let cAwayWinsCount = new CountUp('cAwayWinCounter', 0, confAwayWin, 0, 2.5);
+        if (!cAwayWinsCount.error) {
+            cAwayWinsCount.start();
+        } else {
+            console.error(cAwayWinsCount.error);
+        }
+
+    let cAwayLossCount = new CountUp('cAwayLossCounter', 0, confAwayLoss, 0, 2.5);
+        if (!cAwayLossCount.error) {
+            cAwayLossCount.start();
+        } else {
+            console.error(cAwayLossCount.error);
+        }  
+
+    let tWinsCount = new CountUp('tWinCounter', 0, tourneyWin, 0, 2.5);
+        if (!tWinsCount.error) {
+            tWinsCount.start();
+        } else {
+            console.error(tWinsCount.error);
+        }
+
+    let tLossCount = new CountUp('tLossCounter', 0, tourneyLoss, 0, 2.5);
+        if (!tLossCount.error) {
+            tLossCount.start();
+        } else {
+            console.error(tLossCount.error);
+        }
 </script>

@@ -469,19 +469,6 @@ router.get("/:id/games", function(req, res) {
 
             let awayLosses = countOccurrences(awayRecord, "L");
             
-            // ***** Conference Tourney Record ***** //
-            let tourney = foundPlayer.gameLog.filter(obj => {
-                return obj.gameType === "CTOURN";
-            });
-
-            let tourneyRecord = tourney.map(({
-                result}) => result);
-
-            let tourneyWins = countOccurrences(tourneyRecord, "W");
-
-            let tourneyLosses = countOccurrences(tourneyRecord, "L");
-            console.log(tourney)
-            
             // ***** NCAA Tourney Record ***** //
             let ncaa = foundPlayer.gameLog.filter(obj => {
                 return obj.gameType === "NCAA";
@@ -514,8 +501,8 @@ router.get("/:id/games", function(req, res) {
             }));
 
             res.render("players/games", {player: foundPlayer, wins: wins, losses:losses, hWins: homeWins, hLosses: homeLosses, aWins: awayWins,
-                                            aLosses: awayLosses, nWins: neutralWins, nLosses: neutralLosses, tWins: tourneyWins, tLosses: tourneyLosses,
-                                            ncaaWins: ncaaWins, ncaaLosses: ncaaLosses, careerPTS: careerPTS, careerAST: careerAST, careerREB: careerREB});
+                                            aLosses: awayLosses, nWins: neutralWins, nLosses: neutralLosses, ncaaWins: ncaaWins, ncaaLosses: ncaaLosses, 
+                                            careerPTS: careerPTS, careerAST: careerAST, careerREB: careerREB});
         }
     });
 });
@@ -554,8 +541,35 @@ router.get("/:id/games/conference", function(req, res) {
 
             let confHomeLosses = countOccurrences(confHomeRecord, "L");
 
-            res.render("players/conference", {player: foundPlayer, cWins: confWins, cLosses: confLosses, cHomeWins: confHomeWins,
-                                                cHomeLosses: confHomeLosses});
+            // ***** Conference Record: Home ***** //
+            let confAway = conf.filter(obj => {
+                return obj.location === "Away";
+            });
+
+            let confAwayRecord = confAway.map(({
+                result}) => result);
+
+            let confAwayWins = countOccurrences(confAwayRecord, "W");
+
+            let confAwayLosses = countOccurrences(confAwayRecord, "L");
+
+            // ***** Conference Tourney Record ***** //
+            let tourney = foundPlayer.gameLog.filter(obj => {
+                return obj.gameType === "CTOURN";
+            });
+
+            let tourneyRecord = tourney.map(({
+                result}) => result);
+
+            let tourneyWins = countOccurrences(tourneyRecord, "W");
+
+            let tourneyLosses = countOccurrences(tourneyRecord, "L");
+
+            console.log(conf.map(({season}) => season))
+
+            res.render("players/conference", {player: foundPlayer, conf: conf, cWins: confWins, cLosses: confLosses, cHomeWins: confHomeWins,
+                                                cHomeLosses: confHomeLosses, cAwayWins: confAwayWins, cAwayLosses: confAwayLosses, tWins: tourneyWins, 
+                                                tLosses: tourneyLosses});
         }
     })
 })
