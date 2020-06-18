@@ -124,25 +124,27 @@
                                             <td><%= season.ppg %></td>
                                         </tr>
                                         <% }); %>
-                                        <tr>
-                                            <td>Career</td>
-                                            <% if (player.season.length > 1) { %>
-                                            <td><%= player.season.length %> Years</td>
-                                            <% } else { %>
-                                            <td><%= player.season.length %> Year</td>
-                                            <% } %>
-                                            <td><%= gp %> </td>
-                                            <td><%= gs %></td>
-                                            <td><%= mpg.toFixed(1) %></td>
-                                            <td><%= (careerFG * 100).toFixed(1) %></td>
-                                            <td><%= (careerTP * 100).toFixed(1) %></td>
-                                            <td><%= (careerFT * 100).toFixed(1)  %></td>
-                                            <td><%= careerRPG.toFixed(1) %></td>
-                                            <td><%= careerAPG.toFixed(1) %></td>
-                                            <td><%= careerSPG.toFixed(1) %></td>
-                                            <td><%= careerBPG.toFixed(1) %></td>
-                                            <td><%= careerPPG.toFixed(1) %></td>
-                                        </tr>
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>Career</th>
+                                                <% if (player.season.length > 1) { %>
+                                                <th><%= player.season.length %> Years</th>
+                                                <% } else { %>
+                                                <th><%= player.season.length %> Year</th>
+                                                <% } %>
+                                                <th><%= gp %> </th>
+                                                <th><%= gs %></th>
+                                                <th><%= mpg.toFixed(1) %></th>
+                                                <th><%= (careerFG * 100).toFixed(1) %></th>
+                                                <th><%= (careerTP * 100).toFixed(1) %></th>
+                                                <th><%= (careerFT * 100).toFixed(1)  %></th>
+                                                <th><%= careerRPG.toFixed(1) %></th>
+                                                <th><%= careerAPG.toFixed(1) %></th>
+                                                <th><%= careerSPG.toFixed(1) %></th>
+                                                <th><%= careerBPG.toFixed(1) %></th>
+                                                <th><%= careerPPG.toFixed(1) %></th>
+                                            </tr>
+                                        </thead>
                                     </tbody>
                                 </table>
                             </div>

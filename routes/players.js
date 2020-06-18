@@ -517,6 +517,7 @@ router.get("/:id/games/conference", function(req, res) {
             // Function to count the occurrences of given value
             const countOccurrences = (arr, val) => arr.reduce((a, v) => (v === val ? a + 1 : a), 0);
 
+            // Refer to Games route for detailed explanation on below 
             // ***** Conference Record *****//
             let conf = foundPlayer.gameLog.filter(obj => {
                 return obj.gameType === "REG - CONF"
