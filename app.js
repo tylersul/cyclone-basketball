@@ -4,31 +4,31 @@
 
 // NodeJS provides the 'require' function whose job is to load modules 
 //   and grant access to their exports 
-let express        = require("express"),           // ExpressJS module 'Express' for Node web framework                        
-    app            = express(),                    // Create a new instance of Express as App
-    bodyParser     = require("body-parser"),       // Middleware to handle HTTP POST requests in Express, exposes body of request as req.body for easier interface  
-    mongoose       = require("mongoose"),          // Object modeling with validation to abstract MongoDB from app with data schemas
-    flash          = require("connect-flash"),     // Middleware for storing messages displayed to user, done in combo w/ redirects
-    session        = require("express-session"),   // Allows each user of site to be assigned a unique session to store user state
-    passport       = require("passport"),          // Authentication middleware for Node with various login types, we're using Local
-    moment         = require("moment"),            // Dynamic times in Javascript
-    LocalStrategy  = require("passport-local"),    // Passport strategy for authenticating w/ username and password
-    methodOverride = require("method-override"),   // Middleware for requests from clients that only support simple HTTP verbs like GET & POST
-    Player         = require("./models/player"),   // Import custom 'player' model for use in Mongoose
-    Comment        = require("./models/comment"),  // Import custom 'comment' model for use in Mongoose
-    User           = require("./models/user"),     // Import custom 'user' model for use in Mongoose
-    seedDB         = require("./seeds");           // Import seeDB custom function to fill empty MongoDB with test data
-    port           = process.env.PORT;             // Set Port exposed constant to 3000 for localhost 
+const express        = require("express"),           // ExpressJS module 'Express' for Node web framework                        
+      app            = express(),                    // Create a new instance of Express as App
+      bodyParser     = require("body-parser"),       // Middleware to handle HTTP POST requests in Express, exposes body of request as req.body for easier interface  
+      mongoose       = require("mongoose"),          // Object modeling with validation to abstract MongoDB from app with data schemas
+      flash          = require("connect-flash"),     // Middleware for storing messages displayed to user, done in combo w/ redirects
+      session        = require("express-session"),   // Allows each user of site to be assigned a unique session to store user state
+      passport       = require("passport"),          // Authentication middleware for Node with various login types, we're using Local
+      moment         = require("moment"),            // Dynamic times in Javascript
+      LocalStrategy  = require("passport-local"),    // Passport strategy for authenticating w/ username and password
+      methodOverride = require("method-override"),   // Middleware for requests from clients that only support simple HTTP verbs like GET & POST
+      Player         = require("./models/player"),   // Import custom 'player' model for use in Mongoose
+      Comment        = require("./models/comment"),  // Import custom 'comment' model for use in Mongoose
+      User           = require("./models/user"),     // Import custom 'user' model for use in Mongoose
+      seedDB         = require("./seeds");           // Import seeDB custom function to fill empty MongoDB with test data
+      port           = process.env.PORT;             // Set Port exposed constant to 3000 for localhost 
                          
 
-let commentRoutes  = require("./routes/comments"), // These  three lines import routes from the 
-    playerRoutes   = require("./routes/players"),  //   separate directory to make the code more 
-    indexRoutes    = require("./routes/index"),    //   modular and scale easier as more are added
-    footerRoutes   = require("./routes/footer"),
-    seasonRoutes   = require("./routes/seasons"),
-    adminRoutes    = require("./routes/admin");
+const commentRoutes  = require("./routes/comments"), // These  three lines import routes from the 
+      playerRoutes   = require("./routes/players"),  //   separate directory to make the code more 
+      indexRoutes    = require("./routes/index"),    //   modular and scale easier as more are added
+      footerRoutes   = require("./routes/footer"),
+      seasonRoutes   = require("./routes/seasons"),
+      adminRoutes    = require("./routes/admin");
     
-                     require('dotenv').config();   // Environment variables
+                       require('dotenv').config();   // Environment variables
 
 // ================================================================== //
 // ====================== Backend Connection ======================== //
