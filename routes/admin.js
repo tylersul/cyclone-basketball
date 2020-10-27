@@ -2,12 +2,12 @@
 // ====================== Variable Instantiation ==================== //
 // ================================================================== //
 
-let express    = require("express"),              // ExpressJS module 'Express' for Node web framework
-    router     = express.Router(),
-    passport   = require("passport"),
-    middleware = require("../middleware"),
-    Player     = require("../models/player")
-    User       = require("../models/user");
+const express    = require("express"),              // ExpressJS module 'Express' for Node web framework
+      router     = express.Router(),
+      passport   = require("passport"),
+      middleware = require("../middleware"),
+      Player     = require("../models/player")
+      User       = require("../models/user");
 
 
 
@@ -15,8 +15,8 @@ let express    = require("express"),              // ExpressJS module 'Express' 
 // ====================== Routes ==================================== //
 // ================================================================== //
 // Need to implement access control
-router.get("/admin", middleware.isAdmin, function(req, res){
-    User.count(function(err, userCount) {
+router.get("/admin", middleware.isAdmin, (req, res) => {
+    User.count((err, userCount) => {
         if (err) {
             console.log(err)
         } else {
@@ -27,8 +27,8 @@ router.get("/admin", middleware.isAdmin, function(req, res){
 });
 
 
-router.get("/admin/users", middleware.isAdmin, function(req, res){
-    User.find({}, function(err, allUsers){
+router.get("/admin/users", middleware.isAdmin, (req, res) => {
+    User.find({}, (err, allUsers) => {
         if(err){
             console.log(err);
         } else {
@@ -38,8 +38,8 @@ router.get("/admin/users", middleware.isAdmin, function(req, res){
 });
 
 
-router.get("/admin/players", middleware.isAdmin, function(req, res){
-    Player.find({}, function(err, allPlayers){
+router.get("/admin/players", middleware.isAdmin, (req, res) => {
+    Player.find({}, (err, allPlayers) => {
         if(err){
             console.log(err);
         } else {
