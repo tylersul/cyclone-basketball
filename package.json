@@ -14,7 +14,7 @@
     "aos": "^2.3.4",
     "async": "^3.2.0",
     "body-parser": "^1.19.0",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "connect-flash": "^0.1.1",
     "countup.js": "^2.0.5",
     "dotenv": "^8.2.0",
