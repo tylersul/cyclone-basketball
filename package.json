@@ -1,13 +1,13 @@
 {
-  "name": "v1",
+  "name": "cyclone_analytics",
   "version": "1.0.0",
-  "description": "YelpCamp v1",
+  "description": "Cyclone Analytics v1",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --watch",
     "start": "node app.js"
   },
-  "author": "Colt Steele",
+  "author": "Tyler Sullivan",
   "license": "ISC",
   "dependencies": {
     "animate.css": "^4.1.0",
@@ -21,6 +21,7 @@
     "ejs": "^2.7.4",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
+    "jest": "^27.4.3",
     "locus": "^2.0.4",
     "method-override": "^3.0.0",
     "moment": "^2.25.3",
