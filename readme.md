@@ -26,20 +26,19 @@ Full stack NodeJS web application with a growing database of Iowa State Men's ba
 | Javascript    | EJS           | -         | GitHub        | -          |
 | Bootstrap 4   | -             | -         | -             | -          |
 
-### Front End
-- HTML5 
-- CSS
-- Bootstrap
-- Javascript
+&nbsp;
+&nbsp;
 
-### Front End Libraries
-- Animate.css
-- Typed.js
+## In-Flight Work
+- Add Jest tests for unit testing
+- Automate code reviews with Codacy & CodeClimate
+- CI / CD with an undetermined provider
 
-### Back End
-- NodeJS
-- MongoDB
+## Acknowledgments
+The inspiration for this project came from [Colt Steele's YelpCamp](https://github.com/Colt/yelp-camp-refactored) while taking his web development bootcamp.  Colt is a fantastic teacher and guide through full-stack development.
 
+&nbsp;
+&nbsp;
 
 ## Related projects
 
