@@ -12,6 +12,13 @@ Full stack NodeJS web application with a growing database of Iowa State Men's ba
 - Application deployment using Heroku (https://www.heroku.com/) and database deployment to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
 
 ## Tech Stack
+| Front-End     | Back-End      | Database  | Deployment    | Testing    |
+| ------------- |:-------------:|:---------:|:-------------:|:----------:|
+| HTML5         | Node.js       | MongoDB   | Heroku        | Jest       |
+| CSS3          | Express.js    | Mongoose  | MongoDB Atlas | -          |
+| Javascript    | EJS           | -         | GitHub        | -          |
+| Bootstrap 4   | -             | -         | -             | -          |
+
 ### Front End
 - HTML5 
 - CSS
