@@ -4,6 +4,13 @@ Full stack NodeJS web application with a growing database of Iowa State Men's ba
 
 ![Website](https://img.shields.io/website?down_color=red&down_message=offline&up_color=brightgreen&up_message=online&url=https%3A%2F%2Fcycloneanalytics.herokuapp.com)
 
+
+## Lessons Learned :bulb:
+- First full-stack web app
+- Introduction to [Express.js](https://expressjs.com/) Node web framework
+- Introduction to [Bootstrap](https://getbootstrap.com/) responsive front-end web design
+- Application deployment using Heroku (https://www.heroku.com/) and database deployment to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+
 ## Tech Stack
 ### Front End
 - HTML5 
