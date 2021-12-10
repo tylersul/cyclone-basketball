@@ -3,6 +3,7 @@
 Full stack NodeJS web application with a growing database of Iowa State Men's basketball players and an ever-evolving set of advanced analytics tools.
 
 ![Website](https://img.shields.io/website?down_color=red&down_message=offline&up_color=brightgreen&up_message=online&url=https%3A%2F%2Fcycloneanalytics.herokuapp.com)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/c76fdc8c5b7c44c28af5cb68360639bd)](https://www.codacy.com/gh/tylersul/express-cyclone-analytics-web-app/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tylersul/express-cyclone-analytics-web-app&amp;utm_campaign=Badge_Grade)
 
 &nbsp;
 &nbsp;
@@ -13,7 +14,8 @@ Full stack NodeJS web application with a growing database of Iowa State Men's ba
 - First full-stack web app
 - Introduction to [Express.js](https://expressjs.com/) Node web framework
 - Introduction to [Bootstrap](https://getbootstrap.com/) responsive front-end web design
-- Application deployment using Heroku (https://www.heroku.com/) and database deployment to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+- Application deployment using [Heroku](https://www.heroku.com/) and database deployment to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+- Automated code reviews through [Codacy](https://app.codacy.com/gh/tylersul/express-cyclone-analytics-web-app/dashboard?branch=master)
 
 &nbsp;
 &nbsp;
@@ -22,7 +24,7 @@ Full stack NodeJS web application with a growing database of Iowa State Men's ba
 | Front-End     | Back-End      | Database  | Deployment    | Testing    |
 | ------------- |:-------------:|:---------:|:-------------:|:----------:|
 | HTML5         | Node.js       | MongoDB   | Heroku        | Jest       |
-| CSS3          | Express.js    | Mongoose  | MongoDB Atlas | -          |
+| CSS3          | Express.js    | Mongoose  | MongoDB Atlas | Codacy     |
 | Javascript    | EJS           | -         | GitHub        | -          |
 | Bootstrap 4   | -             | -         | -             | -          |
 
