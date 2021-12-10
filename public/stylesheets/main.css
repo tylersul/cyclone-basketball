@@ -312,13 +312,13 @@ textarea {
 
 .grow:hover {
   transform: scale(1.1);        /* Card becomes 10% bigger on hover */
-  transition: transform 0.2s;    /* Eased transition for smoother look */
+  transition: transform 0.2s;   /* Eased transition for smoother look */
 }
 
 .lift:hover {
   box-shadow: rgb(0 0 0 / 22%) 0 19px 43px;  /* Shadow on hover */
-  transform: translate3d(0, -5px, 0) !important;           /* Move card up 5px */
-  transition: transform 0.3s ease-in-out;            /* Ensure transform is eased over .3s */
+  transform: translate3d(0, -5px, 0);        /* Move card up 5px */
+  transition: transform 0.3s ease-in-out;    /* Ensure transform is eased over .3s */
 }
 
 .fade-in {
