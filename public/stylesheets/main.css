@@ -199,7 +199,7 @@ textarea {
 
 /* PLAYER - Show All */
 .cyclone-card:hover {
-  transform: scale(1.1) !important;        /* Card becomes 10% bigger on hover */
+  transform: scale(1.1);        /* Card becomes 10% bigger on hover */
   background-color: #951010;  /* Card background to Cardinal */
   color: #fff;                /* Card text to white */
   transition: transform 0.2s;    /* Eased transition for smoother look */
