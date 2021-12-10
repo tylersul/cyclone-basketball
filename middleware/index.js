@@ -1,8 +1,8 @@
 // All middleware for web app
 
-var Player           = require("../models/player");
-var Comment          = require("../models/comment");
-var middlewareObject = {};
+let Player           = require("../models/player");
+let Comment          = require("../models/comment");
+let middlewareObject = {};
 
 middlewareObject.checkPlayerOwnership = function(req, res, next){
     if(req.isAuthenticated()){
