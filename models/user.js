@@ -2,8 +2,8 @@
 // ====================== Variable Instantiation ==================== //
 // ================================================================== //
 
-var mongoose              = require("mongoose");                    // Require Mongoose for Schema creation
-var passportLocalMongoose = require("passport-local-mongoose");     // Local Authentication to plugin to Mongoose
+let mongoose              = require("mongoose");                    // Require Mongoose for Schema creation
+let passportLocalMongoose = require("passport-local-mongoose");     // Local Authentication to plugin to Mongoose
 
 
 // ================================================================== //
@@ -12,7 +12,7 @@ var passportLocalMongoose = require("passport-local-mongoose");     // Local Aut
 // In Mongoose, everything is derived from a Schema  
 
 // Create new userSchema with two String properties that will be used as authentication mechanisms
-userSchema = new mongoose.Schema({
+let userSchema = new mongoose.Schema({
     username: {
         type: String,
         unique: true

@@ -1,11 +1,11 @@
 // ================================================================== //
 // ====================== Variable Instantiation ==================== //
 // ================================================================== //
-let express    = require("express");
-    router     = express.Router();
-    Player     = require("../models/player");
-    Season     = require("../models/season");
-    middleware = require("../middleware") //don't need to add index.js because it's auto included
+let express    = require("express"),
+    router     = express.Router(),
+    Player     = require("../models/player"),
+    Season     = require("../models/season"),
+    middleware = require("../middleware"); //don't need to add index.js because it's auto included
 
 
 // ================================================================== //

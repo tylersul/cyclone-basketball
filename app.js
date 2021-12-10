@@ -131,6 +131,6 @@ app.get("*", function (req, res) {
 //app.listen(port, () => console.log(`HTML app listening at http://localhost:${port}`));
 
 // Dynamic listener that utilizes environment variables for port and IP details
-app.listen(process.env.PORT, process.env.IP, function(){
+app.listen(port, process.env.IP, function(){
     console.log("Server Has Started!");
  });
