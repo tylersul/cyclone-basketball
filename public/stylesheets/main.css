@@ -1,6 +1,7 @@
 html {
   min-height: 100%;
 }
+
 /* Body */
 body {
   background-color: #f5f5f5;
@@ -13,30 +14,31 @@ a {
 textarea {
   height: 100%;   /* Ensure textarea boxes show all rows for increased height */
 }
+
 /* Navbar */
 .navbar {
-    background-color: #951010;
-    padding-top: 1em;
-    padding-bottom: 1em;
+  background-color: #951010;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 
 .navbar-brand {
-    color: #FFF;
-    font-size: 2em;
+  color: #fff;
+  font-size: 2em;
 }
 
 @media only screen and (max-width: 700px) {
   .navbar-brand {
     font-size: 1.5rem;
-  } 
+  }
 }
 
-.navbar-default .navbar-nav>li>a {
-    color: #FFF;
+.navbar-default .navbar-nav > li > a {
+  color: #fff;
 }
 
 .dna {
-  color: #FFF;
+  color: #fff;
   padding-right: 0.25em;
 }
 
@@ -44,10 +46,9 @@ textarea {
   color: #951010;
 }
 
-
-/* Footer */ 
+/* Footer */
 .footer-dna {
-  color: #FFF;
+  color: #fff;
 }
 
 .footer-icon {
@@ -59,23 +60,23 @@ textarea {
 }
 
 .thumbnail img {
-    width: 100%;
+  width: 100%;
 }
 
 .thumbnail {
-    padding: 0;
+  padding: 0;
 }
 
 .thumbnail .caption-full {
-    padding: 9px;
+  padding: 9px;
 }
 
 #delete-form {
-    display: inline /* Forms are on their own line by default */
+  display: inline /* Forms are on their own line by default */
 }
 
 #delete-comment {
-    display: inline; /* same as above */
+  display: inline; /* same as above */
 }
 
 /* Footer */
@@ -84,7 +85,7 @@ textarea {
   left: 0;
   right: 0;
   bottom: 0;
-  color: #FFF;
+  color: #fff;
 }
 
 #footer .row {
@@ -92,11 +93,12 @@ textarea {
 }
 
 #footer a {
-  color: rgba(255,255,255,.5);
-  transition: ease-in-out color .15s;
+  color: rgb(255 255 255 / 50%);
+  transition: ease-in-out color 0.15s;
 }
 
 /* About Page */
+
 /* Flip Cards CSS */
 .card-container {
   display: grid;
@@ -129,11 +131,11 @@ textarea {
   transform: rotateY(180deg);
 }
 
-
 /**** Page Specific ****/
+
 /* Home Page */
 #homeJumbotron {
-  background: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url("../images/hilton_magic.png");
+  background: linear-gradient(to bottom, rgb(255 255 255 / 60%) 0%, rgb(255 255 255 / 90%) 100%), url("../images/hilton_magic.png");
   background-size: cover;
 }
 
@@ -147,9 +149,11 @@ textarea {
 .cyclone-container {
   background-color: #951010;
 }
+
 #analyticsImg {
   max-width: 450px;
 }
+
 /* Sign In Page */
 .form-signin {
   width: 100%;
@@ -179,6 +183,7 @@ textarea {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
+
 .form-signin input[type="password"] {
   margin-bottom: 10px;
   border-top-left-radius: 0;
@@ -190,18 +195,27 @@ textarea {
   border-radius: 50%;
   height: 200px;
   width: 200px;
-} 
+}
 
-  /* PLAYER - Show All */
+/* PLAYER - Show All */
 .cyclone-card:hover {
   transform: scale(1.1) !important;        /* Card becomes 10% bigger on hover */
   background-color: #951010;  /* Card background to Cardinal */
-  color: #FFF;                /* Card text to white */
-  transition: transform .2s;    /* Eased transition for smoother look */
+  color: #fff;                /* Card text to white */
+  transition: transform 0.2s;    /* Eased transition for smoother look */
+}
+
+.btn-cyclone {
+  background-color: #951010;
+  color: #fff;
+}
+
+.btn-cyclone:hover {
+  color: white;
 }
 
 .cyclone-card:hover .btn-cyclone {
-  background-color: #FFF;
+  background-color: #fff;
   color: #000;
 }
 
@@ -211,20 +225,13 @@ textarea {
   object-fit: cover;  /* Cover card */
 }
 
-.btn-cyclone {
-  background-color: #951010;
-  color: #FFF;
-}
-.btn-cyclone:hover {
-  color: white;
-}
 /* PLAYER - Show One */
 .cyclone-text {
   color: #951010;
 }
 
 #yearlyTable th {
-  padding: .25rem;
+  padding: 0.25rem;
   font-size: 90%;
 }
 
@@ -242,7 +249,7 @@ textarea {
   border-radius: 50%;
   height: 100px;
   width: 100px;
-} 
+}
 
 /* PLAYER - Game Logs */
 
@@ -252,6 +259,7 @@ textarea {
 }
 
 /* Future Implementation - fix first column on charts */
+
 /* th:first-child, td:first-child {
   position: sticky;
   left: 0px;
@@ -268,7 +276,9 @@ textarea {
   height: 300px;      /* Consistent card image height in desktop and mobile */
   object-fit: cover;  /* Cover card */
 }
-  /**** General ****/
+
+/**** General ****/
+
 /* icons */
 .black-dna {
   color: #000;
@@ -276,7 +286,14 @@ textarea {
 
 .aqua-gradient {
   height: 300px;
-  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(233, 242, 233, 0.9878326330532213) 0%, rgba(0, 212, 255, 1) 51%, rgba(114, 156, 7, 1) 93%);
+  background:
+    linear-gradient(
+      90deg,
+      rgb(2 0 36 / 100%) 0%,
+      rgb(233 242 233 / 98.8%) 0%,
+      rgb(0 212 255 / 100%) 51%,
+      rgb(114 156 7 / 100%) 93%
+    );
 }
 
 .image {
@@ -290,42 +307,42 @@ textarea {
 
 /* Utility Classes */
 .card-img-right {
-  border-radius: 0 .375rem .375rem 0;   /* Round the corners of an image on horizontal card */
+  border-radius: 0 0.375rem 0.375rem 0;   /* Round the corners of an image on horizontal card */
 }
 
 .grow:hover {
   transform: scale(1.1);        /* Card becomes 10% bigger on hover */
-  transition: transform .2s;    /* Eased transition for smoother look */
+  transition: transform 0.2s;    /* Eased transition for smoother look */
 }
 
 .lift:hover {
-  box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;  /* Shadow on hover */
-  transform: translate3d(0px, -5px, 0px) !important;           /* Move card up 5px */
-  transition: transform .3s ease-in-out;            /* Ensure transform is eased over .3s */
+  box-shadow: rgb(0 0 0 / 22%) 0 19px 43px;  /* Shadow on hover */
+  transform: translate3d(0, -5px, 0) !important;           /* Move card up 5px */
+  transition: transform 0.3s ease-in-out;            /* Ensure transform is eased over .3s */
 }
 
 .fade-in {
-    animation: fadeInAnimation ease 2s;
-    animation-iteration-count: 1; 
-    animation-fill-mode: forwards; 
-} 
+  animation: fadeInAnimation ease 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
 
 .bg-gray {
   background-color: #f1f4f8;
 }
 
-@keyframes fadeInAnimation { 
-    0% { 
-        opacity: 0; 
-    } 
-    100% { 
-        opacity: 1; 
-     } 
-} 
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
 
 @media only screen and (max-width: 700px) {
   #playerJumbotron {
-      font-size: 3rem;
-  } 
+    font-size: 3rem;
+  }
 }
-
