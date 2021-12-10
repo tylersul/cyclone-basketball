@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "jest --watch",
-    "start": "node app.js"
+    "start": "node app.js",
+    "lint": "eslint '**/*.{js,jsx}' --quiet"
   },
   "author": "Tyler Sullivan",
   "license": "ISC",
@@ -34,5 +35,8 @@
     "stylelint": "^14.1.0",
     "stylelint-config-standard": "^24.0.0",
     "typed.js": "^2.0.11"
+  },
+  "devDependencies": {
+    "eslint": "^8.4.1"
   }
 }
