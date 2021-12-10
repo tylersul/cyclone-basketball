@@ -4,7 +4,8 @@
 
 let express    = require("express"),              // ExpressJS module 'Express' for Node web framework
     router     = express.Router(),
-    passport   = require("passport"),
+//  passport   = require("passport"),             // Not used ATM - will do research
+    https      = require("https"),              
     Blog       = require("../models/blog");
 
 

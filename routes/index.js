@@ -2,17 +2,15 @@
 // ====================== Variable Instantiation ==================== //
 // ================================================================== //
 
-var express    = require("express");              // ExpressJS module 'Express' for Node web framework
-var router     = express.Router();
-var passport   = require("passport");
-var async      = require("async");
-var nodemailer = require("nodemailer");
-var crypto     = require("crypto");
-var https      = require("https");
-let middleware = require("../middleware");
-var User       = require("../models/user");
-var Player     = require("../models/player");
-
+let express    = require("express"),              // ExpressJS module 'Express' for Node web framework
+    router     = express.Router(),
+    passport   = require("passport"),
+    async      = require("async"),
+    nodemailer = require("nodemailer"),
+    crypto     = require("crypto"),
+//  https      = require("https"),              // Unused atm - will research
+    middleware = require("../middleware"),
+    User       = require("../models/user");
 
 // ================================================================== //
 // ====================== Routes ==================================== //

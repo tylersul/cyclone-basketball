@@ -17,9 +17,8 @@ const express        = require("express"),           // ExpressJS module 'Expres
       Player         = require("./models/player"),   // Import custom 'player' model for use in Mongoose
       Comment        = require("./models/comment"),  // Import custom 'comment' model for use in Mongoose
       User           = require("./models/user"),     // Import custom 'user' model for use in Mongoose
-      seedDB         = require("./seeds");           // Import seeDB custom function to fill empty MongoDB with test data
-      
-      const port           = process.env.PORT;             // Set Port exposed constant to 3000 for localhost 
+      seedDB         = require("./seeds"),           // Import seeDB custom function to fill empty MongoDB with test data
+      port           = process.env.PORT;             // Set Port exposed constant to 3000 for localhost 
                          
 
 const commentRoutes  = require("./routes/comments"), // These  three lines import routes from the 

@@ -1,7 +1,7 @@
-var express = require("express");
-var router = express.Router();
-var Player = require("../models/player");
-var middleware = require("../middleware") //don't need to add index.js because it's auto included
+let express    = require("express"),
+    router     = express.Router(),
+    Player     = require("../models/player"),
+    middleware = require("../middleware")       //don't need to add index.js because it's auto included
 
 //INDEX - show all campgrounds
 // real route is /players, but added that default in the app.js routes
@@ -371,7 +371,7 @@ router.get("/:id/advanced", function(req, res){
             // Effective FG%
             let tpHalf = tpm;
 
-            for (var i=0; i < tpm.length; i++) {
+            for (i=0; i < tpm.length; i++) {
                 tpm[i] = tpm[i]/2;
               }
 
@@ -577,6 +577,6 @@ router.get("/:id/games/conference", function(req, res) {
 
 function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-};
+}
 
 module.exports = router;
