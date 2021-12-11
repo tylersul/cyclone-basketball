@@ -15,7 +15,7 @@ let express    = require("express"),              // ExpressJS module 'Express' 
 // ================================================================== //
 // ====================== Routes ==================================== //
 // ================================================================== //
-// Routing referes to determining how an app responds to a client request to a particular
+// Routing refers to determining how an app responds to a client request to a particular
 //    endpoint.  Each route can have one or more handler functions.
 
 // Route definition takes the following structure: app.METHOD(PATH, HANDLER)

@@ -36,6 +36,12 @@ Full stack NodeJS web application with a growing database of Iowa State Men's ba
 - Automate code reviews with Codacy & CodeClimate
 - CI / CD with an undetermined provider
 
+## Application Features
+- RESTful routing
+- Authentication and authorization: User sign-up & login, administrator management role
+
+
+
 ## Acknowledgments
 The inspiration for this project came from [Colt Steele's YelpCamp](https://github.com/Colt/yelp-camp-refactored) while taking his web development bootcamp.  Colt is a fantastic teacher and guide through full-stack development.
 
