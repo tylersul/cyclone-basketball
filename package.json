@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --watch",
     "start": "node app.js",
-    "lint": "eslint '**/*.{js,jsx}' --quiet"
+    "lint": "eslint '**/*.{js,jsx}' --quiet",
+    "lint-css": "npx stylelint '**/*.css'"
   },
   "author": "Tyler Sullivan",
   "license": "ISC",
@@ -22,7 +23,6 @@
     "ejs": "^2.7.4",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
-    "jest": "^27.4.3",
     "locus": "^2.0.4",
     "method-override": "^3.0.0",
     "moment": "^2.25.3",
@@ -37,7 +37,11 @@
     "typed.js": "^2.0.11"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "eslint": "^8.4.1",
+    "jest": "^27.4.5",
+    "superagent": "^6.1.0",
     "supertest": "^6.1.6"
   },
   "jest": {
