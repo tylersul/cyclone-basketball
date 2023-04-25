@@ -32,8 +32,8 @@
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.0.1",
     "prettier": "^2.1.2",
-    "stylelint": "^14.1.0",
-    "stylelint-config-standard": "^24.0.0",
+    "stylelint": "^15.6.0",
+    "stylelint-config-standard": "^33.0.0",
     "typed.js": "^2.0.11"
   },
   "devDependencies": {
