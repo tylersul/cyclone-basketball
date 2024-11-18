@@ -3,39 +3,37 @@ let express    = require("express"),
     Player     = require("../models/player"),
     middleware = require("../middleware")       //don't need to add index.js because it's auto included
 
-//INDEX - show all campgrounds
+//INDEX - show all players
 // real route is /players, but added that default in the app.js routes
 // TO DO - return flash message for empty search results
-router.get("/", function(req, res){
-    if(req.query.search){
-        escapeRegex(req.query.search);
-        const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-        Player.find({name: regex}, function(err, allPlayers){
-            if(err){
-                console.log(err);
-            } else {
+router.get("/", async (req, res) => {
+    try {
+        if(req.query.search){
+            escapeRegex(req.query.search);
+            const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+            Player.find({name: regex}, function(err, allPlayers){
                 if(allPlayers.length < 1) {
                     return res.render("players/index", {players: allPlayers, "error": "No match! Please try again!"});
                 }
                 res.render("players/index",{players: allPlayers, currentUser: req.user});
-            }
-        });
-    } else {
-        // Get all players from DB
-        Player.find({}).sort('name').exec(function(err, allPlayers){
-            if(err){
-                console.log(err);
-            } else {
-                res.render("players/index",{players:allPlayers, currentUser: req.user});
-            }
-        });
+            });
+        } else {
+            // Get all players from DB
+            const allPlayers = await Player.find({}).sort('name').exec();
+            res.render("players/index",{players:allPlayers, currentUser: req.user});
+        }
+    } catch (err) {
+        console.log(err)
+        res.status(500).send('An error occurred while retrieving players.')
+        res.redirect("index/home");
     }
+
 });
 
 //CREATE PLAYER 
 router.post("/", middleware.isLoggedIn, function(req, res){
-    // get data from form and add to campgrounds array
-    let name          = req.body.name,
+    try {
+        let name          = req.body.name,
         image         = req.body.image,
         position      = req.body.position,
         desc          = req.body.description,
@@ -63,6 +61,9 @@ router.post("/", middleware.isLoggedIn, function(req, res){
             res.redirect("/players");
         }
     });
+    } catch (err) {
+
+    }
 });
 
 //NEW - show form to create new campground
