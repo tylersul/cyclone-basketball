@@ -1,7 +1,8 @@
+require('dotenv').config();   // Environment variables
+
 // ================================================================== //
 // ====================== Variable Instantiation ==================== //
 // ================================================================== //
-
 // NodeJS provides the 'require' function whose job is to load modules 
 //   and grant access to their exports 
 const express        = require("express"),           // ExpressJS module 'Express' for Node web framework                        
@@ -28,17 +29,15 @@ const commentRoutes  = require("./routes/comments"), // These  three lines impor
       seasonRoutes   = require("./routes/seasons"),
       adminRoutes    = require("./routes/admin");
     
-                       require('dotenv').config();   // Environment variables
+
 
 // ================================================================== //
 // ====================== Backend Connection ======================== //
 // ================================================================== //
 // Local Mongo Instance Connection - configued in env file
-
 // MongoDB Atlas Connection for Cloud-based app
-// MongoDB Atlas Connection instead with Environment Variables for added security
 // Env Variable set within Atlas, but can be set for local connection as well
-mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.DATABASE_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true});
 
 
 // ================================================================== //
