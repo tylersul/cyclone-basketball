@@ -1,98 +1,98 @@
 body {
-  background: #000;
+    background: #000;
 }
 
 #landing-header {
-  z-index: 1; /* forward and backward into space, forward towards us by 1 */
-  position: relative; /* needed to use z-index, static is default */
-  text-align: center;
-  padding-top: 40vh; /* center vertically */
+    z-index: 1; /* forward and backward into space, forward towards us by 1 */
+    position: relative; /* needed to use z-index, static is default */
+    text-align: center;
+    padding-top: 40vh; /* center vertically */
 }
 
 #landing-header h1 {
-  color: white;
+    color: white;
 }
 
 #landing-header a {
-  background: #951010;
-  border: none;
+    background: #951010;
+    border: none;
 }
 
 .slideshow {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  list-style: none; /* removes bullet points */
-  margin: 0;
-  padding: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    list-style: none; /* removes bullet points */
+    margin: 0;
+    padding: 0;
 }
 
 .slideshow li {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-size: cover; /* images take up entire space */
-  background-position: 50% 50%; /* center images */
-  background-repeat: no-repeat;
-  opacity: 0; /* start completely opaque */
-  z-index: 0;
-  animation: imageAnimation 50s linear infinite; /* 50s time, same speed from start to fin, never end */
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover; /* images take up entire space */
+    background-position: 50% 50%; /* center images */
+    background-repeat: no-repeat;
+    opacity: 0; /* start completely opaque */
+    z-index: 0;
+    animation: imageAnimation 50s linear infinite; /* 50s time, same speed from start to fin, never end */
 }
 
 .slideshow li:nth-child(1) {
-  background-image: url("https://www.gannett-cdn.com/presto/2019/10/16/PDEM/53f358d0-4b69-4051-a5b4-136659416a09-1016_ISUmbbmediaday_33.JPG?crop=2749,1547,x0,y0&width=1600&height=800&fit=bounds");
+    background-image: url('https://www.gannett-cdn.com/presto/2019/10/16/PDEM/53f358d0-4b69-4051-a5b4-136659416a09-1016_ISUmbbmediaday_33.JPG?crop=2749,1547,x0,y0&width=1600&height=800&fit=bounds');
 }
 
 .slideshow li:nth-child(2) {
-  background-image: url("../images/team.png");
-  animation-delay: 10s;
+    background-image: url('../images/team.png');
+    animation-delay: 10s;
 }
 
 .slideshow li:nth-child(3) {
-  background-image: url("../images/big12.png");
-  animation-delay: 20s;
+    background-image: url('../images/big12.png');
+    animation-delay: 20s;
 }
 
 .slideshow li:nth-child(4) {
-  background-image: url("../images/hali1.png");
-  animation-delay: 30s;
+    background-image: url('../images/hali1.png');
+    animation-delay: 30s;
 }
 
 .slideshow li:nth-child(5) {
-  background-image: url("../images/ball.png");
-  animation-delay: 40s;
+    background-image: url('../images/ball.png');
+    animation-delay: 40s;
 }
 
 @keyframes imageAnimation {
-  0% {
-    opacity: 0;
-    animation-timing-function: ease-in;
-  }
+    0% {
+        opacity: 0;
+        animation-timing-function: ease-in;
+    }
 
-  10% {
-    opacity: 1;
-    animation-timing-function: ease-out;
-  }
+    10% {
+        opacity: 1;
+        animation-timing-function: ease-out;
+    }
 
-  20% {
-    opacity: 1;
-  }
+    20% {
+        opacity: 1;
+    }
 
-  30% {
-    opacity: 0;
-  }
+    30% {
+        opacity: 0;
+    }
 }
 
 .no-cssanimations .slideshow li {
-  opacity: 1;
+    opacity: 1;
 }
 
 .grow:hover {
-  transform: scale(1.1);        /* Card becomes 10% bigger on hover */
-  transition: transform 0.2s;    /* Eased transition for smoother look */
+    transform: scale(1.1); /* Card becomes 10% bigger on hover */
+    transition: transform 0.2s; /* Eased transition for smoother look */
 }

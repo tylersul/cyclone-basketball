@@ -1,261 +1,266 @@
 html {
-  min-height: 100%;
+    min-height: 100%;
 }
 
 /* Body */
 body {
-  background-color: #f5f5f5;
+    background-color: #1e1e1e;
 }
 
 a {
-  color: #000;
+    color: #000;
 }
 
 textarea {
-  height: 100%;   /* Ensure textarea boxes show all rows for increased height */
+    height: 100%; /* Ensure textarea boxes show all rows for increased height */
 }
 
 /* Navbar */
 .navbar {
-  background-color: #951010;
-  padding-top: 1em;
-  padding-bottom: 1em;
+    background-color: #951010;
+    padding-top: 1em;
+    padding-bottom: 1em;
 }
 
 .navbar-brand {
-  color: #fff;
-  font-size: 2em;
+    color: #fff;
+    font-size: 2em;
 }
 
 @media only screen and (max-width: 700px) {
-  .navbar-brand {
-    font-size: 1.5rem;
-  }
+    .navbar-brand {
+        font-size: 1.5rem;
+    }
 }
 
 .navbar-default .navbar-nav > li > a {
-  color: #fff;
+    color: #fff;
 }
 
 .dna {
-  color: #fff;
-  padding-right: 0.25em;
+    color: #fff;
+    padding-right: 0.25em;
 }
 
 .cardinal-icon {
-  color: #951010;
+    color: #951010;
 }
 
 /* Footer */
 .footer-dna {
-  color: #fff;
+    color: #fff;
 }
 
 .footer-icon {
-  font-size: 1.5em;
+    font-size: 1.5em;
 }
 
 .id {
-  font-size: 2em;
+    font-size: 2em;
 }
 
 .thumbnail img {
-  width: 100%;
+    width: 100%;
 }
 
 .thumbnail {
-  padding: 0;
+    padding: 0;
 }
 
 .thumbnail .caption-full {
-  padding: 9px;
+    padding: 9px;
 }
 
 #delete-form {
-  display: inline /* Forms are on their own line by default */
+    display: inline; /* Forms are on their own line by default */
 }
 
 #delete-comment {
-  display: inline; /* same as above */
+    display: inline; /* same as above */
 }
 
 /* Footer */
 #footer {
-  background-color: #951010;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  color: #fff;
+    background-color: #951010;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: #fff;
 }
 
 #footer .row {
-  max-width: 960px;
+    max-width: 960px;
 }
 
 #footer a {
-  color: rgb(255 255 255 / 50%);
-  transition: ease-in-out color 0.15s;
+    color: rgb(255 255 255 / 50%);
+    transition: ease-in-out color 0.15s;
 }
 
 /* About Page */
 
 /* Flip Cards CSS */
 .card-container {
-  display: grid;
-  perspective: 700px;
+    display: grid;
+    perspective: 700px;
 }
 
 .card-flip {
-  display: grid;
-  grid-template: 1fr / 1fr;
-  grid-template-areas: "frontAndBack";
-  transform-style: preserve-3d;
-  transition: all 0.7s ease;
+    display: grid;
+    grid-template: 1fr / 1fr;
+    grid-template-areas: 'frontAndBack';
+    transform-style: preserve-3d;
+    transition: all 0.7s ease;
 }
 
 .card-flip div {
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
 }
 
 .front {
-  grid-area: frontAndBack;
+    grid-area: frontAndBack;
 }
 
 .back {
-  grid-area: frontAndBack;
-  transform: rotateY(-180deg);
+    grid-area: frontAndBack;
+    transform: rotateY(-180deg);
 }
 
 .card-container:hover .card-flip {
-  transform: rotateY(180deg);
+    transform: rotateY(180deg);
 }
 
 /**** Page Specific ****/
 
 /* Home Page */
 #homeJumbotron {
-  background: linear-gradient(to bottom, rgb(255 255 255 / 60%) 0%, rgb(255 255 255 / 90%) 100%), url("../images/hilton_magic.png");
-  background-size: cover;
+    background: linear-gradient(
+            to bottom,
+            rgb(255 255 255 / 60%) 0%,
+            rgb(255 255 255 / 90%) 100%
+        ),
+        url('../images/hilton_magic.png');
+    background-size: cover;
 }
 
 .jumbotron-title {
-  color: black;
-  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: black;
+    color: black;
+    -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
 }
 
 .cyclone-container {
-  background-color: #951010;
+    background-color: #951010;
 }
 
 #analyticsImg {
-  max-width: 450px;
+    max-width: 450px;
 }
 
 /* Sign In Page */
 .form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
 }
 
 .form-signin .checkbox {
-  font-weight: 400;
+    font-weight: 400;
 }
 
 .form-signin .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
 }
 
 .form-signin .form-control:focus {
-  z-index: 2;
+    z-index: 2;
 }
 
-.form-signin input[type="text"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+.form-signin input[type='text'] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+.form-signin input[type='password'] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
 /* USER - Profile */
 .avatar-circle {
-  border-radius: 50%;
-  height: 200px;
-  width: 200px;
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
 }
 
 /* PLAYER - Show All */
 .cyclone-card:hover {
-  transform: scale(1.1);        /* Card becomes 10% bigger on hover */
-  background-color: #951010;  /* Card background to Cardinal */
-  color: #fff;                /* Card text to white */
-  transition: transform 0.2s;    /* Eased transition for smoother look */
+    transform: scale(1.1); /* Card becomes 10% bigger on hover */
+    background-color: #951010; /* Card background to Cardinal */
+    color: #fff; /* Card text to white */
+    transition: transform 0.2s; /* Eased transition for smoother look */
 }
 
 .btn-cyclone {
-  background-color: #951010;
-  color: #fff;
+    background-color: #951010;
+    color: #fff;
 }
 
 .btn-cyclone:hover {
-  color: white;
+    color: white;
 }
 
 .cyclone-card:hover .btn-cyclone {
-  background-color: #fff;
-  color: #000;
+    background-color: #fff;
+    color: #000;
 }
 
 #playerCardImage {
-  width: 100%;        /* Fix image width to entirety of card */
-  height: 300px;      /* Consistent card image height in desktop and mobile */
-  object-fit: cover;  /* Cover card */
+    width: 100%; /* Fix image width to entirety of card */
+    height: 300px; /* Consistent card image height in desktop and mobile */
+    object-fit: cover; /* Cover card */
 }
 
 /* PLAYER - Show One */
 .cyclone-text {
-  color: #951010;
+    color: #951010;
 }
 
 #yearlyTable th {
-  padding: 0.25rem;
-  font-size: 90%;
+    padding: 0.25rem;
+    font-size: 90%;
 }
 
 .card-up {
-  background-color: aqua;
+    background-color: aqua;
 }
 
 .like-btn {
-  font-size: 1.5rem;      /* Size up the check mark */
-  vertical-align: middle; /* Override FA default to ensure check is in middle of btn */
+    font-size: 1.5rem; /* Size up the check mark */
+    vertical-align: middle; /* Override FA default to ensure check is in middle of btn */
 }
 
 /* PLAYER - Analytics */
 .player-circle {
-  border-radius: 50%;
-  height: 100px;
-  width: 100px;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
 }
 
 /* PLAYER - Game Logs */
 
 /* Admin */
 .nav-link .active {
-  background-color: #951010;
+    background-color: #951010;
 }
 
 /* Future Implementation - fix first column on charts */
@@ -267,82 +272,81 @@ textarea {
 
 /* About */
 #aboutContainer {
-  background-color: #951010;
+    background-color: #951010;
 }
 
 /* Blog */
 .horizontal-image-size-md {
-  width: 100%;        /* Fix image width to entirety of card */
-  height: 300px;      /* Consistent card image height in desktop and mobile */
-  object-fit: cover;  /* Cover card */
+    width: 100%; /* Fix image width to entirety of card */
+    height: 300px; /* Consistent card image height in desktop and mobile */
+    object-fit: cover; /* Cover card */
 }
 
 /**** General ****/
 
 /* icons */
 .black-dna {
-  color: #000;
+    color: #000;
 }
 
 .aqua-gradient {
-  height: 300px;
-  background:
-    linear-gradient(
-      90deg,
-      rgb(2 0 36 / 100%) 0%,
-      rgb(233 242 233 / 98.8%) 0%,
-      rgb(0 212 255 / 100%) 51%,
-      rgb(114 156 7 / 100%) 93%
+    height: 300px;
+    background: linear-gradient(
+        90deg,
+        rgb(2 0 36 / 100%) 0%,
+        rgb(233 242 233 / 98.8%) 0%,
+        rgb(0 212 255 / 100%) 51%,
+        rgb(114 156 7 / 100%) 93%
     );
 }
 
 .image {
-  margin-top: -150px;
+    margin-top: -150px;
 }
 
 .avatar-container {
-  width: 90%;
-  border: 1px solid #eee;
+    width: 90%;
+    border: 1px solid #eee;
 }
 
 /* Utility Classes */
 .card-img-right {
-  border-radius: 0 0.375rem 0.375rem 0;   /* Round the corners of an image on horizontal card */
+    border-radius: 0 0.375rem 0.375rem 0; /* Round the corners of an image on horizontal card */
 }
 
 .grow:hover {
-  transform: scale(1.1);        /* Card becomes 10% bigger on hover */
-  transition: transform 0.2s;   /* Eased transition for smoother look */
+    transform: scale(1.1); /* Card becomes 10% bigger on hover */
+    transition: transform 0.2s; /* Eased transition for smoother look */
 }
 
 .lift:hover {
-  box-shadow: rgb(0 0 0 / 22%) 0 19px 43px;  /* Shadow on hover */
-  transform: translate3d(0, -5px, 0);        /* Move card up 5px */
-  transition: transform 0.3s ease-in-out;    /* Ensure transform is eased over .3s */
+    box-shadow: rgb(0 0 0 / 22%) 0 19px 43px; /* Shadow on hover */
+    transform: translate3d(0, -5px, 0); /* Move card up 5px */
+    transition: transform 0.3s ease-in-out; /* Ensure transform is eased over .3s */
 }
 
 .fade-in {
-  animation: fadeInAnimation ease 2s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
+    animation: fadeInAnimation ease 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
 }
 
 .bg-gray {
-  background-color: #f1f4f8;
+    background-color: #f1f4f8;
 }
 
 @keyframes fadeInAnimation {
-  0% {
-    opacity: 0;
-  }
+    0% {
+        opacity: 0;
+    }
 
-  100% {
-    opacity: 1;
-  }
+    100% {
+        opacity: 1;
+    }
 }
 
 @media only screen and (max-width: 700px) {
-  #playerJumbotron {
-    font-size: 3rem;
-  }
+    #playerJumbotron {
+        font-size: 3rem;
+    }
 }
