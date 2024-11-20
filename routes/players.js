@@ -4,24 +4,26 @@ let express = require('express'),
     middleware = require('../middleware'); //don't need to add index.js because it's auto included
 
 //INDEX - show all players
-// real route is /players, but added that default in the app.js routes
 // TO DO - return flash message for empty search results
 router.get('/', async (req, res) => {
     try {
+        // Path: If user searches for a specific player, find players matching search term
         if (req.query.search) {
+            // Legacy Regex Search
             escapeRegex(req.query.search);
             const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-            Player.find({ name: regex }, function (err, allPlayers) {
-                if (allPlayers.length < 1) {
-                    return res.render('players/index', {
-                        players: allPlayers,
-                        error: 'No match! Please try again!',
-                    });
-                }
-                res.render('players/index', {
-                    players: allPlayers,
-                    currentUser: req.user,
+            const foundPlayers = await Player.find({ name: regex });
+
+            if (foundPlayers.length < 1) {
+                return res.render('players/index', {
+                    players: foundPlayers,
+                    error: 'No match. Please try again.',
                 });
+            }
+
+            res.render('players/index', {
+                players: foundPlayers,
+                currentUser: req.user,
             });
         } else {
             // Get all players from DB
@@ -38,7 +40,67 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Create Player
+// READ - Player Search: Advanced Search
+router.get('/search', async (req, res) => {
+    try {
+        // Path: If user searches for a specific player, find players matching search term
+        if (req.query.search) {
+            // Default aggregation pipeline starting point
+            // $Search - uses default Atlas Search Index with a wildcard search
+            // $Project - limits returning payload & returns searchScore & highlights
+            let options = [
+                {
+                    $search: {
+                        index: 'default',
+                        text: {
+                            query: req.query.search,
+                            path: { wildcard: '*' },
+                        } /*,
+                        highlight: {path: "plot"}*/,
+                    },
+                },
+                {
+                    $project: {
+                        searchScore: { $meta: 'searchScore' },
+                        /*highlights: {$meta: "searchHighlights"},*/
+                        name: 1,
+                        position: 1,
+                        image: 1,
+                    },
+                },
+                { $limit: 30 },
+            ];
+
+            // Run aggregation using Atlas Search & return movies that match criteria
+            const foundPlayers = await Player.aggregate(options).exec();
+
+            // If no players are returned
+            if (foundPlayers.length < 1) {
+                return res.render('players/search', {
+                    players: foundPlayers,
+                    error: 'No match. Please try again.',
+                });
+            }
+
+            return res.render('players/search', {
+                players: foundPlayers,
+                query: req.query.search,
+            });
+        } else {
+            // Get search page entry point
+            res.render('players/search', {
+                players: {},
+                currentUser: req.user,
+            });
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('An error occurred while retrieving players.');
+        res.redirect('players/index');
+    }
+});
+
+// Create - New Player: POST player
 router.post('/', middleware.isLoggedIn, async (req, res) => {
     try {
         // Destructure properties from req.body
@@ -87,7 +149,7 @@ router.post('/', middleware.isLoggedIn, async (req, res) => {
     }
 });
 
-//NEW - show form to create new campground
+// Create - New Player: GET Render Form
 router.get('/new', middleware.isLoggedIn, function (req, res) {
     res.render('players/new');
 });
