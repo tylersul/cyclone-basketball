@@ -117,6 +117,6 @@ middlewareObject.isAdmin = function (req, res, next) {
     }
 };
 
-// Export middlewareObject with the three available functions from above
+// Export middlewareObject with the available functions from above
 // Can also export each one individually as module.exports.checkPlayeronwership = checkPlayerOwnership
 module.exports = middlewareObject;
