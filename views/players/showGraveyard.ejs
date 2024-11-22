@@ -1,0 +1,177 @@
+<tbody>
+    <% player.season.forEach(function(season){ %>
+    <tr>
+        <td><%= season.year %></td>
+        <td><%= season.grade %></td>
+        <td><%= season.gp %></td>
+        <td><%= season.gs %></td>
+        <td><%= season.mpg %></td>
+        <td><%= (season.fg * 100).toFixed(1) %></td>
+        <td><%= (season.tp * 100).toFixed(1) %></td>
+        <td><%= (season.ft * 100).toFixed(1) %></td>
+        <td><%= season.rpg %></td>
+        <td><%= season.apg %></td>
+        <td><%= season.spg %></td>
+        <td><%= season.bpg %></td>
+        <td><%= season.ppg %></td>
+    </tr>
+    <% }); %>
+    <thead class="thead-light">
+        <tr>
+            <th>Career</th>
+            <% if (player.season.length > 1) { %>
+            <th><%= player.season.length %> Years</th>
+            <% } else { %>
+            <th><%= player.season.length %> Year</th>
+            <% } %>
+            <!-- <th><= gp > </th> -->
+            <th><%= gs %></th>
+            <th><%= mpg.toFixed(1) %></th>
+            <th><%= (careerFG * 100).toFixed(1) %></th>
+            <th><%= (careerTP * 100).toFixed(1) %></th>
+            <th><%= (careerFT * 100).toFixed(1)  %></th>
+            <th><%= careerRPG.toFixed(1) %></th>
+            <th><%= careerAPG.toFixed(1) %></th>
+            <th><%= careerSPG.toFixed(1) %></th>
+            <th><%= careerBPG.toFixed(1) %></th>
+            <th><%= careerPPG.toFixed(1) %></th>
+        </tr>
+    </thead>
+</tbody>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card shadow mb-4" data-aos="fade-up">
+                        <!-- Card Header - Dropdown -->
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold cyclone-text">Yearly Totals</h6>
+                            <div class="dropdown no-arrow">
+                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                    <div class="dropdown-header">Dropdown Header:</div>
+                                    <a class="dropdown-item" data-toggle="collapse" href="#collapseYearly" aria-expanded="false" aria-controls="collapseExample">Collapse</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                        </div>
+                        Card Body
+                        <div class="card-body collapse show" id="collapseYearly">
+                            <div class="chart-area">
+                                <table class="table table-responsive-xl table-hover">
+                                    <thead class="thead-dark" >
+                                        <tr>
+                                            <th scope="col">Year</th>
+                                            <th scope="col">MP</th>
+                                            <th scope="col">FGM</th>
+                                            <th scope="col">FGA</th>
+                                            <th scope="col">2PM</th>
+                                            <th scope="col">2PA</th>
+                                            <th scope="col">3PM</th>
+                                            <th scope="col">3PA</th>
+                                            <th scope="col">FTM</th>
+                                            <th scope="col">FTA</th>
+                                            <th scope="col">ORB</th>
+                                            <th scope="col">DRB</th>
+                                            <th scope="col">TRB</th>
+                                            <th scope="col">AST</th>
+                                            <th scope="col">STL</th>
+                                            <th scope="col">BLK</th>
+                                            <th scope="col">PF</th>
+                                            <th scope="col">PTS</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% player.yearlyTotals.forEach(function(year){ %>
+                                        <tr>
+                                            <td><%= year.year %></td>
+                                            <td><%= year.min %></td>
+                                            <td><%= year.fgm %></td>
+                                            <td><%= year.fga %></td>
+                                            <td><%= year.fgm - year.tpm %></td>
+                                            <td><%= year.fga - year.tpa %></td>
+                                            <td><%= year.tpm %></td>
+                                            <td><%= year.tpa %></td>
+                                            <td><%= year.ftm %></td>
+                                            <td><%= year.fta %></td>
+                                            <td><%= year.orb %></td>
+                                            <td><%= year.drb %></td>
+                                            <td><%= year.orb + year.drb %></td>
+                                            <td><%= year.ast %></td>
+                                            <td><%= year.stl %></td>
+                                            <td><%= year.blk %></td>
+                                            <td><%= year.to %></td>
+                                            <td><%= year.pts %></td>
+                                        </tr>
+                                        <% }); %>
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>Career</th>
+                                                <th><%= mp %></th>
+                                                <th><%= fgm %></th>
+                                                <th><%= fga %></th>
+                                                <th><%= fgm - tpm %></th>
+                                                <th><%= fga - tpa %></th>
+                                                <th><%= tpm %></th>
+                                                <th><%= tpa %></th>
+                                                <th><%= ftm %></th>
+                                                <th><%= fta %></th>
+                                                <th><%= orb %></th>
+                                                <th><%= drb %></th>
+                                                <th><%= orb + drb %></th>
+                                                <th><%= ast %></th>
+                                                <th><%= stl %></th>
+                                                <th><%= blk %></th>
+                                                <th><%= pf %></th>
+                                                <th><%= pts %></th>
+                                            </tr>
+                                        </thead>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+
+            <hr>
+            <div class="row">
+            <% player.comments.forEach(function(comment){ %>
+                <div class="col-md-12 mb-2">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <p class="float-right ml-2"><%= moment(comment.createdAt).fromNow() %></p>
+                            <a class="card-title" href="/users/<%= player.author.id %>"><%= comment.author.username %></a>
+                            <p class="card-text"><%= comment.text %></p>
+                            <div>
+                                <form action="/players/<%= player._id %>/comments/<%= comment._id %>/like" method="POST">
+                                    <div class="btn-group float-left text-center">
+                                        <% if (currentUser && comment.likes.some(function (like) {
+                                            return like.equals(currentUser._id)
+                                        })) { %>
+                                            <button class="btn btn-sm btn-primary">
+                                                <i class="fas fa-check-square like-btn mr-2"></i> Liked (<%= comment.likes.length %>)
+                                            </button>
+                                        <% } else { %>
+                                            <button class="btn btn-sm btn-secondary">
+                                                <i class="far fa-check-square like-btn mr-2"></i> Like (<%= comment.likes.length %>)
+                                            </button>
+                                        <% } %>
+                                    </div>
+                                </form>
+                                <% if(currentUser && player.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
+                                <div class="float-right">
+                                    <a class="btn btn-xs btn-warning" href="/players/<%=player._id%>/comments/<%=comment._id%>/edit">Edit</a>
+                                    <form id="delete-comment" action="/players/<%= player._id%>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                    </form>
+                                </div>
+                                <% }; %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>

@@ -7,10 +7,10 @@
     </div>  
 </div>
  <div class="container mt-3">
-     <header class="jumbotron shadow fade-in">
+     <header class="jumbotron dark-mode-jumbotron shadow fade-in">
          <div class="container">
-             <h1>Cyclones.  By The Numbers.</h1>
-             <p>Search player data:</p>
+             <h1 class="dark-mode-text">Cyclones.  By The Numbers.</h1>
+             <p class="dark-mode-text">Search player data:</p>
              <p>
                  <form action="/players" method="GET" class="form-inline">
                      <div class="form-group">
@@ -28,7 +28,7 @@
     <div class="row text-center">
         <% players.forEach(function(player){ %>
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                <div class="card shadow cyclone-card fade-in" data-aos="fade-up">
+                <div class="card shadow cyclone-card fade-in">
                     <img src="<%= player.image %>" id="playerCardImage" class="card-img-top" alt="<%= player.name %>">
                     <div class="card-body" id="playerCardBody">
                         <h5 class="card-title"><%= player.name %></h5>

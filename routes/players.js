@@ -40,66 +40,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-// READ - Player Search: Advanced Search
-router.get('/search', async (req, res) => {
-    try {
-        // Path: If user searches for a specific player, find players matching search term
-        if (req.query.search) {
-            // Default aggregation pipeline starting point
-            // $Search - uses default Atlas Search Index with a wildcard search
-            // $Project - limits returning payload & returns searchScore & highlights
-            let options = [
-                {
-                    $search: {
-                        index: 'default',
-                        text: {
-                            query: req.query.search,
-                            path: { wildcard: '*' },
-                        } /*,
-                        highlight: {path: "plot"}*/,
-                    },
-                },
-                {
-                    $project: {
-                        searchScore: { $meta: 'searchScore' },
-                        /*highlights: {$meta: "searchHighlights"},*/
-                        name: 1,
-                        position: 1,
-                        image: 1,
-                    },
-                },
-                { $limit: 30 },
-            ];
-
-            // Run aggregation using Atlas Search & return movies that match criteria
-            const foundPlayers = await Player.aggregate(options).exec();
-
-            // If no players are returned
-            if (foundPlayers.length < 1) {
-                return res.render('players/search', {
-                    players: foundPlayers,
-                    error: 'No match. Please try again.',
-                });
-            }
-
-            return res.render('players/search', {
-                players: foundPlayers,
-                query: req.query.search,
-            });
-        } else {
-            // Get search page entry point
-            res.render('players/search', {
-                players: {},
-                currentUser: req.user,
-            });
-        }
-    } catch (err) {
-        console.log(err);
-        res.status(500).send('An error occurred while retrieving players.');
-        res.redirect('players/index');
-    }
-});
-
 // Create - New Player: POST player
 router.post('/', middleware.isLoggedIn, async (req, res) => {
     try {
@@ -154,173 +94,120 @@ router.get('/new', middleware.isLoggedIn, function (req, res) {
     res.render('players/new');
 });
 
+
+// Read - Player Search: Advanced Search
+router.get('/search', async (req, res) => {
+    try {
+        // Path: If user searches for a specific player, find players matching search term
+        if (req.query.search) {
+            // $Search - uses default Atlas Search Index with a wildcard search
+            // $Project - limits returning payload & returns searchScore & highlights
+            let options = [
+                {
+                    $search: {
+                        index: 'default',
+                        text: {
+                            query: req.query.search,
+                            path: { wildcard: '*' },
+                        } /*,
+                        highlight: {path: "plot"}*/,
+                    },
+                },
+                {
+                    $project: {
+                        searchScore: { $meta: 'searchScore' },
+                        /*highlights: {$meta: "searchHighlights"},*/
+                        name: 1,
+                        position: 1,
+                        image: 1,
+                    },
+                },
+                { $limit: 30 },
+            ];
+
+            // Run aggregation using Atlas Search & return movies that match criteria
+            const foundPlayers = await Player.aggregate(options).exec();
+
+            // If no players are returned, flash a message
+            if (foundPlayers.length < 1) {
+                return res.render('players/search', {
+                    players: foundPlayers,
+                    error: 'No match. Please try again.',
+                });
+            }
+
+            // Render page with search results
+            return res.render('players/search', {
+                players: foundPlayers,
+                query: req.query.search,
+            });
+        } else {
+            // Get search page entry point
+            res.render('players/search', {
+                players: {},
+                currentUser: req.user,
+            });
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('An error occurred while retrieving players.');
+        res.redirect('players/index');
+    }
+});
+
 // PLAYER - SHOW: shows more info about one player
 router.get('/:id', async (req, res) => {
     try {
-        const searchedPlayer = await Player.findById(req.params.id)
+        // WIP - refactoring route to use async & offload calculations
+        const playerPage = await Player.findById(req.params.id);
+        res.render('players/show', { player: playerPage, /*currentUser: req.user*/ });
+        
+       /* const searchedPlayer = await Player.findById(req.params.id)
             .populate('comments')
             .exec((err, foundPlayer) => {
                 if (err) {
                     console.log(err);
                 } else {
-                    /*let pointAvg = foundPlayer.season.map(({ ppg }) => ppg);
 
-                let astAvg = foundPlayer.season.map(({ apg }) => apg);
-
-                let rebAvg = foundPlayer.season.map(({ rpg }) => rpg);
-
-                let pointTotal = foundPlayer.yearlyTotals.map(({ pts }) => pts);
-
-                let astTotal = foundPlayer.yearlyTotals.map(({ ast }) => ast);
-
-                let years = foundPlayer.season.map(({ grade }) => grade);
-
-                let gp = foundPlayer.season.map(({ gp }) => gp);
-
-                let gs = foundPlayer.season.map(({ gs }) => gs);
-
-                let totalGP = gp.reduce((a, b) => a + b, 0);
-
-                let totalGS = gs.reduce((a, b) => a + b, 0);
-
-                let minutes = foundPlayer.yearlyTotals.map(({ min }) => min);
-
-                let totalMP = minutes.reduce((a, b) => a + b, 0);
-
-                let fgMade = foundPlayer.yearlyTotals.map(({ fgm }) => fgm);
-
-                let totalFGM = fgMade.reduce((a, b) => a + b, 0);
-
-                let fgAtt = foundPlayer.yearlyTotals.map(({ fga }) => fga);
-
-                let totalFGA = fgAtt.reduce((a, b) => a + b, 0);
-
-                let tpAtt = foundPlayer.yearlyTotals.map(({ tpa }) => tpa);
-
-                let totalTPA = tpAtt.reduce((a, b) => a + b, 0);
-
-                let tpMade = foundPlayer.yearlyTotals.map(({ tpm }) => tpm);
-
-                let totalTPM = tpMade.reduce((a, b) => a + b, 0);
-
-                let ftAtt = foundPlayer.yearlyTotals.map(({ fta }) => fta);
-
-                let totalFTA = ftAtt.reduce((a, b) => a + b, 0);
-
-                let ftMade = foundPlayer.yearlyTotals.map(({ ftm }) => ftm);
-
-                let totalFTM = ftMade.reduce((a, b) => a + b, 0);
-
-                let orb = foundPlayer.yearlyTotals.map(({ orb }) => orb);
-
-                let totalORB = orb.reduce((a, b) => a + b, 0);
-
-                let drb = foundPlayer.yearlyTotals.map(({ drb }) => drb);
-
-                let totalDRB = drb.reduce((a, b) => a + b, 0);
-
-                let ast = foundPlayer.yearlyTotals.map(({ ast }) => ast);
-
-                let totalAST = ast.reduce((a, b) => a + b, 0);
-
-                let stl = foundPlayer.yearlyTotals.map(({ stl }) => stl);
-
-                let totalSTL = stl.reduce((a, b) => a + b, 0);
-
-                let blk = foundPlayer.yearlyTotals.map(({ blk }) => blk);
-
-                let totalBLK = blk.reduce((a, b) => a + b, 0);
-
-                let pf = foundPlayer.yearlyTotals.map(({ pf }) => pf);
-
-                let totalPF = pf.reduce((a, b) => a + b, 0);
-
-                let pts = foundPlayer.yearlyTotals.map(({ pts }) => pts);
-
-                let totalPTS = pts.reduce((a, b) => a + b, 0);
-
-                let mpgAvg = foundPlayer.season.map(({ mpg }) => mpg);
-
-                let avgMPG = [];
-
-                for (var i = 0; i < mpgAvg.length; i++) {
-                    avgMPG[i] = mpgAvg[i] * gp[i];
-                }
-
-                let careerMPGTemp = avgMPG.reduce((a, b) => a + b, 0);
-
-                let careerMPG = careerMPGTemp / totalGP;
-
-                let careerFG = totalFGM / totalFGA;
-
-                let careerTP = totalTPM / totalTPA;
-
-                let careerFT = totalFTM / totalFTA;
-
-                let careerRPG = (totalORB + totalDRB) / totalGP;
-
-                let careerAPG = totalAST / totalGP;
-
-                let careerSPG = totalSTL / totalGP;
-
-                let careerBPG = totalBLK / totalGP;
-
-                let careerPPG = totalPTS / totalGP; */
-                }
+                } 
 
                 //render show template with that campground
-                res.render('players/show', {
-                    player: foundPlayer /*,
-                pointAvgs: pointAvg,
-                astAvgs: astAvg,
-                rebAvgs: rebAvg,
-                pointTotals: pointTotal,
-                astTotals: astTotal,
-                yearTotals: years,
-                mpg: careerMPG,
-                gp: totalGP,
-                gs: totalGS,
-                mp: totalMP,
-                fgm: totalFGM,
-                fga: totalFGA,
-                tpa: totalTPA,
-                tpm: totalTPM,
-                fta: totalFTA,
-                ftm: totalFTM,
-                orb: totalORB,
-                drb: totalDRB,
-                ast: totalAST,
-                stl: totalSTL,
-                blk: totalBLK,
-                pf: totalPF,
-                pts: totalPTS,
-                careerFG: careerFG,
-                careerTP: careerTP,
-                careerFT: careerFT,
-                careerRPG: careerRPG,
-                careerAPG: careerAPG,
-                careerSPG: careerSPG,
-                careerBPG: careerBPG,
-                careerPPG: careerPPG,*/,
-                });
-            });
+                //res.render('players/show', {
+                /*    player: foundPlayer ,
+*/
+                //});
+            //});
         /*res.render('players/index', {
             players: allPlayers,
             currentUser: req.user,
         });*/
-    } catch (err) {}
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('An error occurred while retrieving players.');
+        res.redirect('players/index');
+    }
 });
 
-// EDIT Player
+// Read - Update Player: Render form
 router.get('/:id/edit', middleware.checkPlayerOwnership, function (req, res) {
     Player.findById(req.params.id, function (err, foundPlayer) {
         res.render('players/edit', { player: foundPlayer });
     });
 });
 
-// UPDATE Player
-router.put('/:id', middleware.checkPlayerOwnership, function (req, res) {
-    Player.findByIdAndUpdate(
+// Update - Update Player: PUT request
+// WIP - Add advanced stats on update
+router.put('/:id', middleware.checkPlayerOwnership, async (req, res) => {
+    try {
+        let updatePlayer = Player.findByIdAndUpdate(req.params.id, req.body.player);
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('An error occurre while updating players');
+        res.redirect('players/index');
+    }
+
+    /*Player.findByIdAndUpdate(
         req.params.id,
         req.body.player,
         function (err, updatedPlayer) {
@@ -330,7 +217,7 @@ router.put('/:id', middleware.checkPlayerOwnership, function (req, res) {
                 res.redirect('/players/' + req.params.id);
             }
         }
-    );
+    );*/
 });
 
 // DESTROY player
