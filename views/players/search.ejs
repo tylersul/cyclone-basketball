@@ -1,5 +1,7 @@
 <%- include('../partials/header') %>
+
  <div class="container mt-3">
+    <!-- Search Jumbotron -->
     <header class="jumbotron dark-mode-jumbotron shadow fade-in">
         <div class="container">
             <h1 class="dark-mode-text">Cyclones.  By The Numbers.</h1>
@@ -7,16 +9,32 @@
             <p>
                 <form action="/players/search" method="GET" class="form-inline">
                     <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                            <label class="input-group-text" for="searchType">Search Type:</label>
+                            </div>
+                            <select class="custom-select mr-2" id="searchType" name="searchType">
+                                <option value="all">All</option>
+                                <option value="name">Name</option>
+                                <option value="position">Position</option>
+                                <option value="hometown">Hometown</option>
+                            </select>
+                        </div>
                         <input type="text" name="search" placeholder="Player Search..." class="form-control">
                         <input type="submit" value="Search" class="btn btn-outline-secondary ml-2">
+                        <div class="form-check mx-3">
+                            <input class="form-check-input" type="checkbox" name="fuzzySearch" id="fuzzySearchCheckbox" value="true">
+                            <label class="form-check-label dark-mode-text" for="fuzzySearchCheckbox">Fuzzy search</label>
+                        </div>
                     </div>
                 </form>
             </p>
         </div>
     </header>
+
     <!-- Search Result Toggle -->
     <% if (typeof query !== 'undefined' && players.length > 1) { %>
-    <div class="row text-center" style="display: flex; flex-wrap: wrap; align-items: stretch;">
+    <div class="row text-center dark-mode-text" style="display: flex; flex-wrap: wrap; align-items: stretch;">
         <div class="col-md-12">
             <h5>Search Results:</h5>
         </div>
@@ -34,6 +52,8 @@
         </div>
     </div>
     <% } %>
+
+    <!-- Search Results -->
     <div class="row text-center">
         <% if (players.length > 0) { %>
         <% players.forEach((player) => { %>
@@ -51,4 +71,5 @@
         <% } %>
     </div>
 </div>
+
 <% include('../partials/footer') %> 
