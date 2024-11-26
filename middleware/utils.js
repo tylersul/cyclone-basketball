@@ -1,4 +1,4 @@
-let calculateCareerStats = (player) => {
+let calculateCareerStats = (foundPlayer) => {
     // Admin
     let years = foundPlayer.season.map(({ grade }) => grade);
 
@@ -8,7 +8,7 @@ let calculateCareerStats = (player) => {
     let totalGS = gs.reduce((a, b) => a + b, 0);
     let minutes = foundPlayer.yearlyTotals.map(({ min }) => min);
     let totalMP = minutes.reduce((a, b) => a + b, 0);
-    const totalGP = player.season.reduce((sum, { gp }) => sum + gp, 0);
+    const totalGP = foundPlayer.season.reduce((sum, { gp }) => sum + gp, 0);
     let fgMade = foundPlayer.yearlyTotals.map(({ fgm }) => fgm);
     let pointTotal = foundPlayer.yearlyTotals.map(({ pts }) => pts);
     let totalFGM = fgMade.reduce((a, b) => a + b, 0);
@@ -39,7 +39,7 @@ let calculateCareerStats = (player) => {
     let totalPTS = pts.reduce((a, b) => a + b, 0);
 
     // Averages
-    let pointAvg = player.season.map(({ ppg }) => ppg);
+    let pointAvg = foundPlayer.season.map(({ ppg }) => ppg);
     let astAvg = foundPlayer.season.map(({ apg }) => apg);
     let rebAvg = foundPlayer.season.map(({ rpg }) => rpg);
     let mpgAvg = foundPlayer.season.map(({ mpg }) => mpg);
@@ -60,40 +60,37 @@ let calculateCareerStats = (player) => {
 
     return {
         gp: totalGP,
-        mp: totalMP
+        mp: totalMP,
+        gs: totalGS,
+        careerFG: careerFG,
+        careerTP: careerTP,
+        careerFT: careerFT,
+        careerRPG: careerRPG,
+        careerAPG: careerAPG,
+        careerSPG: careerSPG,
+        careerBPG: careerBPG,
+        careerPPG: careerPPG,
+        mpg: careerMPG,
+        pointAvgs: pointAvg,
+        astAvgs: astAvg,
+        rebAvgs: rebAvg,
+        pointTotals: pointTotal,
+        astTotals: astTotal,
+        yearTotals: years,
+        fgm: totalFGM,
+        fga: totalFGA,
+        tpa: totalTPA,
+        tpm: totalTPM,
+        fta: totalFTA,
+        ftm: totalFTM,
+        orb: totalORB,
+        drb: totalDRB,
+        ast: totalAST,
+        stl: totalSTL,
+        blk: totalBLK,
+        // pf: totalPF,
+        pts: totalPTS
     }
-
-   /*pointAvgs: pointAvg,
-    astAvgs: astAvg,
-    rebAvgs: rebAvg,
-    pointTotals: pointTotal,
-    astTotals: astTotal,
-    yearTotals: years,
-    mpg: careerMPG,
-    gp: totalGP,
-    gs: totalGS,
-    mp: totalMP,
-    fgm: totalFGM,
-    fga: totalFGA,
-    tpa: totalTPA,
-    tpm: totalTPM,
-    fta: totalFTA,
-    ftm: totalFTM,
-    orb: totalORB,
-    drb: totalDRB,
-    ast: totalAST,
-    stl: totalSTL,
-    blk: totalBLK,
-    pf: totalPF,
-    pts: totalPTS,
-    careerFG: careerFG,
-    careerTP: careerTP,
-    careerFT: careerFT,
-    careerRPG: careerRPG,
-    careerAPG: careerAPG,
-    careerSPG: careerSPG,
-    careerBPG: careerBPG,
-    careerPPG: careerPPG,*/
 }
 
 module.exports = calculateCareerStats
