@@ -68,30 +68,34 @@ router.post('/register', function (req, res) {
 });
 
 /* ~~~~~~~~~~ Login ~~~~~~~~~~ */
+// GET - Render login form
 router.get('/login', function (req, res) {
     res.render('index/login');
 });
 
+// POST - Process login
 router.post(
     '/login',
     passport.authenticate('local', {
         failureRedirect: '/login',
     }),
-    function (req, res) {
-        User.findOneAndUpdate(
-            { username: req.user.username },
-            { lastLogin: Date.now() },
-            (err, data) => {
-                if (err) {
-                    console.log(err);
-                } else {
-                    res.redirect('/home');
-                }
-            }
-        );
+    async (req, res) => {
+        try {
+            // Update the lastLogin field for logged-in user
+            await User.findOneAndUpdate(
+                { username: req.user.username },
+                { lastLogin: Date.now() }
+            );
+            
+            res.redirect('/home'); // Redirect to homepage after successful login
+        } catch (err) {
+            console.log(err);
+            res.redirect('/login') // Redirect to login on error
+        }
     }
 );
 
+// GET - Logout process
 router.get('/logout', function (req, res) {
     req.logout();
     req.flash('success', 'You have successfully logged out.');
