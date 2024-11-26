@@ -12,12 +12,10 @@
                     <hr>
                     <p class="card-text"><%= player.description %></p>
                     <p><em>Submitted by:</em> <%= player.author.username %></p>
-                    <% if(currentUser && currentUser.isAdmin){ %>
                     <a class= "btn btn-warning" href="/players/<%= player._id %>/edit">Edit Player</a>
                     <form id="delete-form" action="/players/<%= player._id %>?_method=DELETE" method="POST">
                         <button class="btn btn-danger">Delete</button>
                     </form>
-                    <% } %>
                     <a class="btn-lg btn-secondary grow float-right" href="/players/<%= player._id %>/analytics"> Player Dashboard</a>
                 </div> 
             </div>
@@ -106,7 +104,46 @@
                                             <th scope="col">PPG</th>
                                         </tr>
                                     </thead>
-
+                                    <tbody>
+                                        <% player.season.forEach((season) => { %>
+                                        <tr>
+                                            <td><%= season.year %></td>
+                                            <td><%= season.grade %></td>
+                                            <td><%= season.gp %></td>
+                                            <td><%= season.gs %></td>
+                                            <td><%= season.mpg %></td>
+                                            <td><%= (season.fg * 100).toFixed(1) %></td>
+                                            <td><%= (season.tp * 100).toFixed(1) %></td>
+                                            <td><%= (season.ft * 100).toFixed(1) %></td>
+                                            <td><%= season.rpg %></td>
+                                            <td><%= season.apg %></td>
+                                            <td><%= season.spg %></td>
+                                            <td><%= season.bpg %></td>
+                                            <td><%= season.ppg %></td>
+                                        </tr>
+                                        <% }); %>
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>Career</th>
+                                                <% if (player.season.length > 1) { %>
+                                                <th><%= player.season.length %> Years</th>
+                                                <% } else { %>
+                                                <th><%= player.season.length %> Year</th>
+                                                <% } %>
+                                                <th><%= player.careerStats.gp %> </th>
+                                                <th><%= player.careerStats.gs %></th>
+                                                <th><%= player.careerStats.mpg.toFixed(1) %></th>
+                                                <th><%= (player.careerStats.careerFG * 100).toFixed(1) %></th>
+                                                <th><%= (player.careerStats.careerTP * 100).toFixed(1) %></th>
+                                                <th><%= (player.careerStats.careerFT * 100).toFixed(1)  %></th>
+                                                <th><%= player.careerStats.careerRPG.toFixed(1) %></th>
+                                                <th><%= player.careerStats.careerAPG.toFixed(1) %></th>
+                                                <th><%= player.careerStats.careerSPG.toFixed(1) %></th>
+                                                <th><%= player.careerStats.careerBPG.toFixed(1) %></th>
+                                                <th><%= player.careerStats.careerPPG.toFixed(1) %></th>
+                                            </tr>
+                                        </thead>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
