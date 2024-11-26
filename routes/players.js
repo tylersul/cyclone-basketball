@@ -3,9 +3,11 @@ let express = require('express'),
     Player = require('../models/player'),
     middleware = require('../middleware'); //don't need to add index.js because it's auto included
 
-//INDEX - show all players
-// TO DO - return flash message for empty search results
+const calculateCareerStats = require('../middleware/utils');
+
+// GET - show all players
 router.get('/', async (req, res) => {
+    // TO DO - return flash message for empty search results
     try {
         // Path: If user searches for a specific player, find players matching search term
         if (req.query.search) {
@@ -40,7 +42,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Create - New Player: POST player
+// POST - New Player: POST player
 router.post('/', middleware.isLoggedIn, async (req, res) => {
     try {
         // Destructure properties from req.body
@@ -89,7 +91,7 @@ router.post('/', middleware.isLoggedIn, async (req, res) => {
     }
 });
 
-// Create - New Player: GET Render Form
+// GET - New Player: GET Render Form
 router.get('/new', middleware.isLoggedIn, function (req, res) {
     res.render('players/new');
 });
@@ -125,6 +127,30 @@ router.get('/search', async (req, res) => {
                 { $limit: 30 },
             ];
 
+            // Fuzzy Search Toggle - based on user input from Search form checkbox
+            if (req.query.fuzzySearch) {
+                options[0].$search.text.fuzzy = {
+                  maxEdits: 2,
+                  prefixLength: 1
+                };
+            }
+
+            // Update $search fields based on selection
+            switch (req.query.searchType) {
+                case "name":
+                    options[0].$search.text.path = "name";
+                    break;
+                case "position":
+                    options[0].$search.text.path = "position";
+                    break;
+                case "hometown":
+                    options[0].$search.text.path = "hometown";
+                    break;
+                // add additional cases for other fields as needed
+                default:
+                    options[0].$search.text.path = { wildcard: '*' };
+            }
+
             // Run aggregation using Atlas Search & return movies that match criteria
             const foundPlayers = await Player.aggregate(options).exec();
 
@@ -158,29 +184,10 @@ router.get('/search', async (req, res) => {
 // PLAYER - SHOW: shows more info about one player
 router.get('/:id', async (req, res) => {
     try {
-        // WIP - refactoring route to use async & offload calculations
+        // WIP - only show delete / update buttons when admin is logged in 
         const playerPage = await Player.findById(req.params.id);
-        res.render('players/show', { player: playerPage, /*currentUser: req.user*/ });
-        
-       /* const searchedPlayer = await Player.findById(req.params.id)
-            .populate('comments')
-            .exec((err, foundPlayer) => {
-                if (err) {
-                    console.log(err);
-                } else {
-
-                } 
-
-                //render show template with that campground
-                //res.render('players/show', {
-                /*    player: foundPlayer ,
-*/
-                //});
-            //});
-        /*res.render('players/index', {
-            players: allPlayers,
-            currentUser: req.user,
-        });*/
+        res.render('players/show', { player: playerPage, currentUser: req.user });
+        console.log(req);
     } catch (err) {
         console.log(err);
         res.status(500).send('An error occurred while retrieving players.');
@@ -188,39 +195,49 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// Read - Update Player: Render form
-router.get('/:id/edit', middleware.checkPlayerOwnership, function (req, res) {
-    Player.findById(req.params.id, function (err, foundPlayer) {
-        res.render('players/edit', { player: foundPlayer });
-    });
+// GET - Update Player: Render form
+router.get('/:id/edit', /*middleware.checkPlayerOwnership,*/ async (req, res) => {
+    try {
+        let updatePlayer = await Player.findById(req.params.id);
+        if (!updatePlayer) {
+            return res.status(404).send('Player not found.');
+        }
+        
+        res.render('players/edit', {player: updatePlayer, currentUser: req.user});
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('An error occurred while updating players');
+    }
 });
 
 // Update - Update Player: PUT request
 // WIP - Add advanced stats on update
-router.put('/:id', middleware.checkPlayerOwnership, async (req, res) => {
+router.put('/:id', /*middleware.checkPlayerOwnership,*/ async (req, res) => {
     try {
-        let updatePlayer = Player.findByIdAndUpdate(req.params.id, req.body.player);
+        const updatePlayer = await Player.findById(req.params.id);
+
+        if (!updatePlayer) {
+            return res.status(404).send('Player not found.');
+        }
+
+        // Update player data
+        Object.assign(updatePlayer, req.body);
+
+        // Recalculate stats
+        const stats = calculateCareerStats(updatePlayer);
+        updatePlayer.careerStats = stats;
+
+        await updatePlayer.save();
+        res.redirect(`/players/${updatePlayer._id}`);
 
     } catch (err) {
         console.log(err);
-        res.status(500).send('An error occurre while updating players');
+        res.status(500).send('An error occurred while updating players');
         res.redirect('players/index');
     }
-
-    /*Player.findByIdAndUpdate(
-        req.params.id,
-        req.body.player,
-        function (err, updatedPlayer) {
-            if (err) {
-                res.redirect('/players');
-            } else {
-                res.redirect('/players/' + req.params.id);
-            }
-        }
-    );*/
 });
 
-// DESTROY player
+// DELETE - Remove player
 router.delete('/:id', middleware.checkPlayerOwnership, function (req, res) {
     Player.findByIdAndRemove(req.params.id, function (err) {
         if (err) {
