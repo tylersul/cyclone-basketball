@@ -1,4 +1,4 @@
-<% include ../partials/header %>
+<%- include('../partials/header') %>
     <div class="container">
         <div class="row">
             <div class="col-xl-6 col-lg-7 col-md-8 col-sm-10 mx-auto form p-4">
@@ -9,49 +9,49 @@
                 <div class="px-2 mb-4">
                     <form action="/players/<%= player._id %>?_method=PUT" method="POST" class="justify-content-center">
                         <div class="form-group mb-3">
-                            <label for="playerName">Player Name</label>
+                            <label for="playerName" class="dark-mode-text">Player Name</label>
                             <input class="form-control" type="text" id="playerName" name="player[name]" value="<%= player.name %>">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="firstName">Player Image</label>
+                            <label for="firstName" class="dark-mode-text">Player Image</label>
                             <input class="form-control" type="text" id="playerImage" name="player[image]" value="<%= player.image %>">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="playerPosition">Position</label>
+                            <label for="playerPosition" class="dark-mode-text">Position</label>
                             <input class="form-control" type="text" id="playerPosition" name="player[position]" value="<%= player.position %>">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="playerDescription">Description</label>
+                            <label for="playerDescription" class="dark-mode-text">Description</label>
                             <input class="form-control" type="text" id="playerDescription" name="player[description]" value="<%= player.description %>">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="playerDOB">Date of Birth</label>
+                            <label for="playerDOB" class="dark-mode-text">Date of Birth</label>
                             <input class="form-control" type="text" id="playerDOB" name="player[dob]" value="<%= player.dob %>">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="playerHometown">Hometown</label>
+                            <label for="playerHometown" class="dark-mode-text">Hometown</label>
                             <input class="form-control" type="text" id="playerHometown" name="player[hometown]" value="<%= player.hometown %>">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="playerCountryn">Country</label>
+                            <label for="playerCountryn" class="dark-mode-text">Country</label>
                             <input class="form-control" type="text" id="playerCountry" name="player[country]" value="<%= player.country %>">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="playerHeightFeet">Height (Total Feet)</label>
+                            <label for="playerHeightFeet" class="dark-mode-text">Height (Total Feet)</label>
                             <input class="form-control" type="text" id="playerHeightFeet" name="player[height_feet]" value="<%= player.height_feet %>">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="playerHeightInches">Height (Remaining Inches)</label>
+                            <label for="playerHeightInches" class="dark-mode-text">Height (Remaining Inches)</label>
                             <input class="form-control" type="text" id="playerHeightInches" name="player[height_inches]" value="<%= player.height_inches %>">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="playerWeight">Player Weight (LBs)</label>
+                            <label for="playerWeight" class="dark-mode-text">Player Weight (LBs)</label>
                             <input class="form-control" type="text" id="playerWeight" name="player[weight]" value="<%= player.weight %>">
                         </div>
                         <div class="form-group text-center">
                             <button class="btn btn-lg btn-primary btn-block">Submit!</button>
                             <div class="form-signin">
-                                <a href="/admin/players">Go Back</a>
+                                <a href="/admin/players" class="dark-mode-text">Go Back</a>
                             </div>
                         </div>
                     </form>
@@ -59,4 +59,4 @@
             </div>
         </div>
     </div>
-<% include ../partials/footer %>
+    <%- include('../partials/footer') %>
