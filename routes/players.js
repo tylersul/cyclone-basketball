@@ -113,11 +113,13 @@ router.get('/search', async (req, res) => {
                             path: { wildcard: '*' },
                         } /*,
                         highlight: {path: "plot"}*/,
+                        scoreDetails: true
                     },
                 },
                 {
                     $project: {
                         searchScore: { $meta: 'searchScore' },
+                        scoreDetails: {$meta: 'searchScoreDetails'},
                         /*highlights: {$meta: "searchHighlights"},*/
                         name: 1,
                         position: 1,
@@ -161,6 +163,8 @@ router.get('/search', async (req, res) => {
                     error: 'No match. Please try again.',
                 });
             }
+
+            console.log(foundPlayers[0].scoreDetails.details[0].details[0]);
 
             // Render page with search results
             return res.render('players/search', {
