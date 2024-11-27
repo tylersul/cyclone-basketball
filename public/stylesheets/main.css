@@ -11,15 +11,16 @@ body {
     background-color: #181818;
 }
 
-a {
-    color: #000;
-}
 
 .dark-mode-text {
     color: #DDDDDD;
 }
 
 .dark-mode-jumbotron {
+    background-color: #35383A;
+}
+
+.dark-mode-collapse-card {
     background-color: #35383A;
 }
 
@@ -208,13 +209,13 @@ a {
     width: 200px;
 }
 
-/* PLAYER - Show All */
+/* PLAYER CARDS */
 .cyclone-card {
     background-color: #35383a;
     color: #dddddd;
 }
 .cyclone-card:hover {
-    transform: scale(1.1); /* Card becomes 10% bigger on hover */
+    transform: scale(1.05); /* Card becomes 10% bigger on hover */
     background-color: #951010; /* Card background to Cardinal */
     color: #fff; /* Card text to white */
     transition: transform 0.2s; /* Eased transition for smoother look */
