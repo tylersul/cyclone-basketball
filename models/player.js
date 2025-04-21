@@ -17,6 +17,7 @@ let playerSchema = new mongoose.Schema({
     dob: Date,
     hometown: String,
     country: String,
+    summary: String,
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,
@@ -145,6 +146,7 @@ let playerSchema = new mongoose.Schema({
         careerBPG: Number,
         careerPPG: Number,
     },
+    embedding: [Number],
     comments: [
         {
             // An array of comment IDs
