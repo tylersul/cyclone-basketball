@@ -1,8 +1,10 @@
 let express = require('express'),
     router = express.Router(),
+    axios = require('axios'),
     Player = require('../models/player'),
     middleware = require('../middleware'); //don't need to add index.js because it's auto included
 
+const _ = require('passport-local-mongoose');
 const calculateCareerStats = require('../middleware/utils');
 
 // GET - show all players
@@ -241,7 +243,7 @@ router.put('/:id', /*middleware.checkPlayerOwnership,*/ async (req, res) => {
     }
 });
 
-// DELETE - Remove player
+// DELETE - Remove player: DELETE request
 router.delete('/:id', middleware.checkPlayerOwnership, function (req, res) {
     Player.findByIdAndRemove(req.params.id, function (err) {
         if (err) {
@@ -250,6 +252,42 @@ router.delete('/:id', middleware.checkPlayerOwnership, function (req, res) {
             res.redirect('/players');
         }
     });
+});
+
+// CREATE - Add Embeddings: POST request
+router.post('/:id/embedding', async (req, res) => {
+    try {
+        const player = await Player.findById(req.params.id);
+        if (!player) return res.status(404).send('Player not found.');
+
+        async function getEmbeddingFromAzure(text) {
+            const response = await axios.post(
+              'https://sa-hackathon-remote2-team.openai.azure.com/openai/deployments/text-embedding-3-small/embeddings?api-version=2024-10-21',
+              { input: text },
+              {
+                headers: {
+                  'api-key': process.env.OPENAI_API_KEY,
+                  'Content-Type': 'application/json'
+                }
+              }
+            );
+            return response.data.data[0].embedding;
+        };
+
+        if (!player.summary || player.summary.trim() === '') {
+            console.error('Player summary is missing or empty:', player.summary);
+            return res.status(400).send('Cannot embed an empty summary.');
+        }
+
+        const embedding = await getEmbeddingFromAzure(player.summary);
+        player.embedding = embedding;
+        await player.save();
+
+        res.redirect(`/players/${player._id}`);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Failed to generate embedding');
+    }
 });
 
 // Player Analytics
