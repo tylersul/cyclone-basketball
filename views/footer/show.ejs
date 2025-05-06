@@ -1,0 +1,79 @@
+<% include ../partials/header %> 
+<div class="bg-grey">
+    <div class="container">
+        <div class="row justify-content-center py-4">
+            <div class="col-12 col-md-12">
+                <h1 class="display-4 text-center"><%= blog.title %></h1>
+                <p class="lead text-center text-muted"><%= blog.subheader %></p>
+                <% if (currentUser && currentUser.isAdmin) { %>
+                    <a href="/blog/<%= blog._id %>/edit" class="btn btn-warning">Edit Blog</a>
+                    <form id="delete-form" action="/blog/<%= blog._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                <% } %>
+            </div>
+        </div>
+        <div class="row border-top border-bottom mb-4 align-items-center">
+            <div class="col-9 pt-4">
+                <h6 class="text-uppercase"><%= blog.author.username %></h6>
+                <p class="text-muted">Published on: <%= blog.createdAt.toString().substring(4, 15) %></p>
+            </div>
+            <div class="col-3 pl-4">
+                <span class="h6 text-uppercase d-none d-md-inline mr-4">Share:</span>
+                <ul class="d-inline list-inline">
+                    <li class="list-inline-item">
+                        <a href="#" class="text-decoration-none mr-3"><i class="fab fa-lg fa-instagram grow"></i></a>
+                        <a href="#" class="mr-3"><i class="fab fa-lg fa-twitter grow"></i></a>
+                        <a href="#" class="mr-3"><i class="fab fa-lg fa-facebook grow"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <img src="<%= blog.headerImage %>" class="img-fluid rounded shadow-sm my-3">
+            </div>
+        </div>
+    </div>
+    <div class="container pb-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10">
+                <p><%- blog.content %></p>
+            </div>
+        </div>
+        <div class="row border-top">
+            <div class="col-12">
+                <p class="text-muted mt-3">Last Updated: <%= blog.updatedAt.toString().substring(4, 15) %></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bg-gray">
+    <div class="container">
+        <div class="row mb-3 pt-5 border-top">
+            <div class="col-12 col-md">
+                <h3>Latest Stories</h3>
+                <p class="text-muted flex-right">Here's what we've been up to recently:</p>
+            </div>
+            <div class="col-12 col-md-auto pt-3">
+                <a href="/blog" class="btn btn-outline-primary btn-lg">View All</a>
+            </div>
+        </div>
+        <div class="row mb-4 pb-3">
+            <% recent.forEach(function(recentBlog) { %>
+                <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
+                    <div class="card shadow lift justify-content-center">
+                        <a href="/blog/<%= recentBlog._id %>" class="stretched-link"></a>
+                        <img src="<%= recentBlog.headerImage %>" id="playerCardImage" class="card-img-top" alt="<%= recentBlog.title %>">
+                        <div class="card-body" id="playerCardBody">
+                            <h5 class="card-title text-center"><%= recentBlog.title %></h5>
+                            <hr>
+                            <h5 class="card-title text-center text-uppercase"><%= recentBlog.author.username %> - <%= recentBlog.createdAt.toString().substring(4, 10) %></h5>
+                        </div>
+                    </div>  
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %> 

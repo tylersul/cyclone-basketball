@@ -1,0 +1,36 @@
+<% include ../partials/header %>
+
+ <div class="container">
+     <header class="jumbotron shadow">
+         <div class="container">
+             <h1>Cyclones.  By The Numbers.</h1>
+             <p>View our growing player database:</p>
+             <p>
+                <a class="btn btn-large btn-cyclone" href="/seasons/new">Add New Season</a>
+             </p>
+             <p>
+                 <form action="/seasons" method="GET" class="form-inline">
+                     <div class="form-group">
+                         <input type="text" name="search" placeholder="Season Search..." class="form-control mr-2">
+                         <input type="submit" value="Search" class="btn btn-cyclone">
+                     </div>
+                 </form>
+             </p>
+         </div>
+     </header>
+    <div class="row text-center">
+        <% seasons.forEach(function(season){ %>
+            <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
+                <div class="card shadow cyclone-card">
+                    <img src="<%= season.image %>" id="playerCardImage" class="card-img-top" alt="<%= season.year %>">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= season.year %></h5>
+                        <a href="/seasons/<%= season._id %>" class="btn btn-cyclone">More Info</a>
+                    </div>
+                </div>  
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<% include ../partials/footer %>

@@ -1,0 +1,47 @@
+<%- include('../partials/header') %>
+<div class="jumbotron position-relative p-md-5 mx-3 text-center shadow animate__animated animate__backInDown" id="homeJumbotron">
+    <div class="col-md-5 col-sm-12 p-lg-5 mx-auto my-4">
+        <h1 class="display-3 font-weight-bold jumbotron-title text-responsive" id="playerJumbotron">Analytics Dashboards... Inbound</h1>
+        <p class="lead font-weight-normal">We're teaming with the Iowa State Men's Basketball program to take their team to the next level.</p>
+        <a class="btn btn-outline-secondary" href="#">Coming soon</a>
+    </div>  
+</div>
+ <div class="container mt-3">
+     <header class="jumbotron dark-mode-jumbotron shadow fade-in">
+         <div class="container">
+             <h1 class="dark-mode-text">Cyclones.  By The Numbers.</h1>
+             <p class="dark-mode-text">Search player data:</p>
+             <p>
+                 <form action="/players" method="GET" class="form-inline">
+                     <div class="form-group">
+                         <input type="text" name="search" placeholder="Player Search..." class="form-control">
+                         <input type="submit" value="Search" class="btn btn-outline-secondary ml-2">
+                     </div>
+                 </form>
+             </p>
+             <p>
+                <a class="btn btn-cyclone btn-large grow" href="/players/search">Advanced Search</a>
+                <a class="btn btn-cyclone btn-large grow" href="/players/new">Add New Player</a>
+             </p>
+         </div>
+     </header>
+    <div class="row text-center">
+        <% players.forEach(function(player){ %>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card shadow cyclone-card fade-in">
+                    <img src="<%= player.image %>" id="playerCardImage" class="card-img-top" alt="<%= player.name %>">
+                    <div class="card-body" id="playerCardBody">
+                        <h5 class="card-title"><%= player.name %></h5>
+                        <h5 class="card-title"><%= player.position %></h5>
+                        <a href="/players/<%= player._id %>" class="btn btn-cyclone">More Info</a>
+                    </div>
+                </div>  
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<% include('../partials/footer') %>
+<script>
+    AOS.init();
+</script>
