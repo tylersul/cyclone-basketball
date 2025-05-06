@@ -10,7 +10,7 @@ let express = require('express'), // ExpressJS module 'Express' for Node web fra
     crypto = require('crypto'),
     //  https      = require("https"),              // Unused atm - will research
     middleware = require('../middleware'),
-    User = require('../models/user');
+    User = require('../src/models/user');
 
 // ================================================================== //
 // ====================== Routes ==================================== //

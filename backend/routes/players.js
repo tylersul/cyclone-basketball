@@ -1,7 +1,7 @@
 let express = require('express'),
     router = express.Router(),
     axios = require('axios'),
-    Player = require('../models/player'),
+    Player = require('../src/models/player'),
     middleware = require('../middleware'); //don't need to add index.js because it's auto included
 
 const _ = require('passport-local-mongoose');
