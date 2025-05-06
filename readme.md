@@ -1,6 +1,6 @@
 # :tornado: [Cyclone Basketball Analytics](http://cycloneanalytics.herokuapp.com/) :tornado:
 
-Full stack NodeJS web application with a growing database of Iowa State Men's basketball players and an ever-evolving set of advanced analytics tools.
+Full stack NodeJS web application with a growing database of Iowa State Men's basketball players.
 
 ![Website](https://img.shields.io/website?down_color=red&down_message=offline&up_color=brightgreen&up_message=online&url=https%3A%2F%2Fcycloneanalytics.herokuapp.com)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/c76fdc8c5b7c44c28af5cb68360639bd)](https://www.codacy.com/gh/tylersul/express-cyclone-analytics-web-app/dashboard?utm_source=github.com&utm_medium=referral&utm_content=tylersul/express-cyclone-analytics-web-app&utm_campaign=Badge_Grade)
@@ -12,7 +12,7 @@ Full stack NodeJS web application with a growing database of Iowa State Men's ba
 
 ## Lessons Learned :bulb:
 
--   First full-stack web app
+-   Full-stack web app
 -   Introduction to [Express.js](https://expressjs.com/) Node web framework
 -   Introduction to [Bootstrap](https://getbootstrap.com/) responsive front-end web design
 -   Application deployment using [Heroku](https://www.heroku.com/) and database deployment to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
@@ -28,7 +28,7 @@ Full stack NodeJS web application with a growing database of Iowa State Men's ba
 | HTML5       |  Node.js   | MongoDB  |    Heroku     |  Jest   |
 | CSS3        | Express.js | Mongoose | MongoDB Atlas | Codacy  |
 | Javascript  |    EJS     |    -     |    GitHub     |    -    |
-| Bootstrap 4 |     -      |    -     |       -       |    -    |
+| Bootstrap 4 |  Open AI   |    -     |       -       |    -    |
 
 &nbsp;
 &nbsp;
@@ -43,6 +43,8 @@ Full stack NodeJS web application with a growing database of Iowa State Men's ba
 
 -   RESTful routing
 -   Authentication and authorization: User sign-up & login, administrator management role
+-   Full-text Search: Using Lucene-based Atlas search
+-   Semantic Search: Player summaries embedded via Open AI text-embedding-3-small model
 
 ## Code Standards and Best Practices
 
