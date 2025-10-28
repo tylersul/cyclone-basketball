@@ -3,8 +3,8 @@
 // ================================================================== //
 let express = require('express'),
     router = express.Router(),
-    Player = require('../src/models/player'),
-    Comment = require('../src/models/comment'),
+    Player = require('../models/player'),
+    Comment = require('../models/comment'),
     middleware = require('../middleware'); //don't need to add index.js because it's auto included
 
 // ================================================================== //

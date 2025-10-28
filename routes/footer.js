@@ -6,7 +6,7 @@ let express = require('express'), // ExpressJS module 'Express' for Node web fra
     router = express.Router(),
     //  passport   = require("passport"),             // Not used ATM - will do research
     https = require('https'),
-    Blog = require('../src/models/blog');
+    Blog = require('../models/blog');
 
 // ================================================================== //
 // ====================== Routes ==================================== //

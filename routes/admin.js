@@ -6,8 +6,8 @@ const express = require('express'), // ExpressJS module 'Express' for Node web f
     router = express.Router(),
     passport = require('passport'),
     middleware = require('../middleware'),
-    Player = require('../src/models/player');
-User = require('../src/models/user');
+    Player = require('../models/player');
+User = require('../models/user');
 
 // ================================================================== //
 // ====================== Routes ==================================== //

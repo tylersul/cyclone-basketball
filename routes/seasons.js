@@ -3,7 +3,7 @@
 // ================================================================== //
 let express = require('express'),
     router = express.Router(),
-    Season = require('../src/models/season'),
+    Season = require('../models/season'),
     middleware = require('../middleware'); //don't need to add index.js because it's auto included
 
 // ================================================================== //
