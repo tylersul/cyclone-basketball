@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
-var Player = require('./models/player');
-var Comment = require('./models/comment');
+var Player = require('./app/models/player');
+var Comment = require('./app/models/comment');
 
 // See data for 3 separate players, input into the DB at app startup
 var data = [

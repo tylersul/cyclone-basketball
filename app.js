@@ -15,18 +15,18 @@ const express = require('express'), // ExpressJS module 'Express' for Node web f
     moment = require('moment'), // Dynamic times in Javascript
     LocalStrategy = require('passport-local'), // Passport strategy for authenticating w/ username and password
     methodOverride = require('method-override'), // Middleware for requests from clients that only support simple HTTP verbs like GET & POST
-    Player = require('./src/models/player'), // Import custom 'player' model for use in Mongoose
-    Comment = require('./src/models/comment'), // Import custom 'comment' model for use in Mongoose
-    User = require('./src/models/user'), // Import custom 'user' model for use in Mongoose
-    // seedDB = require('./seeds'), // Import seeDB custom function to fill empty MongoDB with test data
+    Player = require('./app/models/player'), // Import custom 'player' model for use in Mongoose
+    Comment = require('./app/models/comment'), // Import custom 'comment' model for use in Mongoose
+    User = require('./app/models/user'), // Import custom 'user' model for use in Mongoose
+    seedDB = require('./seeds'), // Import seeDB custom function to fill empty MongoDB with test data
     port = process.env.PORT; // Set Port exposed constant to 3000 for localhost
 
-const commentRoutes = require('./routes/comments'), // These lines import routes from the
-    playerRoutes = require('./routes/players'), //   separate directory to make the code more
-    indexRoutes = require('./routes/index'), //   modular and scale easier as more are added
-    footerRoutes = require('./routes/footer'),
-    seasonRoutes = require('./routes/seasons'),
-    adminRoutes = require('./routes/admin');
+const commentRoutes = require('./app/routes/comments'), // These  three lines import routes from the
+    playerRoutes = require('./app/routes/players'), //   separate directory to make the code more
+    indexRoutes = require('./app/routes/index'), //   modular and scale easier as more are added
+    footerRoutes = require('./app/routes/footer'),
+    seasonRoutes = require('./app/routes/seasons'),
+    adminRoutes = require('./app/routes/admin');
 
 // ================================================================== //
 // ====================== Backend Connection ======================== //
@@ -54,6 +54,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Views directory in app is where template files are located
 // View engine is template to use & after being set, don't have to specify the engine
 // Set the View Engine to EJS, allows removal of .ejs file extension references in application
+app.set('views', './app/views');
 app.set('view engine', 'ejs');
 
 // Express.Static middleware function that serves static files in Express
@@ -82,9 +83,31 @@ app.locals.moment = require('moment');
 // Sessions allow users to be identified with unique sessions and store user state
 app.use(
     session({
-        secret: 'Franchise is the best.', // Secret is only required param that is a unique string for app
-        resave: false, // Forces the session to be saved back to session store, but not with false
-        saveUninitialized: false, // Forces a session that is uninitialized to be save to store, not with false
+        // Encryption key for signing the session ID cookie
+        // Should be a long, unique, and secret string to prevent session hijacking
+        secret: process.env.SESSION_SECRET || 'fallback_secret_for_development',
+        
+        // 'resave' forces the session to be saved back to the session store
+        // Even if the session was never modified during the request
+        // Setting to false helps prevent unnecessary session store writes
+        resave: false,
+        
+        // 'saveUninitialized' forces a session that is 'uninitialized' to be saved to the store
+        // A session is uninitialized when it is new but not modified
+        // Setting to false helps comply with privacy laws by not creating sessions for non-logged in users
+        saveUninitialized: false,
+        
+        // Cookie-specific settings for the session
+        cookie: {
+            // 'secure' ensures the cookie is only sent over HTTPS in production
+            // Protects against man-in-the-middle attacks
+            secure: process.env.NODE_ENV === 'production',
+            
+            // 'maxAge' sets the expiration time for the cookie
+            // Here set to 24 hours (in milliseconds)
+            // Helps manage session lifetime and security
+            maxAge: 24 * 60 * 60 * 1000
+        }
     })
 );
 
