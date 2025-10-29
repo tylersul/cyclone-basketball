@@ -1,5 +1,6 @@
-require('dotenv').config(); // Environment variables
-
+/* ====================== Environment Configuration ======================== */
+require('dotenv').config(); 
+if (!process.env.DATABASE_CONNECTION_STRING) throw new Error('Missing DB URI');
 
 /* ====================== Variable Instantiation ==================== */
 const express = require('express'),                 // ExpressJS module 'Express' for Node web framework
@@ -25,19 +26,14 @@ const commentRoutes = require('./routes/comments'), // These  three lines import
     seasonRoutes = require('./routes/seasons'),
     adminRoutes = require('./routes/admin');
 
-// ================================================================== //
-// ====================== Backend Connection ======================== //
-// ================================================================== //
+/* ====================== Backend Connection ======================== */
 // Local Mongo Instance Connection - configued in env file
 // MongoDB Atlas Connection for Cloud-based app
-// Env Variable set within Atlas, but can be set for local connection as well
 mongoose.connect(process.env.DATABASE_CONNECTION_STRING, {
   dbName: 'cyclone-basketball',
   serverSelectionTimeoutMS: 10000,
   socketTimeoutMS: 20000,
 });
-console.log('Connected host:', mongoose.connection);
-console.log('Using db:', mongoose.connection.name);
 
 // ================================================================== //
 // ====================== Middleware ================================ //
