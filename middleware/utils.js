@@ -1,3 +1,5 @@
+const axios = require('axios');
+
 let calculateCareerStats = (foundPlayer) => {
     // Admin
     let years = foundPlayer.season.map(({ grade }) => grade);
@@ -93,4 +95,21 @@ let calculateCareerStats = (foundPlayer) => {
     }
 }
 
-module.exports = calculateCareerStats
+const getEmbeddingFromAzure = async (text) => {
+    const response = await axios.post(
+        process.env.AZURE_OPENAI_ENDPOINT,
+        { input: text },
+        {
+            headers: {
+                'api-key': process.env.OPENAI_API_KEY,
+                'Content-Type': 'application/json'
+            }
+        }
+    );
+    return response.data.data[0].embedding;
+};
+
+module.exports = {
+    calculateCareerStats,
+    getEmbeddingFromAzure
+}
