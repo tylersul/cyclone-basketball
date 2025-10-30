@@ -12,6 +12,7 @@
                     <hr>
                     <p class="card-text"><%= player.description %></p>
                     <p><em>Submitted by:</em> <%= player.author.username %></p>
+                    <p class="card-text"><%= player.summary %></p>
                     <a class= "btn btn-warning" href="/players/<%= player._id %>/edit">Edit Player</a>
                     <form id="delete-form" action="/players/<%= player._id %>?_method=DELETE" method="POST">
                         <button class="btn btn-danger">Delete</button>
