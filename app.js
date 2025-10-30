@@ -35,9 +35,7 @@ mongoose.connect(process.env.DATABASE_CONNECTION_STRING, {
   socketTimeoutMS: 20000,
 });
 
-// ================================================================== //
-// ====================== Middleware ================================ //
-// ================================================================== //
+/* ====================== Middleware ================================ */
 // App.Use loads a function to be used as middleware
 // Express understands functions as middleware with the following signature:
 //    function(request, response, next) {}
