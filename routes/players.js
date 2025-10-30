@@ -2,10 +2,10 @@ let express = require('express'),
     router = express.Router(),
     axios = require('axios'),
     Player = require('../models/player'),
-    middleware = require('../middleware'); //don't need to add index.js because it's auto included
+    middleware = require('../middleware'); 
 
 const _ = require('passport-local-mongoose');
-const calculateCareerStats = require('../middleware/utils');
+const { calculateCareerStats, getEmbeddingFromAzure } = require('../middleware/utils');
 
 // GET - show all players
 router.get('/', async (req, res) => {
@@ -32,6 +32,8 @@ router.get('/', async (req, res) => {
         } else {
             // Get all players from DB
             const allPlayers = await Player.find({}).sort('name').exec();
+
+            // Render players page with all players from DB
             res.render('players/index', {
                 players: allPlayers,
                 currentUser: req.user,
@@ -44,8 +46,8 @@ router.get('/', async (req, res) => {
     }
 });
 
-// POST - New Player: POST player
-router.post('/', middleware.isLoggedIn, async (req, res) => {
+// POST - New Player: Create player
+router.post('/', /*middleware.isLoggedIn,*/ async (req, res) => {
     try {
         // Destructure properties from req.body
         const {
@@ -64,7 +66,7 @@ router.post('/', middleware.isLoggedIn, async (req, res) => {
         // Create author object from req.user
         const author = {
             id: req.user._id,
-            username: req.user.username,
+            username: req.user.username
         };
 
         // Combine properties into new player object
@@ -81,6 +83,7 @@ router.post('/', middleware.isLoggedIn, async (req, res) => {
             height_inches,
             weight,
         };
+        console.log(newPlayer);
 
         // Insert new player to database
         const newlyCreated = await Player.create(newPlayer);
@@ -94,14 +97,62 @@ router.post('/', middleware.isLoggedIn, async (req, res) => {
 });
 
 // GET - New Player: GET Render Form
-router.get('/new', middleware.isLoggedIn, function (req, res) {
+router.get('/new', /*middleware.isLoggedIn,*/(req, res) => {
     res.render('players/new');
 });
 
 
-// Read - Player Search: Advanced Search
+// GET - Player Search: Advanced Search
 router.get('/search', async (req, res) => {
     try {
+        // Support both ?q= and ?search=
+        const q = (req.query.q || req.query.search || '').trim();
+        const mode = (req.query.mode || 'lexical').toLowerCase();
+
+        // Entry Point: Semantic Search Mode selection
+        if (mode === 'semantic' && q) {
+
+            // Get query embedding from Azure helper
+            const queryEmbedding = await getEmbeddingFromAzure(q);
+            console.log("Embeddings:" + queryEmbedding);
+
+            // 2) Run Atlas Vector Search
+            const results = await Player.aggregate([
+                {
+                    $vectorSearch: {
+                        index: 'vector_index',   // <-- your AVS index name
+                        path: 'embedding',       // <-- your embedding field
+                        queryVector: queryEmbedding,
+                        numCandidates: 200,      // tune for recall/speed
+                        limit: 30
+                    }
+                },
+                {
+                    $project: {
+                        name: 1,
+                        position: 1,
+                        image: 1,
+                        description: 1,
+                        semanticScore: { $meta: 'vectorSearchScore' }
+                    }
+                }
+            ]).exec();
+
+            if (results.length < 1) {
+                return res.render('players/search', {
+                    players: results,
+                    error: 'No semantic matches. Try rephrasing.',
+                    query: q,
+                    mode
+                });
+            }
+
+            return res.render('players/search', {
+                players: results,
+                query: q,
+                mode
+            });
+        }
         // Path: If user searches for a specific player, find players matching search term
         if (req.query.search) {
             // $Search - uses default Atlas Search Index with a wildcard search
@@ -121,7 +172,7 @@ router.get('/search', async (req, res) => {
                 {
                     $project: {
                         searchScore: { $meta: 'searchScore' },
-                        scoreDetails: {$meta: 'searchScoreDetails'},
+                        scoreDetails: { $meta: 'searchScoreDetails' },
                         /*highlights: {$meta: "searchHighlights"},*/
                         name: 1,
                         position: 1,
@@ -134,8 +185,8 @@ router.get('/search', async (req, res) => {
             // Fuzzy Search Toggle - based on user input from Search form checkbox
             if (req.query.fuzzySearch) {
                 options[0].$search.text.fuzzy = {
-                  maxEdits: 2,
-                  prefixLength: 1
+                    maxEdits: 2,
+                    prefixLength: 1
                 };
             }
 
@@ -166,8 +217,6 @@ router.get('/search', async (req, res) => {
                 });
             }
 
-            console.log(foundPlayers[0].scoreDetails.details[0].details[0]);
-
             // Render page with search results
             return res.render('players/search', {
                 players: foundPlayers,
@@ -193,7 +242,7 @@ router.get('/:id', async (req, res) => {
         // WIP - only show delete / update buttons when admin is logged in 
         const playerPage = await Player.findById(req.params.id);
         res.render('players/show', { player: playerPage, currentUser: req.user });
-        console.log(req);
+
     } catch (err) {
         console.log(err);
         res.status(500).send('An error occurred while retrieving players.');
@@ -208,15 +257,15 @@ router.get('/:id/edit', /*middleware.checkPlayerOwnership,*/ async (req, res) =>
         if (!updatePlayer) {
             return res.status(404).send('Player not found.');
         }
-        
-        res.render('players/edit', {player: updatePlayer, currentUser: req.user});
+
+        res.render('players/edit', { player: updatePlayer, currentUser: req.user });
     } catch (err) {
         console.log(err);
         res.status(500).send('An error occurred while updating players');
     }
 });
 
-// Update - Update Player: PUT request
+// PUT - Update Player Information
 // WIP - Add advanced stats on update
 router.put('/:id', /*middleware.checkPlayerOwnership,*/ async (req, res) => {
     try {
@@ -259,20 +308,6 @@ router.post('/:id/embedding', async (req, res) => {
     try {
         const player = await Player.findById(req.params.id);
         if (!player) return res.status(404).send('Player not found.');
-
-        async function getEmbeddingFromAzure(text) {
-            const response = await axios.post(
-              'https://sa-hackathon-remote2-team.openai.azure.com/openai/deployments/text-embedding-3-small/embeddings?api-version=2024-10-21',
-              { input: text },
-              {
-                headers: {
-                  'api-key': process.env.OPENAI_API_KEY,
-                  'Content-Type': 'application/json'
-                }
-              }
-            );
-            return response.data.data[0].embedding;
-        };
 
         if (!player.summary || player.summary.trim() === '') {
             console.error('Player summary is missing or empty:', player.summary);
