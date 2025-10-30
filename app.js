@@ -138,9 +138,8 @@ app.get('*', function (req, res) {
     res.send('What???', 404);
 });
 
-// ================================================================== //
+
 // ====================== Listeners ================================= //
-// ================================================================== //
 // Localhost listener using Port constant defined above
 //app.listen(port, () => console.log(`HTML app listening at http://localhost:${port}`));
 
