@@ -2,46 +2,70 @@
 
  <div class="container mt-3">
     <!-- Search Jumbotron -->
-    <header class="jumbotron dark-mode-jumbotron shadow fade-in">
-        <div class="container">
-            <h1 class="dark-mode-text">Cyclones.  By The Numbers.</h1>
-            <p class="dark-mode-text">Powered by <strong>MongoDB Atlas Search & Vector Search </strong><i class="fa-brands fa-envira mongodb-color-scheme"></i></p>
-            <p>
-                <form action="/players/search" method="GET" class="form-inline">
-                    <div class="form-group">
-                        <!-- Search Fields Configuration -->
-                        <div class="input-group mr-2">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="searchType">Search Type:</label>
-                            </div>
-                            <select class="custom-select" id="searchType" name="searchType">
-                                <option value="all">All</option>
-                                <option value="name">Name</option>
-                                <option value="position">Position</option>
-                                <option value="hometown">Hometown</option>
-                            </select>
-                        </div>
-                        <!-- Search Mode -->
-                        <div class="input-group mr-2">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="mode">Mode:</label>
-                            </div>
-                            <select class="custom-select" id="mode" name="mode">
-                                <option value="lexical" selected>Lexical</option>
-                                <option value="semantic">Semantic (Vector)</option>
-                            </select>
-                        </div>
-                        <input type="text" name="search" placeholder="Player Search..." class="form-control mr-2">
-                        <input type="submit" value="Search" class="btn btn-outline-secondary mr-3">
-                        <div class="form-check mx-1">
-                        <input class="form-check-input" type="checkbox" name="fuzzySearch" id="fuzzySearchCheckbox" value="true">
-                        <label class="form-check-label dark-mode-text" for="fuzzySearchCheckbox">Fuzzy search</label>
-                        </div>
-                    </div>
-                </form>
-            </p>
+<header class="jumbotron dark-mode-jumbotron shadow fade-in">
+  <div class="container">
+    <h1 class="dark-mode-text">Cyclones. By The Numbers.</h1>
+    <p class="dark-mode-text">
+      Powered by <strong>MongoDB Atlas Search & Vector Search</strong>
+      <i class="fa-brands fa-envira mongodb-color-scheme"></i>
+    </p>
+
+    <form action="/players/search" method="GET" class="search-form">
+      <div class="form-row">
+
+        <!-- Search Type -->
+        <div class="col-12 col-md-3 mb-2">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="searchType">Search Type</label>
+            </div>
+            <select class="custom-select" id="searchType" name="searchType">
+              <option value="all">All</option>
+              <option value="name">Name</option>
+              <option value="position">Position</option>
+              <option value="hometown">Hometown</option>
+            </select>
+          </div>
         </div>
-    </header>
+
+        <!-- Mode -->
+        <div class="col-12 col-md-3 mb-2">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="mode">Mode</label>
+            </div>
+            <select class="custom-select" id="mode" name="mode">
+              <option value="lexical" selected>Lexical</option>
+              <option value="semantic">Semantic (Vector)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Query -->
+        <div class="col-12 col-md-4 mb-2">
+          <div class="input-group">
+            <input type="text" name="search" placeholder="Player Search..." class="form-control">
+          </div>
+        </div>
+
+        <!-- Search Button -->
+        <div class="col-12 col-md-2 mb-2">
+          <button type="submit" class="btn btn-outline-secondary btn-block">Search</button>
+        </div>
+
+        <!-- Fuzzy Search Checkbox -->
+        <div class="col-12 mt-2">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="fuzzySearch" id="fuzzySearchCheckbox" value="true">
+            <label class="form-check-label dark-mode-text" for="fuzzySearchCheckbox">Fuzzy search</label>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</header>
+
 
     <!-- Search Scoring Example -->
     <% if (players.length > 0) { %> 
