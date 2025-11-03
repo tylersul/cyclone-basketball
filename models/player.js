@@ -89,24 +89,6 @@ let playerSchema = new mongoose.Schema({
             pts: Number,
         },
     ],
-    yearlyTotals: [
-        {
-            pts: Number,
-            ast: Number,
-            min: Number,
-            fgm: Number,
-            fga: Number,
-            tpm: Number,
-            tpa: Number,
-            ftm: Number,
-            fta: Number,
-            orb: Number,
-            drb: Number,
-            stl: Number,
-            blk: Number,
-            pf: Number,
-        },
-    ],
     // Calculated fields
     careerStats: {
         pointAvgs: [Number],
