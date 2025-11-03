@@ -114,9 +114,8 @@ router.get('/search', async (req, res) => {
 
             // Get query embedding from Azure helper
             const queryEmbedding = await getEmbeddingFromAzure(q);
-            console.log("Embeddings:" + queryEmbedding);
 
-            // 2) Run Atlas Vector Search
+            // Run Atlas Vector Search
             const results = await Player.aggregate([
                 {
                     $vectorSearch: {
@@ -153,7 +152,95 @@ router.get('/search', async (req, res) => {
                 mode
             });
         }
-        // Path: If user searches for a specific player, find players matching search term
+        // Entry Point: Rank Fusion (hybrid lexical + vector)
+        if (req.query.mode === 'rankfusion') {
+            // Query input
+            const query = (req.query.search || '').trim();
+
+            // Empty query fallback
+            if (!query) {
+                return res.render('players/search', {
+                players: [],
+                error: 'Please enter a search query.',
+                query
+                });
+            }
+
+            // Turn the query into an embedding
+            const queryEmbedding = await getEmbeddingFromAzure(query);
+
+            // Pick path for lexical part based on searchType
+            let lexicalPath = { wildcard: '*' };
+            if (req.query.searchType === 'name') lexicalPath = 'name';
+            else if (req.query.searchType === 'position') lexicalPath = 'position';
+            else if (req.query.searchType === 'hometown') lexicalPath = 'hometown';
+
+            // 3) Build rankFusion pipeline
+            const pipeline = [
+                {
+                $rankFusion: {
+                    input: {
+                    pipelines: {
+                        // Vector branch
+                        vector: [
+                        {
+                            $vectorSearch: {
+                            index: 'vector_index',
+                            path: 'embedding',
+                            queryEmbedding,
+                            numCandidates: 300,
+                            limit: 30
+                            }
+                        }
+                        ],
+                        // Lexical branch
+                        lexical: [
+                        {
+                            $search: {
+                            index: 'default',
+                            text: {
+                                query,
+                                path: lexicalPath,
+                                ...(req.query.fuzzySearch ? { fuzzy: { maxEdits: 2, prefixLength: 1 } } : {})
+                            }
+                            }
+                        },
+                        { $limit: 30 }
+                        ]
+                    }
+                    },
+                    // Optional: tweak weights if you want lexical vs vector balance
+                    // combination: { weights: { vector: 0.5, lexical: 0.5 } },
+                    scoreDetails: true
+                }
+                },
+                // Surface score + details from rankFusion
+                { $addFields: {
+                    searchScore: { $meta: 'searchScore' },
+                    scoreDetails: { $meta: 'searchScoreDetails' }
+                }},
+                // Keep payload lean for the card list
+                { $project: { name: 1, position: 1, image: 1, searchScore: 1 } },
+                { $limit: 30 }
+            ];
+
+            const fusedPlayers = await Player.aggregate(pipeline).exec();
+
+            if (!fusedPlayers.length) {
+                return res.render('players/search', {
+                players: [],
+                error: 'No match. Please try again.',
+                query
+                });
+            }
+
+            return res.render('players/search', {
+                players: fusedPlayers,
+                query
+            });
+        }
+
+        // Entry Point: Lexical search mode
         if (req.query.search) {
             // $Search - uses default Atlas Search Index with a wildcard search
             // $Project - limits returning payload & returns searchScore & highlights
@@ -236,7 +323,7 @@ router.get('/search', async (req, res) => {
     }
 });
 
-// PLAYER - SHOW: shows more info about one player
+// GET - SHOW: shows more info about one player
 router.get('/:id', async (req, res) => {
     try {
         // WIP - only show delete / update buttons when admin is logged in 
@@ -277,9 +364,11 @@ router.put('/:id', /*middleware.checkPlayerOwnership,*/ async (req, res) => {
 
         // Update player data
         Object.assign(updatePlayer, req.body);
+        console.log('body:', JSON.stringify(req.body, null, 2));
 
         // Recalculate stats
         const stats = calculateCareerStats(updatePlayer);
+        console.log('Stats:', JSON.stringify(stats, null, 2));
         updatePlayer.careerStats = stats;
 
         await updatePlayer.save();
@@ -292,7 +381,7 @@ router.put('/:id', /*middleware.checkPlayerOwnership,*/ async (req, res) => {
     }
 });
 
-// DELETE - Remove player: DELETE request
+// DELETE - Remove player
 router.delete('/:id', middleware.checkPlayerOwnership, function (req, res) {
     Player.findByIdAndRemove(req.params.id, function (err) {
         if (err) {
