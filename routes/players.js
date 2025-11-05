@@ -368,7 +368,6 @@ router.put('/:id', /*middleware.checkPlayerOwnership,*/ async (req, res) => {
 
         // Recalculate stats
         const stats = calculateCareerStats(updatePlayer);
-        console.log('Stats:', JSON.stringify(stats, null, 2));
         updatePlayer.careerStats = stats;
 
         await updatePlayer.save();
